@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', blog_views.index, name='index'),
     # path('', include("blog_urls"), name="blog_urls"),  # the app urls are loaded as the main urls
+    path('summernote/', include('django_summernote.urls')),
     path('', include('blog.urls'), name='blog_urls'),
 
 ]
