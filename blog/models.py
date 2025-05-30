@@ -52,7 +52,7 @@ class About(models.Model):
     content = models.TextField()
 
 
-class ContactReguest(models.Model):
+class ContactRequest(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     message = models.TextField()
