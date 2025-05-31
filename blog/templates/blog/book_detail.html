@@ -1,0 +1,38 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{ book.title }}{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-4">
+    <img src="{{ book.cover_image.url }}" class="img-fluid" alt="Cover">
+  </div>
+  <div class="col-md-8">
+    <h2>{{ book.title }}</h2>
+    <p><strong>Author:</strong> {{ book.author }}</p>
+    <p>{{ book.description }}</p>
+    <p>👍 {{ upvotes }} | 👎 {{ downvotes }}</p>
+
+    {% if user.is_authenticated %}
+      <form method="post">{% csrf_token %}
+        <button name="upvote" class="btn btn-success">👍 Like</button>
+        <button name="downvote" class="btn btn-danger">👎 Dislike</button>
+      </form>
+      <hr>
+      <h4>Write A Review</h4>
+      <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" name="review_submit" class="btn btn-primary">Submit</button>
+      </form>
+    {% else %}
+      <p><a href="{% url 'login' %}">Log in</a> to rate and review this book.</p>
+    {% endif %}
+
+    <hr>
+    <h4>Reviews</h4>
+    {% for comment in comments %}
+      <p><strong>{{ comment.user.username }}</strong>: {{ comment.text }}</p>
+    {% empty %}
+      <p>No reviews yet.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
