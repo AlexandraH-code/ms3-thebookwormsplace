@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth import authenticate
+from django.contrib.auth import login, logout, authenticate
 # from django.contrib.forms import UserCreationForm, AuthenticationForm
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import BlogPost, Comment, Rating, About
-# from .forms import CommentForm, ContactForm
+from .forms import ContactForm, CommentForm, CustomUserCreationForm, CustomAuthenticationForm
 
 
 # Create your views here.
@@ -26,7 +26,8 @@ def books(request):
 # Book Detail – show details + handles rating and comments
 def book_detail(request, pk):
     book = get_object_or_404(BlogPost, pk=pk)
-    comments = Comment.objects.filter(post=book)
+    # comments = Comment.objects.filter(post=book)
+    comments = Comment.objects.filter(book=book, approved=True).order_by('-created_at')
     upvotes = Rating.objects.filter(post=book, value='up').count()
     downvotes = Rating.objects.filter(post=book, value='down').count()
 
@@ -68,27 +69,34 @@ def about(request):
         form = ContactForm()
     return render(request, 'blog/about.html', {'about': about, 'form': form})
 
+
 # Register - registration form
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
             return redirect('home')
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
     return render(request, 'blog/register.html', {'form': form})
 
 
 # Login - login form
 def login_view(request):
     if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
+        form = CustomAuthenticationForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
             return redirect('home')
     else:
-        form = AuthenticationForm()
+        form = CustomAuthenticationForm()
     return render(request, 'blog/login.html', {'form': form})
+
+
+# Logout
+def logout_view(request):
+    logout(request)
+    return redirect('home')
