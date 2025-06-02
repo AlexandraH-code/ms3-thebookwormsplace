@@ -40,7 +40,7 @@
 
     <hr>
     <h4>Reviews</h4>
-    {% for comment in comments %}
+    {% for comment in books.comments.all %}
       <p><strong>{{ comment.user.username }}</strong>: {{ comment.text }}</p>
     {% empty %}
       <p>No reviews yet.</p>
