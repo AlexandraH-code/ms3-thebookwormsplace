@@ -17,12 +17,12 @@
         <button name="downvote" class="btn btn-danger">👎 Dislike</button>
       </form>
       <hr>
-      <h4>Write A Review</h4>
+      <h4>Write A Comment Or Your Own Review:</h4>
       <form method="post" novalidate>
         {% csrf_token %}
         {% for field in form %}
         <div class="mb-3">
-          <label for="{{ field.id_for_label }}" class="form-label">{{ field-label }}</label>
+          <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
           <div class="input-group">
             <span class="input-group-text"><i class="bi bi-chat-left-text"></i></span>
             {{ field }}
@@ -39,12 +39,18 @@
     {% endif %}
 
     <hr>
-    <h4>Reviews</h4>
-    {% for comment in books.comments.all %}
-      <p><strong>{{ comment.user.username }}</strong>: {{ comment.text }}</p>
-    {% empty %}
-      <p>No reviews yet.</p>
-    {% endfor %}
-  </div>
-</div>
+    <h3>Comments/Reviews</h3>
+    {% if comments %}
+      {% for comment in comments %}
+        <div class="card mb-2">
+            <div class="card-body">
+                <strong>{{ comment.user.username }}</strong> sa:
+                <p>{{ comment.text }}</p>
+                <small class="text-muted">{{ comment.created_at }}</small>
+            </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No comments/reviews yet.</p>
+    {% endif %}
 {% endblock %}

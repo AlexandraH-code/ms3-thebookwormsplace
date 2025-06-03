@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="hero">
+    <h1>Welcome To The BookWorm’s Place</h1>
+</div>
+<div class="text-center my-4">
+    
+    <a class="btn btn-primary btn-lg" href="{% url 'books' %}">Browse Books</a>
+</div>
+{% endblock %}

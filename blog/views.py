@@ -26,22 +26,21 @@ def books(request):
 # Book Detail – show details + handles rating and comments
 def book_detail(request, pk):
     book = get_object_or_404(BlogPost, pk=pk)
-    # comments = Comment.objects.filter(post=book)
     comments = Comment.objects.filter(book=book, approved=True).order_by('-created_at')
-    upvotes = Rating.objects.filter(post=book, value='up').count()
-    downvotes = Rating.objects.filter(post=book, value='down').count()
+    upvotes = Rating.objects.filter(book=book, is_upvote=True).count()
+    downvotes = Rating.objects.filter(book=book, is_upvote=False).count()
 
     if request.method == 'POST':
         if 'upvote' in request.POST:
-            Rating.objects.get_or_create(user=request.user, post=book, value='up')
+            Rating.objects.get_or_create(user=request.user, book=book, is_upvote=True)
         elif 'downvote' in request.POST:
-            Rating.objects.get_or_create(user=request.user, post=book, value='down')
+            Rating.objects.get_or_create(user=request.user, book=book, is_upvote=False)
         elif 'review_submit' in request.POST:
             form = CommentForm(request.POST)
             if form.is_valid():
                 comment = form.save(commit=False)
                 comment.user = request.user
-                comment.post = book
+                comment.book = book
                 comment.save()
         return redirect('book_detail', pk=book.pk)
     else:

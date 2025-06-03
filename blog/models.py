@@ -41,11 +41,11 @@ class Comment(models.Model):
 
 class Rating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    blogpost = models.ForeignKey(BlogPost, on_delete=models.CASCADE)
+    book = models.ForeignKey(BlogPost, on_delete=models.CASCADE)
     is_upvote = models.BooleanField()
 
     class Meta:
-        unique_together = ('user', 'blogpost') # Only one vote per user
+        unique_together = ('user', 'book') # Only one vote per user
 
 
 class About(models.Model):
