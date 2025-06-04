@@ -1,19 +1,13 @@
 body, html {
   margin: 0;
-  padding: 0;
+  /*padding: 0;*/
   overflow-x: hidden; /* prevents scrolling sideways */
   height: 100%; /* important if you use 100vh */
-  box-sizing: border-box;
-}
-
-*, *::before, *::after {
-  box-sizing: inherit;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /*background-color: #f8f9fa;*/
-    background-color: lightblue;
+    background-color: #f8f9fa;
     color: #212529;
     display: flex;
     flex-direction: column;
@@ -21,26 +15,45 @@ body {
 
 main {
   flex: 1;
-  margin: 0 !important;
-  padding: 0 !important;
-  background-color: lightcoral;
 }
 
+/* 
 .hero-image {
+    background-image: url('/static/blog/images/books-1614215_1280.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 350px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    /*border: 2px solid red;*/
+/*}*/
+
+/*.hero-image {
   position: relative;
-  background-image: url('/static/blog/images/books-1614215_1280.jpg');
+
+  height: 81.75vh; /* eller t.ex. 65vh beroende på layout */
+  /*background-image: url('/static/blog/images/books-1614215_1280.jpg'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-  margin: 0 !important;
-  padding: 0 !important;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
-  background-color: limegreen;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+}*/
+
+.hero-image {
+  position: relative;
+  background-image: url('/static/blog/images/books-1614215_1280.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 .hero-image h1,
@@ -66,13 +79,6 @@ main {
 
 .hero-content {
   z-index: 2;
-  margin: 0 !important;
-  padding: 0 !important;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .btn-rounded {
@@ -121,7 +127,6 @@ footer a:hover {
 /* * {
   outline: 1px solid rgb(255, 255, 255);
 }*/
-
-/*.hero-image {
+.hero-image {
   border: 1px solid red; /* tillfälligt – se exakt hur stor hero-sektionen är */
-/*}*/
+}

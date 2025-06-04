@@ -24,8 +24,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
 </head>
-<!--<body class="d-flex flex-column min-vh-100">-->
-<body>
+<body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}">📚 The BookWorm's Place</a>
@@ -48,12 +47,12 @@
         </div>
     </nav>
 
-    <main>
+    <main class>
     {% block content %}
     {% endblock %}
     </main>
 
-    <footer class="bg-dark text-white text-center py-3 mt-auto">
+    <footer class="bg-dark text-white text-center py-3">
         <p>Follow us: 
     <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square ms-3"></i></a> |
     <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram-square ms-3"></i></a> |
@@ -61,28 +60,6 @@
     <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube-square ms-3"></i></a>
         </p>
     </footer>
-    <script 
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous">
-    </script>
-    <script>
-        function setOverlayStyle(style) {
-            const overlay = document.querySelector('.overlay');
-            overlay.className = 'overlay ' + style;
-        }
-
-        function setHeroHeight() {
-            const hero = document.querySelector('.hero-image');
-            const navbar = document.querySelector('.navbar');
-            if (hero && navbar) {
-                const navHeight = navbar.offsetHeight;
-                const footer = document.querySelector('footer');
-                const footerHeight = footer ? footer.offsetHeight : 0;
-                hero.style.minHeight = `${window.innerHeight - navHeight - footerHeight}px`;
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", setHeroHeight);
-        window.addEventListener('resize', setHeroHeight);
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </body>
 </html>
