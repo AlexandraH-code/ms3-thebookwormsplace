@@ -1,29 +1,31 @@
 {% extends 'blog/base.html' %}
 {% block title %}Register{% endblock %}
 {% block content %}
-<h2 class="mb-4">Create Account</h2>
-<form method="post" novalidate>
-  {% csrf_token %}
-  {% for field in form %}
-    <div class="mb-3">
-      <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-      <div class="input-group">
-        <span class="input-group-text">
-          {% if field.name == 'username' %}
-            <i class="bi bi-person"></i>
-          {% elif field.name == 'password1' or field.name == 'password2' %}
-            <i class="bi bi-lock"></i>
-          {% else %}
-            <i class="bi bi-pencil"></i>
+<div class="container my-4">
+  <h2 class="mb-4">Create Account</h2>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="mb-3">
+        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            {% if field.name == 'username' %}
+              <i class="bi bi-person"></i>
+            {% elif field.name == 'password1' or field.name == 'password2' %}
+              <i class="bi bi-lock"></i>
+            {% else %}
+              <i class="bi bi-pencil"></i>
+            {% endif %}
+          </span>
+          {{ field }}
+          </div>
+          {% if field.errors %}
+            <div class="text-danger small">{{ field.errors }}</div>
           {% endif %}
-        </span>
-        {{ field }}
-      </div>
-      {% if field.errors %}
-        <div class="text-danger small">{{ field.errors }}</div>
-      {% endif %}
-    </div>
-  {% endfor %}
-  <button type="submit" class="btn btn-success">Register</button>
-</form>
+          </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-success">Register</button>
+  </form>
+</div>
 {% endblock %}
