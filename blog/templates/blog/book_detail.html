@@ -33,7 +33,7 @@
             {% endif %}
           </div>
           {% endfor %}
-          <button type="submit" name="review_submit" class="btn btn-primary">Submit</button>
+          <button type="submit" name="review_submit" class="btn btn-outline-primary mt-auto">Submit</button>
         </form>
       {% else %}
         <p><a href="{% url 'login' %}">Log in</a> to rate and comment on this book.</p>
@@ -45,14 +45,19 @@
         {% for comment in comments %}
           <div class="card mb-2">
             <div class="card-body">
-                <strong>{{ comment.user.username }}</strong> sa:
+                <strong>{{ comment.user.username }}</strong> said:
                 <p>{{ comment.text }}</p>
                 <small class="text-muted">{{ comment.created_at }}</small>
+                <br/><br/>
+                {% if user == comment.user %}
+                  <a href="{% url 'edit_comment' comment.pk %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                  <a href="{% url 'delete_comment' comment.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
+                {% endif %}
             </div>
           </div>
         {% endfor %}
       {% else %}
-        <p>No comments/reviews yet.</p>
+        <p>No comments yet.</p>
       {% endif %}
       <a href="{% url 'books' %}" class="btn btn-outline-primary mt-auto">Back to Books</a>
     </div>

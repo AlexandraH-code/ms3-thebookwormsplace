@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import BlogPost, Comment, Rating, About
 from .forms import ContactForm, CommentForm, CustomUserCreationForm, CustomAuthenticationForm
-
+from django.contrib import messages
 
 # Create your views here.
 # def index(request):
@@ -75,8 +75,9 @@ def register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
-            return redirect('home')
+            #login(request, user)
+            messages.success(request, "Your account has been created. Please log in.")
+            return redirect('login')
     else:
         form = CustomUserCreationForm()
     return render(request, 'blog/register.html', {'form': form})
@@ -89,6 +90,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
+            messages.success(request, f"You are now logged in as {user.username}.")
             return redirect('home')
     else:
         form = CustomAuthenticationForm()
@@ -96,6 +98,39 @@ def login_view(request):
 
 
 # Logout
+def logout_confirm(request):
+    return render(request, 'blog/logout.html')
+
+
 def logout_view(request):
-    logout(request)
-    return redirect('home')
+    if request.method == 'POST':
+        logout(request)
+        messages.success(request, "You have been logged out.")
+        return redirect('home')
+    return redirect('logout')
+
+
+# Edit Comments - book_details
+def edit_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk, user=request.user)
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.approved = False  # Eequires new approval from admin
+            comment.save()
+            messages.info(request, "Your updated comment is awaiting approval.")
+            return redirect('book_detail', pk=comment.book.pk)
+    else:
+        form = CommentForm(instance=comment)
+    return render(request, 'blog/edit_comment.html', {'form': form, 'comment': comment})
+
+
+# Delete Comments - book_details
+def delete_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk, user=request.user)
+    if request.method == 'POST':
+        comment.delete()
+        messages.success(request, "Your comment was deleted.")
+        return redirect('book_detail', pk=comment.book.pk)
+    return render(request, 'blog/delete_comment.html', {'comment': comment})
