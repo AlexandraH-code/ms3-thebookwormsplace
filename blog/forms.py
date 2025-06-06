@@ -19,13 +19,13 @@ class CustomAuthenticationForm(AuthenticationForm):
     password = forms.CharField(label="Password", widget=forms.PasswordInput)
 
 
-# Form to leave a comment/review
+# Form to leave a comment
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['text']
         widgets = {
-            'text': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Write your review...'}),
+            'text': forms.Textarea(attrs={'rows': 5, 'placeholder': 'Write your thoughts...'}),
         }
 
 
@@ -37,5 +37,5 @@ class ContactForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={'placeholder': 'Your name'}),
             'email': forms.EmailInput(attrs={'placeholder': 'Your email'}),
-            'message': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Your message'}),
+            'message': forms.Textarea(attrs={'rows': 5, 'placeholder': 'Write your message...'}),
         }

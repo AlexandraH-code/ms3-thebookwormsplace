@@ -1,0 +1,106 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        The BookWorm's Place
+        {% endblock %}
+    </title>
+
+    <!-- FontAwsome-->
+    <script src="https://kit.fontawesome.com/a8d1dc1333.js" crossorigin="anonymous"></script>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    
+    <!-- Bootstrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+</head>
+<!--<body class="d-flex flex-column min-vh-100">-->
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">📚 The BookWorm's Place</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'books' %}">Books</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+    {% block content %}
+    {% endblock %}
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3 mt-auto">
+        <p>Follow us: 
+    <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square ms-3"></i></a> |
+    <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram-square ms-3"></i></a> |
+    <a href="https://x.com/" target="_blank"><i class="fab fa-twitter-square ms-3"></i></a> |
+    <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube-square ms-3"></i></a>
+        </p>
+    </footer>
+    <script 
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous">
+    </script>
+    <!-- Script for overlay -->
+    <script>
+        function setOverlayStyle(style) {
+            const overlay = document.querySelector('.overlay');
+            overlay.className = 'overlay ' + style;
+        }
+    </script>
+    <!-- Dynamic way to set hero height -->
+    <script>
+        function setHeroHeight() {
+            const hero = document.querySelector('.hero-image');
+            const navbar = document.querySelector('.navbar');
+            if (hero && navbar) {
+                const navHeight = navbar.offsetHeight;
+                const footer = document.querySelector('footer');
+                const footerHeight = footer ? footer.offsetHeight : 0;
+                hero.style.minHeight = `${window.innerHeight - navHeight - footerHeight}px`;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", setHeroHeight);
+        window.addEventListener('resize', setHeroHeight);
+    </script>
+    <!-- 
+     Script for scrollbar.
+     When scrollbar is needed, a margin-right: 17px is added to prevent sideways jumps.
+     When the scrollbar is not needed, it is reset.
+    
+    <script>
+    function adjustForScrollbar() {
+        const hasScrollbar = window.innerWidth > document.documentElement.clientWidth;
+        document.body.style.paddingRight = hasScrollbar ? '17px' : '0';
+    }
+
+    window.addEventListener('load', adjustForScrollbar);
+    window.addEventListener('resize', adjustForScrollbar);
+    </script>
+    -->
+</body>
+</html>

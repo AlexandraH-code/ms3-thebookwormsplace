@@ -1,8 +1,22 @@
 html {
   overflow-x: hidden; /* prevents scrolling sideways */
-  overflow-y: scroll;
+  /*overflow-y: scroll;*/
   max-width: 100vw;
 }
+
+
+/*
+body::before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 17px; /* vanlig scrollbar-bredd */
+  /*height: 100vh;
+  pointer-events: none;
+  visibility: hidden;
+}*/
 
 body {
   min-height: 100vh;
@@ -47,10 +61,8 @@ main {
 }*/
 
 .hero-image {
-  min-height: calc(100vh - 56px); /* eller justera 56px om navbaren har annan höjd */
   position: relative;
   width: 100%;
-  min-height: calc(100vh - 56px); /* full height minus navbar */
   background-image: url('/static/blog/images/books-1614215_1280.jpg');
   background-size: cover;
   background-position: center;
@@ -60,7 +72,6 @@ main {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding-top: 2rem;
   /* margin: 0 !important; */
   /* padding: 0 !important; */
   /*background-color: rgb(170, 170, 170);*/
@@ -146,7 +157,7 @@ footer a:hover {
     object-fit: cover;
 }
 
-/* * {
+ * {
   outline: 1px solid rgb(255, 255, 255);
 }
 

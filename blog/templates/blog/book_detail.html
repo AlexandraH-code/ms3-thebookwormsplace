@@ -18,12 +18,12 @@
           <button name="downvote" class="btn btn-danger">👎 Dislike</button>
         </form>
         <hr>
-        <h4>Write A Comment Or Your Own Review:</h4>
+        <h4>Write your own thoughts about this book:</h4>
         <form method="post" novalidate>
           {% csrf_token %}
           {% for field in form %}
           <div class="mb-3">
-            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+            <!--<label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>-->
             <div class="input-group">
               <span class="input-group-text"><i class="bi bi-chat-left-text"></i></span>
               {{ field }}
@@ -36,11 +36,11 @@
           <button type="submit" name="review_submit" class="btn btn-primary">Submit</button>
         </form>
       {% else %}
-        <p><a href="{% url 'login' %}">Log in</a> to rate and review this book.</p>
+        <p><a href="{% url 'login' %}">Log in</a> to rate and comment on this book.</p>
       {% endif %}
 
       <hr>
-      <h3>Comments/Reviews</h3>
+      <h3>Comments:</h3>
       {% if comments %}
         {% for comment in comments %}
           <div class="card mb-2">
@@ -54,6 +54,7 @@
       {% else %}
         <p>No comments/reviews yet.</p>
       {% endif %}
+      <a href="{% url 'books' %}" class="btn btn-outline-primary mt-auto">Back to Books</a>
     </div>
   </div>
 </div>
