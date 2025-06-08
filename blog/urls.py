@@ -14,8 +14,9 @@ urlpatterns = [
     path('logout/confirmed/', views.logout_view, name='logout_confirmed'),
     path('comment/<int:pk>/edit/', views.edit_comment, name='edit_comment'),
     path('comment/<int:pk>/delete/', views.delete_comment, name='delete_comment'),
+    # path('profile/edit/', views.profile_edit, name='profile_edit'), 
+    path('profile/', views.profile_overview, name='profile'),
+    path('profile/username/', views.update_username, name='update_username'),
+    path('profile/email/', views.update_email, name='update_email'),
+    path('profile/password/', views.change_password, name='change_password'),
 ]
-
-
-
-

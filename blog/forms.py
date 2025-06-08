@@ -1,6 +1,6 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
 from .models import Comment, ContactRequest
 
 
@@ -13,7 +13,7 @@ class CustomUserCreationForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
 
-# User login form (optional - you can use Django's original too)
+# User login form
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'autofocus': True}))
     password = forms.CharField(label="Password", widget=forms.PasswordInput)
@@ -39,3 +39,25 @@ class ContactForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'placeholder': 'Your email'}),
             'message': forms.Textarea(attrs={'rows': 5, 'placeholder': 'Write your message...'}),
         }
+
+
+# Form for updating username and email
+# class UserUpdateForm(forms.ModelForm):
+#    class Meta:
+#        model = User
+#        fields = ['username', 'email']
+
+
+# Form for updating username
+class UsernameUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username']
+
+
+# Form for updating email
+class EmailUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['email']
+        

@@ -2,15 +2,18 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login, logout, authenticate
 # from django.contrib.forms import UserCreationForm, AuthenticationForm
 from django.core.mail import send_mail
+from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import BlogPost, Comment, Rating, About
-from .forms import ContactForm, CommentForm, CustomUserCreationForm, CustomAuthenticationForm
+from .forms import ContactForm, CommentForm, CustomUserCreationForm, CustomAuthenticationForm, UsernameUpdateForm, EmailUpdateForm, PasswordChangeForm
 from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
 
 # Create your views here.
 # def index(request):
     # return HttpResponse("Hello, World!")
+
 
 # Home
 def home(request):
@@ -75,7 +78,7 @@ def register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            #login(request, user)
+            # login(request, user)
             messages.success(request, "Your account has been created. Please log in.")
             return redirect('login')
     else:
@@ -134,3 +137,56 @@ def delete_comment(request, pk):
         messages.success(request, "Your comment was deleted.")
         return redirect('book_detail', pk=comment.book.pk)
     return render(request, 'blog/delete_comment.html', {'comment': comment})
+
+"""
+User details
+"""
+
+
+# Profile overview
+@login_required
+def profile_overview(request):
+    return render(request, 'blog/profile_overview.html')
+
+# Update username
+@login_required
+def update_username(request):
+    if request.method == 'POST':
+        form = UsernameUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Username updated successfully.")
+            return redirect('profile')
+    else:
+        form = UsernameUpdateForm(instance=request.user)
+    return render(request, 'blog/update_username.html', {'form': form})
+
+# Update email
+@login_required
+def update_email(request):
+    if request.method == 'POST':
+        form = EmailUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Email address updated successfully.")
+            return redirect('profile')
+    else:
+        form = EmailUpdateForm(instance=request.user)
+    return render(request, 'blog/update_email.html', {'form': form})
+
+# Change password
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            if form.cleaned_data['new_password1'] == form.cleaned_data['old_password']:
+                form.add_error('new_password1', "New password cannot be the same as the old one.")
+            else:
+                user = form.save()
+                update_session_auth_hash(request, user)
+                messages.success(request, "Your password was successfully changed.")
+                return redirect('profile')
+    else:
+        form = PasswordChangeForm(user=request.user)
+    return render(request, 'blog/change_password.html', {'form': form})

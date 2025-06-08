@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+{% block title %}My Profile{% endblock %}
+{% block content %}
+<div class="container mt-5">
+  <h2>My Profile</h2>
+  <ul class="list-group">
+    <li class="list-group-item"><a href="{% url 'update_username' %}">Change Username</a></li>
+    <li class="list-group-item"><a href="{% url 'update_email' %}">Change Email Address</a></li>
+    <li class="list-group-item"><a href="{% url 'change_password' %}">Change Password</a></li>
+  </ul>
+</div>
+{% endblock %}
