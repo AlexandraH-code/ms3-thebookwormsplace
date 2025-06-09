@@ -45,19 +45,6 @@ def book_detail(request, pk):
                 comment.user = request.user
                 comment.book = book
                 comment.save()
-        elif 'reply_submit' in request.POST:
-            form = CommentForm(request.POST)
-            if form.is_valid():
-                parent_id = request.POST.get('parent_id')
-                parent_comment = Comment.objects.get(id=parent_id)
-                reply = form.save(commit=False)
-                reply.user = request.user
-                reply.book = book
-                reply.parent = parent_comment
-                reply.approved = False  # Admin måste godkänna
-                reply.save()
-                messages.success(request, "Your reply has been submitted and awaits approval.")
-                return redirect('book_detail', pk=book.pk)
         return redirect('book_detail', pk=book.pk)
     else:
         form = CommentForm()

@@ -1,4 +1,5 @@
 {% extends 'blog/base.html' %}
+{% load form_filters %}
 {% block title %}{{ book.title }}{% endblock %}
 {% block content %}
 <div class="container my-4">
@@ -43,19 +44,71 @@
       <h3>Comments:</h3>
       {% if comments %}
         {% for comment in comments %}
-          <div class="card mb-2">
+          {% if not comment.parent %}
+          <div class="card mb-3">
             <div class="card-body">
-                <strong>{{ comment.user.username }}</strong> said:
-                <p>{{ comment.text }}</p>
-                <small class="text-muted">{{ comment.created_at }}</small>
-                <br/><br/>
-                {% if user == comment.user %}
-                  <a href="{% url 'edit_comment' comment.pk %}" class="btn btn-sm btn-outline-secondary">Edit</a>
-                  <a href="{% url 'delete_comment' comment.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
-                {% endif %}
+              <p class="mb-1"><strong>{{ comment.user.username }}</strong> • {{ comment.created_at|date:"M d, Y H:i" }}</p>
+              <p>{{ comment.text }}</p>
+              <a href="#" class="reply-link btn btn-outline-primary mt-auto" data-comment-id="{{ comment.id }}">Reply</a>
             </div>
+
+            <!--Visa endast Reply-länken om ingen reply finns -->
+            {% if comment.replies.count == 0 %}
+              <a href="#" class="reply-link btn btn-primary btn-sm" data-comment-id="{{ comment.id }}">Reply</a>
+            {% endif %}
+
+            <!-- Visa godkända svar med ikon och stil -->
+            {% for reply in comment.replies.all %}
+              {% if reply.approved %}
+              <div class="reply-box">
+                <p class="mb-1 text-muted">
+                  <i class="bi bi-arrow-return-right"></i> 
+                  <strong>{{ reply.user.username }}</strong> • {{ comment.created_at|date:"M d, Y H:i" }}</p>
+                </p>
+                <p>{{ reply.text }}</p>
+              </div>
+              {% endif %}
+            {% endfor %}
           </div>
+          {% endif %}
         {% endfor %}
+
+        <!--{% if messages %}
+        <div class="container mt-3">
+          {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}-->
+
+        <div id="reply-form-container" style="display: none;">
+          <br/>
+          <form method="post" id="reply-form">
+            {% csrf_token %}
+            {{ form.text|add_class:"form-control mb-2" }}
+            <input type="hidden" name="parent_id" id="parent_id">
+            <button type="submit" name="reply_submit" class="btn btn-outline-primary mt-auto">Post Reply</button>
+          </form>
+        </div>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          document.querySelectorAll('.reply-link').forEach(link => {
+            link.addEventListener('click', function (e) {
+              e.preventDefault();
+              const commentId = this.getAttribute('data-comment-id');
+              const form = document.getElementById('reply-form-container');
+              const parentInput = document.getElementById('parent_id');
+              parentInput.value = commentId;
+              this.parentElement.appendChild(form);
+              form.style.display = 'block';
+            });
+          });
+        });
+        </script>
       {% else %}
         <p>No comments yet.</p>
       {% endif %}
