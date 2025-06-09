@@ -155,7 +155,6 @@ def delete_comment(request, pk):
 User details
 """
 
-
 # Profile overview
 @login_required
 def profile_overview(request):
@@ -203,3 +202,36 @@ def change_password(request):
     else:
         form = PasswordChangeForm(user=request.user)
     return render(request, 'blog/change_password.html', {'form': form})
+
+""" 
+Admin view for book management
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def admin_dashboard(request):
+    books = BlogPost.objects.all()
+    return render(request, 'blog/admin_dashboard.html', {'books': books})
+
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def admin_add_book(request):
+    if request.method == 'POST':
+        form = BlogPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Book added successfully.")
+            return redirect('admin_dashboard')
+    else:
+        form = BlogPostForm()
+    return render(request, 'blog/admin_add_book.html', {'form': form})
+"""
+
+
+
+
+
+
+
+
+

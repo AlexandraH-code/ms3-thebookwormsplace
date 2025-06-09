@@ -18,10 +18,35 @@ body {
   /* height: 100%; /* important if you use 100vh */
   /*overflow-x: hidden; /* prevents scrolling sideways */
   /* overflow-y: scroll; */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f8f9fa;
-  /*background-color: lightblue;*/
-  color: #212529;
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  /* background-color: #f8f9fa; */
+  /*background-color: lightblue; */
+  /* color: #212529; */
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f5f2eb;
+  color: #333;
+}
+
+h1, h2, h3 {
+  font-family: 'EB Garamond', serif;
+}
+.btn-primary {
+  background-color: #6b4f4f;
+  border-color: #6b4f4f;
+}
+.btn-primary:hover {
+  background-color: #5a3f3f;
+}
+a {
+  color: #4a3c64;
+}
+a:hover {
+  color: #2d2246;
+}
+
+#navbar .logo {
+    width: 30px;
+    height: 30px;
 }
 
 *, *::before, *::after {
