@@ -3,10 +3,10 @@ from django.contrib.auth import login, logout, authenticate
 # from django.contrib.forms import UserCreationForm, AuthenticationForm
 from django.core.mail import send_mail
 from django.contrib.auth.forms import UserChangeForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import BlogPost, Comment, Rating, About
-from .forms import ContactForm, CommentForm, CustomUserCreationForm, CustomAuthenticationForm, UsernameUpdateForm, EmailUpdateForm, PasswordChangeForm
+from .forms import ContactForm, CommentForm, CustomUserCreationForm, CustomAuthenticationForm, UsernameUpdateForm, EmailUpdateForm, PasswordChangeForm, BlogPostForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 
@@ -27,8 +27,8 @@ def books(request):
 
 
 # Book Detail – show details + handles rating and comments
-def book_detail(request, pk):
-    book = get_object_or_404(BlogPost, pk=pk)
+def book_detail(request, slug):
+    book = get_object_or_404(BlogPost, slug=slug)
     comments = Comment.objects.filter(book=book, approved=True).order_by('-created_at')
     upvotes = Rating.objects.filter(book=book, is_upvote=True).count()
     downvotes = Rating.objects.filter(book=book, is_upvote=False).count()
@@ -206,6 +206,7 @@ def change_password(request):
 """ 
 Admin view for book management
 
+"""
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def admin_dashboard(request):
@@ -225,13 +226,27 @@ def admin_add_book(request):
     else:
         form = BlogPostForm()
     return render(request, 'blog/admin_add_book.html', {'form': form})
-"""
 
-
-
-
-
-
-
-
-
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def admin_edit_book(request, pk):
+    book = get_object_or_404(BlogPost, pk=pk)
+    if request.method == 'POST':
+        form = BlogPostForm(request.POST, request.FILES, instance=book)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Book updated successfully.")
+            return redirect('admin_dashboard')
+    else:
+        form = BlogPostForm(instance=book)
+    return render(request, 'blog/admin_edit_book.html', {'form': form})
+                            
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def admin_delete_book(request, pk):
+    book = get_object_or_404(BlogPost, pk=pk)
+    if request.method == 'POST':
+        book.delete()
+        messages.success(request, "Book deleted successfully.")
+        return redirect('admin_dashboard')
+    return render(request, 'blog/admin_delete_book.html', {'book': book})

@@ -1,17 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.utils.text import slugify
 
 
 # Create your models here.
 class BlogPost(models.Model):
     title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200)
+    slug = models.SlugField(max_length=200, unique=True, blank=True)
     author = models.CharField(max_length=100)
     cover_image = models.ImageField(upload_to='book_covers/')
     # cover_image = models.ImageField(upload_to='book_covers/', blank=True, null=True)
     # cover_image = CloudinaryField('image', default='placeholder')
-    cover_image_alt = models.CharField(max_length=150, null=False, blank=False)
+    cover_image_alt = models.CharField(max_length=150)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
@@ -23,6 +24,23 @@ class BlogPost(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug or self.title_changed():
+            base_slug = slugify(self.title)
+            slug = base_slug
+            counter = 1
+            while BlogPost.objects.filter(slug=slug).exclude(pk=self.pk).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
+
+    def title_changed(self):
+        if not self.pk:
+            return True
+        original = BlogPost.objects.get(pk=self.pk)
+        return original.title != self.title
 
 
 class Comment(models.Model):
