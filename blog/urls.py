@@ -25,9 +25,3 @@ urlpatterns = [
     path('admin-dashboard/edit/<int:pk>/', views.admin_edit_book, name='admin_edit_book'),
     path('admin-dashboard/delete/<int:pk>/', views.admin_delete_book, name='admin_delete_book'),
 ]
-
-
-
-
-
-

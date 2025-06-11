@@ -44,6 +44,11 @@ a:hover {
   color: #2d2246;
 }
 
+input[type="checkbox"] {
+  width: auto !important;
+  height: auto !important;
+}
+
 #navbar .logo {
     width: 30px;
     height: 30px;

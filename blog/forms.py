@@ -85,7 +85,7 @@ class BlogPostForm(forms.ModelForm):
             'cover_image_alt': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),
             'excerpt': forms.Textarea(attrs={'class': 'form-control'}),
-            'is_draft': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'is_draft': forms.CheckboxInput(attrs={'class': 'form-check-input'}),       
         }
 
     # Styling alla fält med Bootstrap
