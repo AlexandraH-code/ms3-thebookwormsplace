@@ -24,4 +24,7 @@ urlpatterns = [
     path('admin-dashboard/add/', views.admin_add_book, name='admin_add_book'),
     path('admin-dashboard/edit/<int:pk>/', views.admin_edit_book, name='admin_edit_book'),
     path('admin-dashboard/delete/<int:pk>/', views.admin_delete_book, name='admin_delete_book'),
+    path('admin-dashboard/about/', views.admin_edit_about, name='admin_edit_about'),
 ]
+
+

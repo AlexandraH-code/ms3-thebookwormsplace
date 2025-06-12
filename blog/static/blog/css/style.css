@@ -240,6 +240,34 @@ footer a:hover {
   color: #fff;
 }
 
+/* Footer */ 
+/* #social_links {
+    background-color: #523E33;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#social_links i {
+    color: #E6D4BD;
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+#social_links i:hover {
+    color: #6F573C;
+}
+
+#social_links a {
+    color: #E6D4BD;;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+#social_links a:hover {
+    color: #6F573C;
+}*/
 
 /* Media query: screens with max-width: 768px ) */
 @media screen and (max-width: 768px) {

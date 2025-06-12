@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
-from .models import BlogPost, Comment, ContactRequest
+from .models import BlogPost, Comment, ContactRequest, About
 # from slugify import slugify
 from django.utils.text import slugify
 
@@ -110,3 +110,14 @@ class BlogPostForm(forms.ModelForm):
                 if title != original_title:
                     cleaned_data['slug'] = slugify(title)
         return cleaned_data
+
+
+# Form for editing text on the About page
+class AboutForm(forms.ModelForm):
+    class Meta:
+        model = About
+        fields = ['content']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 6})
+        }

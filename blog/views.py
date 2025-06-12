@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import BlogPost, Comment, Rating, About
-from .forms import ContactForm, CommentForm, CustomUserCreationForm, CustomAuthenticationForm, UsernameUpdateForm, EmailUpdateForm, PasswordChangeForm, BlogPostForm
+from .forms import ContactForm, CommentForm, CustomUserCreationForm, CustomAuthenticationForm, UsernameUpdateForm, EmailUpdateForm, PasswordChangeForm, BlogPostForm, AboutForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 
@@ -204,7 +204,7 @@ def change_password(request):
     return render(request, 'blog/change_password.html', {'form': form})
 
 """ 
-Admin view for book management
+Admin view for book management and editing the About page
 
 """
 @login_required
@@ -250,3 +250,17 @@ def admin_delete_book(request, pk):
         messages.success(request, "Book deleted successfully.")
         return redirect('admin_dashboard')
     return render(request, 'blog/admin_delete_book.html', {'book': book})
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def admin_edit_about(request):
+    about, created = About.objects.get_or_create(id=1)
+    if request.method == 'POST':
+        form = AboutForm(request.POST, instance=about)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "About page updated successfully.")
+            return redirect('admin_dashboard')
+    else:
+        form = AboutForm(instance=about)
+    return render(request, 'blog/admin_edit_about.html', {'form': form})
