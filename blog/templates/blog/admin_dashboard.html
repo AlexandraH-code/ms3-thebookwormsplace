@@ -3,8 +3,8 @@
 {% block content %}
 <div class="container mt-5">
   <h2>Admin Dashboard</h2>
-  <a href="{% url 'admin_add_book' %}" class="btn btn-success mb-3">Add Book</a>
-  <a href="{% url 'admin_edit_about' %}" class="btn btn-success mb-3">Edit About</a>
+  <a href="{% url 'admin_add_book' %}" class="btn btn-admin-add mb-3">Add Book</a>
+  <a href="{% url 'admin_edit_about' %}" class="btn btn-admin-about mb-3">Edit About</a>
   <table class="table table-striped">
     <thead>
       <tr><th>Title</th><th>Author</th><th>Actions</th></tr>
@@ -15,8 +15,8 @@
         <td>{{ book.title }}</td>
         <td>{{ book.author }}</td>
         <td>
-          <a href="{% url 'admin_edit_book' book.pk %}" class="btn btn-sm btn-warning">Edit</a>
-          <a href="{% url 'admin_delete_book' book.pk %}" class="btn btn-sm btn-danger">Delete</a>
+          <a href="{% url 'admin_edit_book' book.pk %}" class="btn btn-admin-edit">Edit</a>
+          <a href="{% url 'admin_delete_book' book.pk %}" class="btn btn-admin-delete">Delete</a>
         </td>
       </tr>
       {% endfor %}

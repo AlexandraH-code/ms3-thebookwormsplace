@@ -57,8 +57,8 @@ def book_detail(request, slug):
                 reply.approved = False  # Admin måste godkänna
                 reply.save()
                 messages.success(request, "Your reply has been submitted and awaits approval.")
-                return redirect('book_detail', pk=book.pk)
-        return redirect('book_detail', pk=book.pk)
+                return redirect('book_detail', slug=book.slug)
+        return redirect('book_detail', slug=book.slug)
     else:
         form = CommentForm()
 

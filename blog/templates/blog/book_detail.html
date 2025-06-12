@@ -54,7 +54,7 @@
 
             <!--Visa endast Reply-länken om ingen reply finns -->
             {% if comment.replies.count == 0 %}
-              <a href="#" class="reply-link btn btn-primary btn-sm" data-comment-id="{{ comment.id }}">Reply</a>
+              <a href="#" class="reply-link btn btn-outline-primary btn-sm" data-comment-id="{{ comment.id }}">Reply</a>
             {% endif %}
 
             <!-- Visa godkända svar med ikon och stil -->

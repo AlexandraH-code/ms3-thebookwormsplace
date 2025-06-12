@@ -5,11 +5,16 @@
   <div class="row justify-content-center">
     <div class="col-md-6 col-lg-4 text-center">
       <h2 class="mb-4">My Profile</h2>
-      <ul class="list-group">
-        <li class="list-group-item"><a href="{% url 'update_username' %}">Change Username</a></li>
-        <li class="list-group-item"><a href="{% url 'update_email' %}">Change Email</a></li>
-        <li class="list-group-item"><a href="{% url 'change_password' %}">Change Password</a></li>
-      </ul>
+      <!--<ul class="list-group">
+        <li class="list-group-item"><a href="{% url 'update_username' %}" class="btn btn-outline-primary mb-2">Change Username</a></li>
+        <li class="list-group-item"><a href="{% url 'update_email' %}" class="btn btn-outline-primary mb-2">Change Email</a></li>
+        <li class="list-group-item"><a href="{% url 'change_password' %}" class="btn btn-outline-primary mb-2">Change Password</a></li>
+      </ul>-->
+          <a href="{% url 'update_username' %}" class="btn btn-outline-primary mb-2">Change Username</a>
+          <br>
+          <a href="{% url 'update_email' %}" class="btn btn-outline-primary mb-2">Change Email</a>
+          <br>
+          <a href="{% url 'change_password' %}" class="btn btn-outline-primary mb-2">Change Password</a>      
     </div>
   </div>
 </div>
