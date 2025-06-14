@@ -4,11 +4,14 @@ from django.contrib.auth import login, logout, authenticate
 from django.core.mail import send_mail
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.views.decorators.http import require_http_methods
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import BlogPost, Comment, Rating, About
-from .forms import ContactForm, CommentForm, CustomUserCreationForm, CustomAuthenticationForm, UsernameUpdateForm, EmailUpdateForm, PasswordChangeForm, BlogPostForm, AboutForm
+from django.db.models import Avg
+from .models import BlogPost, Comment, About, StarRating
+from .forms import ContactForm, CommentForm, CustomUserCreationForm, CustomAuthenticationForm, UsernameUpdateForm, EmailUpdateForm, PasswordChangeForm, BlogPostForm, AboutForm, StarRatingForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
+from django.utils import timezone
 
 # Create your views here.
 # def index(request):
@@ -26,49 +29,67 @@ def books(request):
     return render(request, 'blog/books.html', {'books': books})
 
 
-# Book Detail – show details + handles rating and comments
+# Book Detail – show details about book, handle comments and rating
+# @require_http_methods(["GET", "POST"])
 def book_detail(request, slug):
     book = get_object_or_404(BlogPost, slug=slug)
-    comments = Comment.objects.filter(book=book, approved=True).order_by('-created_at')
-    upvotes = Rating.objects.filter(book=book, is_upvote=True).count()
-    downvotes = Rating.objects.filter(book=book, is_upvote=False).count()
+    comments = Comment.objects.filter(book=book, approved=True, parent=None).order_by('-created_at')
+    replies = Comment.objects.filter(book=book, approved=True).exclude(parent=None)
+    user_rating = None
+    avg_rating = None
+    ratings_count = 0
+
+    if request.user.is_authenticated:
+        user_rating = StarRating.objects.filter(user=request.user, book=book).first()
+
+    avg_data = StarRating.objects.filter(book=book).aggregate(Avg('value'))
+    avg_rating = avg_data['value__avg'] or 0
+    ratings_count = StarRating.objects.filter(book=book).count()
+
+    comment_form = CommentForm()
+    rating_message = None
 
     if request.method == 'POST':
-        if 'upvote' in request.POST:
-            Rating.objects.get_or_create(user=request.user, book=book, is_upvote=True)
-        elif 'downvote' in request.POST:
-            Rating.objects.get_or_create(user=request.user, book=book, is_upvote=False)
-        elif 'review_submit' in request.POST:
-            form = CommentForm(request.POST)
-            if form.is_valid():
-                comment = form.save(commit=False)
-                comment.user = request.user
-                comment.book = book
-                comment.save()
-        elif 'reply_submit' in request.POST:
-            form = CommentForm(request.POST)
-            if form.is_valid():
+        if 'comment_submit' in request.POST:
+            comment_form = CommentForm(request.POST)
+            if comment_form.is_valid():
+                new_comment = comment_form.save(commit=False)
+                new_comment.book = book
+                new_comment.user = request.user
                 parent_id = request.POST.get('parent_id')
-                parent_comment = Comment.objects.get(id=parent_id)
-                reply = form.save(commit=False)
-                reply.user = request.user
-                reply.book = book
-                reply.parent = parent_comment
-                reply.approved = False  # Admin måste godkänna
-                reply.save()
-                messages.success(request, "Your reply has been submitted and awaits approval.")
-                return redirect('book_detail', slug=book.slug)
-        return redirect('book_detail', slug=book.slug)
-    else:
-        form = CommentForm()
+                if parent_id:
+                    parent_comment = Comment.objects.get(id=parent_id)
+                    new_comment.parent = parent_comment
+                new_comment.save()
+                messages.info(request, 'Your comment is awaiting approval.')
+                return redirect('book_detail', slug=slug)
 
-    return render(request, 'blog/book_detail.html', {
+        elif 'rate_submit' in request.POST:
+            value = request.POST.get('rating')
+            if value:
+                value = int(value)
+                if 1 <= value <= 5:
+                    rating, created = StarRating.objects.update_or_create(
+                        user=request.user, book=book,
+                        defaults={'value': value, 'created_at': timezone.now()}
+                    )
+                    messages.success(request, "Your rating has been submitted.")
+                    return redirect('book_detail', slug=slug)
+                else:
+                    messages.error(request, "Invalid rating value.")
+            else:
+                messages.error(request, "Please select a star rating before submitting.")
+
+    context = {
         'book': book,
         'comments': comments,
-        'upvotes': upvotes,
-        'downvotes': downvotes,
-        'form': form
-    })
+        'replies': replies,
+        'comment_form': comment_form,
+        'user_rating': user_rating,
+        'avg_rating': avg_rating,
+        'ratings_count': ratings_count,
+    }
+    return render(request, 'blog/book_detail.html', context)
 
 
 # About + contactform
@@ -126,7 +147,7 @@ def logout_view(request):
     return redirect('logout')
 
 
-# Edit Comments - book_details
+# Edit Comments - Book Details
 def edit_comment(request, pk):
     comment = get_object_or_404(Comment, pk=pk, user=request.user)
     if request.method == 'POST':
@@ -142,7 +163,7 @@ def edit_comment(request, pk):
     return render(request, 'blog/edit_comment.html', {'form': form, 'comment': comment})
 
 
-# Delete Comments - book_details
+# Delete Comments - Book Details
 def delete_comment(request, pk):
     comment = get_object_or_404(Comment, pk=pk, user=request.user)
     if request.method == 'POST':

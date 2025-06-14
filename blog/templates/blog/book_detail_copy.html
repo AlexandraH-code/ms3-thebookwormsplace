@@ -1,110 +1,121 @@
 {% extends 'blog/base.html' %}
+{% load static %}
 {% load form_filters %}
+{% load custom_filters %}
 {% block title %}{{ book.title }}{% endblock %}
+
 {% block content %}
-<div class="container my-4">
+<div class="container mt-5">
+  <a href="{% url 'books' %}" class="btn btn-outline-secondary mb-3">&larr; Back to Books</a>
   <div class="row">
     <div class="col-md-4">
-      <img src="{{ book.cover_image.url }}" class="img-fluid" alt="Cover">
+      <img src="{{ book.cover_image.url }}" alt="{{ book.cover_image_alt }}" class="img-fluid rounded">
     </div>
     <div class="col-md-8">
       <h2>{{ book.title }}</h2>
-      <p><strong>Author:</strong> {{ book.author }}</p>
+      <p class="text-muted">by {{ book.author }}</p>
       <p>{{ book.description }}</p>
-      <p>👍 {{ upvotes }} | 👎 {{ downvotes }}</p>
 
-      {% if user.is_authenticated %}
-        <form method="post">{% csrf_token %}
-          <button name="upvote" class="btn btn-success">👍 Like</button>
-          <button name="downvote" class="btn btn-danger">👎 Dislike</button>
-        </form>
-        <hr>
-        <h4>Write your own thoughts about this book:</h4>
-        <form method="post" novalidate>
-          {% csrf_token %}
-          {% for field in form %}
-          <div class="mb-3">
-            <!--<label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>-->
-            <div class="input-group">
-              <span class="input-group-text"><i class="bi bi-chat-left-text"></i></span>
-              {{ field }}
-            </div>
-            {% if field.errors %}
-              <div class="text-danger small">{{ field.errors }}</div>
-            {% endif %}
-          </div>
-          {% endfor %}
-          <button type="submit" name="review_submit" class="btn btn-outline-primary mt-auto">Submit</button>
-        </form>
+      {% if average_rating %}
+        <p>Average Rating: {{ average_rating|floatformat:1 }} / 5 ({{ total_ratings }} vote{{ total_ratings|pluralize }})</p>
       {% else %}
-        <p><a href="{% url 'login' %}">Log in</a> to rate and comment on this book.</p>
+        <p>No ratings yet.</p>
       {% endif %}
 
-      <hr>
-      <h3>Comments:</h3>
-      {% if comments %}
-        {% for comment in comments %}
-          {% if not comment.parent %}
-          <div class="card mb-3">
-            <div class="card-body">
-              <p class="mb-1"><strong>{{ comment.user.username }}</strong></p>
-              <p>{{ comment.text }}</p>
-              <a href="#" class="reply-link" data-comment-id="{{ comment.id }}">Reply</a>
+      {% if user.is_authenticated %}
+      <div class="rating-form mt-3">
+        <form method="post">
+          {% csrf_token %}
+          <div class="mb-2">
+            <label for="rating-stars" class="form-label">Your Rating:</label>
+            <div id="rating-stars" class="fs-4">
+              {% for i in "12345" %}
+                <i class="bi bi-star{% if user_rating and user_rating.value >= i|add:""|add:"0" %}-fill{% endif %}" data-value="{{ i }}" style="cursor:pointer;"></i>
+              {% endfor %}
             </div>
-
-            {% for reply in comment.replies.all %}
-              {% if reply.approved %}
-              <div class="card-body ms-4 border-start">
-                <p class="mb-1 text-muted"><i class="bi bi-arrow-return-right"></i> <strong>{{ reply.user.username }}</strong></p>
-                <p>{{ reply.text }}</p>
-              </div>
-              {% endif %}
-            {% endfor %}
+            <input type="hidden" name="rating_value" id="rating_value">
           </div>
-          {% endif %}
-        {% endfor %}
+          <button type="submit" name="rate_submit" class="btn btn-outline-primary">Rate</button>
+        </form>
+      </div>
+      {% endif %}
 
-        <!--{% if messages %}
-        <div class="container mt-3">
-          {% for message in messages %}
-          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show mt-3" role="alert">
             {{ message }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
-          {% endfor %}
-        </div>
-        {% endif %}-->
-
-        <div id="reply-form-container" style="display: none;">
-          <br/>
-          <form method="post" id="reply-form">
-            {% csrf_token %}
-            {{ form.text|add_class:"form-control mb-2" }}
-            <input type="hidden" name="parent_id" id="parent_id">
-            <button type="submit" name="reply_submit" class="btn btn-sm btn-primary">Submit Reply</button>
-          </form>
-        </div>
-
-        <script>
-        document.addEventListener('DOMContentLoaded', () => {
-          document.querySelectorAll('.reply-link').forEach(link => {
-            link.addEventListener('click', function (e) {
-              e.preventDefault();
-              const commentId = this.getAttribute('data-comment-id');
-              const form = document.getElementById('reply-form-container');
-              const parentInput = document.getElementById('parent_id');
-              parentInput.value = commentId;
-              this.parentElement.appendChild(form);
-              form.style.display = 'block';
-            });
-          });
-        });
-        </script>
-      {% else %}
-        <p>No comments yet.</p>
+        {% endfor %}
       {% endif %}
-      <a href="{% url 'books' %}" class="btn btn-outline-primary mt-auto">Back to Books</a>
+
+      <div class="comments-section mt-5">
+        <h4>Comments</h4>
+        {% for comment in comments %}
+        <div class="card mb-3">
+          <div class="card-body">
+            <p class="mb-1"><strong>{{ comment.user.username }}</strong> said:</p>
+            <p>{{ comment.text }}</p>
+            {% if comment.replies.all %}
+              <div class="ms-4 border-start ps-3">
+                {% for reply in comment.replies.all %}
+                  <p class="mb-1"><i class="bi bi-arrow-return-right"></i> <strong>{{ reply.user.username }}</strong>: {{ reply.text }}</p>
+                {% endfor %}
+              </div>
+            {% endif %}
+            {% if user.is_authenticated and comment.replies.count == 0 %}
+              <a href="#" class="reply-link small text-decoration-underline" data-comment-id="{{ comment.id }}">Reply</a>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+
+        {% if user.is_authenticated %}
+        <div class="comment-form mt-4">
+          <h5>Leave a Comment</h5>
+          <form method="post">
+            {% csrf_token %}
+            {{ comment_form.text|add_class:"form-control mb-2" }}
+            <input type="hidden" name="parent_id" id="parent_id">
+            <button type="submit" name="comment_submit" class="btn btn-outline-primary">Submit Comment</button>
+            <a href="{% url 'book_detail' book.slug %}" class="btn btn-secondary-custom">Cancel</a>
+          </form>
+          <br>
+        </div>
+        {% else %}          
+          <p class="text-muted">You must <a href="{% url 'login' %}">log in</a> or <a href="{% url 'register' %}">register</a> to rate or comment on this book.</p>
+        {% endif %}
+      </div>
     </div>
   </div>
 </div>
+
+<script>
+  // STAR RATING LOGIC
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.bi-star').forEach(star => {
+      star.addEventListener('click', function () {
+        const value = this.getAttribute('data-value');
+        document.getElementById('rating_value').value = value;
+        document.querySelectorAll('.bi-star').forEach(s => s.classList.remove('bi-star-fill'));
+        for (let i = 0; i < value; i++) {
+          document.querySelectorAll('.bi-star')[i].classList.add('bi-star-fill');
+        }
+      });
+    });
+
+
+  // REPLY FORM LOGIC
+  document.querySelectorAll('.reply-link').forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      const commentId = this.getAttribute('data-comment-id');
+      const parentInput = document.getElementById('parent_id');
+      parentInput.value = commentId;
+      this.parentElement.appendChild(document.querySelector('.comment-form'));
+    });
+  });
+});
+
+</script>
 {% endblock %}

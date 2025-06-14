@@ -3,10 +3,12 @@ from django.contrib.auth import login, logout, authenticate
 # from django.contrib.forms import UserCreationForm, AuthenticationForm
 from django.core.mail import send_mail
 from django.contrib.auth.forms import UserChangeForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.views.decorators.http import require_http_methods
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import BlogPost, Comment, Rating, About
-from .forms import ContactForm, CommentForm, CustomUserCreationForm, CustomAuthenticationForm, UsernameUpdateForm, EmailUpdateForm, PasswordChangeForm
+from django.db.models import Avg
+from .models import BlogPost, Comment, About, StarRating
+from .forms import ContactForm, CommentForm, CustomUserCreationForm, CustomAuthenticationForm, UsernameUpdateForm, EmailUpdateForm, PasswordChangeForm, BlogPostForm, AboutForm, StarRatingForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 
@@ -25,37 +27,67 @@ def books(request):
     books = BlogPost.objects.filter(is_draft=False)
     return render(request, 'blog/books.html', {'books': books})
 
+# Book Detail - Rate book
+@login_required(login_url='login')
+def rate_book(request, slug):
+    book = get_object_or_404(BlogPost, slug=slug)
+    if request.method == 'POST' and request.user.is_authenticated:
+        value = request.POST.get('rating')
+        if value:
+            StarRating.objects.update_or_create(
+                user=request.user,
+                book=book,
+                defaults={'value': int(value)}
+            )
+            messages.success(request, 'Thank you for rating!')
+        else:
+            messages.error(request, 'Please select a star rating before submitting.')
+    return redirect('book_detail', slug=slug)
 
-# Book Detail – show details + handles rating and comments
-def book_detail(request, pk):
-    book = get_object_or_404(BlogPost, pk=pk)
-    comments = Comment.objects.filter(book=book, approved=True).order_by('-created_at')
-    upvotes = Rating.objects.filter(book=book, is_upvote=True).count()
-    downvotes = Rating.objects.filter(book=book, is_upvote=False).count()
 
-    if request.method == 'POST':
-        if 'upvote' in request.POST:
-            Rating.objects.get_or_create(user=request.user, book=book, is_upvote=True)
-        elif 'downvote' in request.POST:
-            Rating.objects.get_or_create(user=request.user, book=book, is_upvote=False)
-        elif 'review_submit' in request.POST:
-            form = CommentForm(request.POST)
-            if form.is_valid():
-                comment = form.save(commit=False)
-                comment.user = request.user
-                comment.book = book
-                comment.save()
-        return redirect('book_detail', pk=book.pk)
-    else:
-        form = CommentForm()
+# Book Detail – show details about book and handle comments
+@require_http_methods(["GET", "POST"])
+def book_detail(request, slug):
+    book = get_object_or_404(BlogPost, slug=slug)
+    comments = Comment.objects.filter(book=book, approved=True, parent__isnull=True).order_by('-created_at')
+    replies = Comment.objects.filter(book=book, approved=True, parent__isnull=False)
+    reply_dict = {}
+    for reply in replies:
+        reply_dict.setdefault(reply.parent_id, []).append(reply)
 
-    return render(request, 'blog/book_detail.html', {
+    comment_form = CommentForm()
+    user_rating = None
+    avg_rating = None
+    rating_count = StarRating.objects.filter(book=book).count()
+
+    if request.user.is_authenticated:
+        user_rating = StarRating.objects.filter(user=request.user, book=book).first()
+        avg_rating = StarRating.objects.filter(book=book).aggregate(avg=Avg('value'))['avg']
+
+        if request.method == 'POST':
+            if 'comment_submit' in request.POST:
+                comment_form = CommentForm(request.POST)
+                if comment_form.is_valid():
+                    parent_id = request.POST.get('parent_id')
+                    parent_comment = Comment.objects.get(id=parent_id) if parent_id else None
+                    new_comment = comment_form.save(commit=False)
+                    new_comment.book = book
+                    new_comment.user = request.user
+                    new_comment.parent = parent_comment
+                    new_comment.save()
+                    messages.info(request, 'Your comment has been submitted and is awaiting approval.')
+                    return redirect('book_detail', slug=slug)
+
+    context = {
         'book': book,
         'comments': comments,
-        'upvotes': upvotes,
-        'downvotes': downvotes,
-        'form': form
-    })
+        'reply_dict': reply_dict,
+        'comment_form': comment_form,
+        'user_rating': user_rating,
+        'avg_rating': avg_rating,
+        'rating_count': rating_count,
+    }
+    return render(request, 'blog/book_detail.html', context)
 
 
 # About + contactform
@@ -113,7 +145,7 @@ def logout_view(request):
     return redirect('logout')
 
 
-# Edit Comments - book_details
+# Edit Comments - Book Details
 def edit_comment(request, pk):
     comment = get_object_or_404(Comment, pk=pk, user=request.user)
     if request.method == 'POST':
@@ -129,7 +161,7 @@ def edit_comment(request, pk):
     return render(request, 'blog/edit_comment.html', {'form': form, 'comment': comment})
 
 
-# Delete Comments - book_details
+# Delete Comments - Book Details
 def delete_comment(request, pk):
     comment = get_object_or_404(Comment, pk=pk, user=request.user)
     if request.method == 'POST':
@@ -141,7 +173,6 @@ def delete_comment(request, pk):
 """
 User details
 """
-
 
 # Profile overview
 @login_required
@@ -190,3 +221,65 @@ def change_password(request):
     else:
         form = PasswordChangeForm(user=request.user)
     return render(request, 'blog/change_password.html', {'form': form})
+
+""" 
+Admin view for book management and editing the About page
+
+"""
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def admin_dashboard(request):
+    books = BlogPost.objects.all()
+    return render(request, 'blog/admin_dashboard.html', {'books': books})
+
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def admin_add_book(request):
+    if request.method == 'POST':
+        form = BlogPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Book added successfully.")
+            return redirect('admin_dashboard')
+    else:
+        form = BlogPostForm()
+    return render(request, 'blog/admin_add_book.html', {'form': form})
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def admin_edit_book(request, pk):
+    book = get_object_or_404(BlogPost, pk=pk)
+    if request.method == 'POST':
+        form = BlogPostForm(request.POST, request.FILES, instance=book)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Book updated successfully.")
+            return redirect('admin_dashboard')
+    else:
+        form = BlogPostForm(instance=book)
+    return render(request, 'blog/admin_edit_book.html', {'form': form})
+                            
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def admin_delete_book(request, pk):
+    book = get_object_or_404(BlogPost, pk=pk)
+    if request.method == 'POST':
+        book.delete()
+        messages.success(request, "Book deleted successfully.")
+        return redirect('admin_dashboard')
+    return render(request, 'blog/admin_delete_book.html', {'book': book})
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def admin_edit_about(request):
+    about, created = About.objects.get_or_create(id=1)
+    if request.method == 'POST':
+        form = AboutForm(request.POST, instance=about)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "About page updated successfully.")
+            return redirect('admin_dashboard')
+    else:
+        form = AboutForm(instance=about)
+    return render(request, 'blog/admin_edit_about.html', {'form': form})

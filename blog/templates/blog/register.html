@@ -25,7 +25,8 @@
           {% endif %}
           </div>
     {% endfor %}
-    <button type="submit" class="btn btn-success">Register</button>
+    <button type="submit" class="btn btn-outline-primary">Register</button>
+    <a href="{% url 'home' %}" class="btn btn-secondary-custom">Cancel</a>
   </form>
 </div>
 {% endblock %}

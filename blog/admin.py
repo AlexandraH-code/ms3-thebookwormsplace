@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BlogPost, Comment, Rating, About, ContactRequest
+from .models import BlogPost, Comment, About, ContactRequest, StarRating
 # uncomment if you want to use Summernote
 # from django_summernote.admin import SummernoteModelAdmin 
 
@@ -10,17 +10,16 @@ class BlogPostAdmin(admin.ModelAdmin):
     list_filter = ['created_at']
     search_fields = ['title', 'author']
 
+@admin.register(StarRating)
+class StarRatingAdmin(admin.ModelAdmin):
+    list_display = ['user', 'book', 'value', 'created_at']
+    list_filter = ['value', 'created_at']
+    search_fields = ['user__username', 'book__title']
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ['user', 'text', 'created_at']
     list_filter = ['created_at']
-
-
-@admin.register(Rating)
-class RatingAdmin(admin.ModelAdmin):
-    list_display = ['user']
-
 
 @admin.register(About)
 class AboutAdmin(admin.ModelAdmin):

@@ -31,6 +31,13 @@ h1, h2, h3 {
   font-family: 'EB Garamond', serif;
 }
 
+a {
+  color: #4a3c64;
+}
+a:hover {
+  color: #2d2246;
+}
+
 /* Buttons */
 
 /*.btn-primary {
@@ -40,12 +47,6 @@ h1, h2, h3 {
 .btn-primary:hover {
   background-color: #5a3f3f;
 }
-a {
-  color: #4a3c64;
-}
-a:hover {
-  color: #2d2246;
-}*/
 
 /* .btn-primary {
   background-color: #6b4f4f;
@@ -270,23 +271,6 @@ a:hover {
   background-color: #f5f2eb; 
 }
 
-/* * {
-  outline: 1px solid rgb(255, 255, 255);
-}
-
-/*.hero-image {
-  border: 1px solid red; /* tillfälligt – se exakt hur stor hero-sektionen är */
-/*}*/
-/* reply form - book_details */
-.reply-box {
-  background-color: #f8f9fa;
-  border-left: 3px solid #ccc;
-  padding: 1rem;
-  margin-top: 1rem;
-  margin-left: 1.5rem;
-  border-radius: 5px;
-}
-
 /* Books - Book image wrapper */
 .book-image-wrapper {
   height: 300px;
@@ -301,6 +285,86 @@ a:hover {
   max-width: 100%;
   object-fit: contain;
 }
+
+/* Book details page - Star rating */ 
+.bi-star, .bi-star-fill {
+  font-size: 1.5rem;
+  color: #ccc;
+}
+
+.bi-star-fill.selected,
+.bi-star-fill:hover,
+.bi-star.selected,
+.bi-star:hover {
+  color: gold;
+  cursor: pointer;
+}
+
+.star-icon {
+  font-size: 1.5rem;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.star-icon.text-warning {
+  color: gold !important;
+}
+
+/* Book details - Comment form*/
+.comment-form {
+  max-width: 600px;
+  margin: auto;
+}
+
+/* Book details - Comment and reply bok */ 
+.comment-box, .reply-box {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.reply-box {
+  margin-left: 2rem;
+  background-color: #f9f9f9;
+}
+
+.reply-box i.bi-arrow-return-right {
+  font-size: 1rem;
+  vertical-align: middle;
+}
+
+.comment-form {
+  max-width: 600px;
+  margin: auto;
+}
+
+.comment-form h5,
+.comments-section h4 {
+  text-align: center;
+}
+
+/* Optional extra */
+.text-warning {
+  color: gold !important;
+}
+
+
+/* Centrera rubriken och stjärnbetyg */
+.rating-display,
+.rating-form,
+.comments-section {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+
 
 /* Button styles */
 /*.btn-custom {
@@ -363,3 +427,12 @@ footer .social-icons {
     height: 180px;
   }
 }
+
+
+/* * {
+  outline: 1px solid rgb(255, 255, 255);
+}
+
+/*.hero-image {
+  border: 1px solid red; /* tillfälligt – se exakt hur stor hero-sektionen är */
+/*}*/

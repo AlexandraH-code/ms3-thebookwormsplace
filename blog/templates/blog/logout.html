@@ -5,7 +5,7 @@
   <h2>Are you sure you want to log out?</h2>
   <form method="post" action="{% url 'logout_confirmed' %}">
     {% csrf_token %}
-    <button type="submit" class="btn btn-logout mt-3">Log Out</button>
+    <button type="submit" class="btn btn-outline-primary mt-3">Log Out</button>
     <a href="{% url 'home' %}" class="btn btn-secondary-custom mt-3">Cancel</a>
   </form>
 </div>

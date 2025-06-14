@@ -1,7 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
-from cloudinary.models import CloudinaryField
 from django.utils.text import slugify
+from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils import timezone
+from cloudinary.models import CloudinaryField
 
 
 # Create your models here.
@@ -43,6 +45,19 @@ class BlogPost(models.Model):
         return original.title != self.title
 
 
+class StarRating(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey(BlogPost, on_delete=models.CASCADE, related_name='star_ratings')
+    value = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('book', 'user')
+
+    def __str__(self):
+        return f"{self.user} rated {self.book} with {self.value} stars."
+    
+
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(BlogPost, on_delete=models.CASCADE, related_name='comments')
@@ -56,15 +71,6 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.user.username}'s comment"
-    
-
-class Rating(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    book = models.ForeignKey(BlogPost, on_delete=models.CASCADE)
-    is_upvote = models.BooleanField()
-
-    class Meta:
-        unique_together = ('user', 'book') # Only one vote per user
 
 
 class About(models.Model):

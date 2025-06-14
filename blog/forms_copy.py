@@ -22,13 +22,8 @@ class CustomAuthenticationForm(AuthenticationForm):
 
 
 # Form for star rating on the Book details page
-class StarRatingForm(forms.ModelForm):
-    class Meta:
-        model = StarRating
-        fields = ['value']
-        widgets = {
-            'value': forms.HiddenInput()
-        }
+class StarRatingForm(forms.Form):
+    value = forms.IntegerField(widget=forms.HiddenInput())
 
 
 # Form for writing a comment on the Book details page
