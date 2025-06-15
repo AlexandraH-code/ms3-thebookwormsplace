@@ -7,115 +7,130 @@
 {% block content %}
 <div class="container mt-5">
   <a href="{% url 'books' %}" class="btn btn-outline-secondary mb-3">&larr; Back to Books</a>
+
   <div class="row">
     <div class="col-md-4">
-      <img src="{{ book.cover_image.url }}" alt="{{ book.cover_image_alt }}" class="img-fluid rounded">
+      <img src="{{ book.cover_image.url }}" class="img-fluid rounded" alt="{{ book.cover_image_alt }}">
     </div>
     <div class="col-md-8">
       <h2>{{ book.title }}</h2>
-      <p class="text-muted">by {{ book.author }}</p>
+      <p class="text-muted">By {{ book.author }}</p>
       <p>{{ book.description }}</p>
 
-      {% if average_rating %}
-        <p>Average Rating: {{ average_rating|floatformat:1 }} / 5 ({{ total_ratings }} vote{{ total_ratings|pluralize }})</p>
-      {% else %}
-        <p>No ratings yet.</p>
-      {% endif %}
+      <div class="mt-4">
+        <h5>Average Rating:</h5>
+        <div>
+          {% for i in 1|to:6 %}
+            {% if avg_rating >= i %}
+              <i class="bi bi-star-fill text-warning"></i>
+            {% else %}
+              <i class="bi bi-star text-warning"></i>
+            {% endif %}
+          {% endfor %}
+          <small class="text-muted">({{ ratings_count }} vote{{ ratings_count|pluralize }})</small>
+        </div>
+      </div>
 
       {% if user.is_authenticated %}
-      <div class="rating-form mt-3">
-        <form method="post">
+        <form method="post" class="mt-3">
           {% csrf_token %}
           <div class="mb-2">
-            <label for="rating-stars" class="form-label">Your Rating:</label>
-            <div id="rating-stars" class="fs-4">
-              {% for i in "12345" %}
-                <i class="bi bi-star{% if user_rating and user_rating.value >= i|add:""|add:"0" %}-fill{% endif %}" data-value="{{ i }}" style="cursor:pointer;"></i>
-              {% endfor %}
-            </div>
-            <input type="hidden" name="rating_value" id="rating_value">
+            {% for i in 1|to:6 %}
+              <i class="bi bi-star{% if user_rating and user_rating.value >= i %}-fill{% endif %} text-warning star-icon" data-value="{{ i }}" style="cursor:pointer;"></i>
+            {% endfor %}
           </div>
-          <button type="submit" name="rate_submit" class="btn btn-outline-primary">Rate</button>
+          <input type="hidden" name="rating" id="rating-value">
+          <button type="submit" name="rate_submit" class="btn btn-sm btn-outline-primary">Rate</button>
         </form>
-      </div>
+      {% else %}
+        <p class="text-muted">You must <a href="{% url 'login' %}">log in</a> or <a href="{% url 'register' %}">register</a> to rate this book.</p>
       {% endif %}
+    </div>
+  </div>
 
-      {% if messages %}
-        {% for message in messages %}
-          <div class="alert alert-{{ message.tags }} alert-dismissible fade show mt-3" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        {% endfor %}
-      {% endif %}
-
-      <div class="comments-section mt-5">
-        <h4>Comments</h4>
-        {% for comment in comments %}
-        <div class="card mb-3">
-          <div class="card-body">
-            <p class="mb-1"><strong>{{ comment.user.username }}</strong> said:</p>
-            <p>{{ comment.text }}</p>
-            {% if comment.replies.all %}
-              <div class="ms-4 border-start ps-3">
-                {% for reply in comment.replies.all %}
-                  <p class="mb-1"><i class="bi bi-arrow-return-right"></i> <strong>{{ reply.user.username }}</strong>: {{ reply.text }}</p>
-                {% endfor %}
+  <div class="comments-section mt-5">
+    <h4>Comments:</h4>
+    {% for comment in comments %}
+    <div class="card mb-3 comment-box">
+      <div class="card-body">
+        <p class="mb-1"><strong>{{ comment.user.username }}</strong> <small class="text-muted">on {{ comment.created_at|date:"Y-m-d H:i" }}</small></p>
+        <p>{{ comment.text }}</p>
+        {% if comment.replies.all %}
+          <div class="ms-4 border-start ps-3">
+            {% for reply in comment.replies.all %}
+              <div class="reply-box">
+                <p class="mb-1">
+                  <i class="bi bi-arrow-return-right"></i>
+                  <strong>{{ reply.user.username }}</strong> <small class="text-muted">on {{ reply.created_at|date:"Y-m-d H:i" }}</small>
+                </p>
+                <p>{{ reply.text }}</p>
               </div>
-            {% endif %}
-            {% if user.is_authenticated and comment.replies.count == 0 %}
-              <a href="#" class="reply-link small text-decoration-underline" data-comment-id="{{ comment.id }}">Reply</a>
-            {% endif %}
+            {% endfor %}
           </div>
-        </div>
-        {% endfor %}
-
-        {% if user.is_authenticated %}
-        <div class="comment-form mt-4">
-          <h5>Leave a Comment</h5>
-          <form method="post">
-            {% csrf_token %}
-            {{ comment_form.text|add_class:"form-control mb-2" }}
-            <input type="hidden" name="parent_id" id="parent_id">
-            <button type="submit" name="comment_submit" class="btn btn-outline-primary">Submit Comment</button>
-            <a href="{% url 'book_detail' book.slug %}" class="btn btn-secondary-custom">Cancel</a>
-          </form>
-          <br>
-        </div>
-        {% else %}          
-          <p class="text-muted">You must <a href="{% url 'login' %}">log in</a> or <a href="{% url 'register' %}">register</a> to rate or comment on this book.</p>
+        {% endif %}
+        {% if user.is_authenticated and comment.replies.count == 0 %}
+          <a href="#" class="reply-link btn btn-sm btn-outline-primary" data-comment-id="{{ comment.id }}">Reply</a>
+          <!--<a href="#" class="reply-link small text-decoration-underline" data-comment-id="{{ comment.id }}">Reply</a>-->
         {% endif %}
       </div>
     </div>
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+    <div class="comment-form mt-4">
+      <h5>Leave a Comment:</h5>
+      <form method="post">
+        {% csrf_token %}
+        {{ comment_form.text|add_class:"form-control mb-2" }}
+        <input type="hidden" name="parent_id" id="parent_id">
+        <button type="submit" name="comment_submit" class="btn btn-outline-primary">Submit Comment</button>
+        <a href="{% url 'book_detail' book.slug %}" class="btn btn-secondary-custom">Cancel</a>
+      </form>
+      <br>
+    </div>
+    {% else %}
+      <p class="text-muted">You must <a href="{% url 'login' %}">log in</a> or <a href="{% url 'register' %}">register</a> to comment on this book.</p>
+    {% endif %}
   </div>
+  <br>
+</div>
+
+<div id="reply-form-container" style="display: none;">
+  <form method="post" id="reply-form">
+    {% csrf_token %}
+    {{ comment_form.text|add_class:"form-control mb-2" }}
+    <input type="hidden" name="parent_id" id="reply-parent-id">
+    <button type="submit" name="comment_submit" class="btn btn-sm btn-outline-primary">Submit Reply</button>
+  </form>
 </div>
 
 <script>
-  // STAR RATING LOGIC
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.bi-star').forEach(star => {
-      star.addEventListener('click', function () {
-        const value = this.getAttribute('data-value');
-        document.getElementById('rating_value').value = value;
-        document.querySelectorAll('.bi-star').forEach(s => s.classList.remove('bi-star-fill'));
-        for (let i = 0; i < value; i++) {
-          document.querySelectorAll('.bi-star')[i].classList.add('bi-star-fill');
-        }
+document.addEventListener('DOMContentLoaded', () => {
+  const stars = document.querySelectorAll('.star-icon');
+  const ratingInput = document.getElementById('rating-value');
+  stars.forEach((star, index) => {
+    star.addEventListener('click', () => {
+      ratingInput.value = index + 1;
+      stars.forEach((s, i) => {
+        s.classList.toggle('bi-star-fill', i <= index);
+        s.classList.toggle('bi-star', i > index);
       });
     });
+  });
 
-
-  // REPLY FORM LOGIC
   document.querySelectorAll('.reply-link').forEach(link => {
     link.addEventListener('click', function (e) {
       e.preventDefault();
       const commentId = this.getAttribute('data-comment-id');
-      const parentInput = document.getElementById('parent_id');
+      const form = document.getElementById('reply-form-container');
+      const parentInput = document.getElementById('reply-parent-id');
       parentInput.value = commentId;
-      this.parentElement.appendChild(document.querySelector('.comment-form'));
+      this.closest('.card-body').appendChild(form);
+      form.style.display = 'block';
     });
   });
 });
-
 </script>
 {% endblock %}
+
+

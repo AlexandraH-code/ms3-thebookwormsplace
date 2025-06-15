@@ -56,10 +56,14 @@ def book_detail(request, slug):
                 new_comment = comment_form.save(commit=False)
                 new_comment.book = book
                 new_comment.user = request.user
+                new_comment.approved = False
                 parent_id = request.POST.get('parent_id')
                 if parent_id:
-                    parent_comment = Comment.objects.get(id=parent_id)
-                    new_comment.parent = parent_comment
+                    try:
+                        parent_comment = Comment.objects.get(id=parent_id)
+                        new_comment.parent = parent_comment
+                    except Comment.DoesNotExist:
+                        pass
                 new_comment.save()
                 messages.info(request, 'Your comment is awaiting approval.')
                 return redirect('book_detail', slug=slug)
@@ -100,6 +104,7 @@ def about(request):
         if form.is_valid():
             form.save()
             # Ev. skicka mail här
+            messages.success(request, "Your message has been sent and we will get back to you as soon as possible.")
             return redirect('about')
     else:
         form = ContactForm()

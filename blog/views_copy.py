@@ -11,6 +11,7 @@ from .models import BlogPost, Comment, About, StarRating
 from .forms import ContactForm, CommentForm, CustomUserCreationForm, CustomAuthenticationForm, UsernameUpdateForm, EmailUpdateForm, PasswordChangeForm, BlogPostForm, AboutForm, StarRatingForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
+from django.utils import timezone
 
 # Create your views here.
 # def index(request):
@@ -27,65 +28,67 @@ def books(request):
     books = BlogPost.objects.filter(is_draft=False)
     return render(request, 'blog/books.html', {'books': books})
 
-# Book Detail - Rate book
-@login_required(login_url='login')
-def rate_book(request, slug):
-    book = get_object_or_404(BlogPost, slug=slug)
-    if request.method == 'POST' and request.user.is_authenticated:
-        value = request.POST.get('rating')
-        if value:
-            StarRating.objects.update_or_create(
-                user=request.user,
-                book=book,
-                defaults={'value': int(value)}
-            )
-            messages.success(request, 'Thank you for rating!')
-        else:
-            messages.error(request, 'Please select a star rating before submitting.')
-    return redirect('book_detail', slug=slug)
 
-
-# Book Detail – show details about book and handle comments
-@require_http_methods(["GET", "POST"])
+# Book Detail – show details about book, handle comments and rating
+# @require_http_methods(["GET", "POST"])
 def book_detail(request, slug):
     book = get_object_or_404(BlogPost, slug=slug)
-    comments = Comment.objects.filter(book=book, approved=True, parent__isnull=True).order_by('-created_at')
-    replies = Comment.objects.filter(book=book, approved=True, parent__isnull=False)
-    reply_dict = {}
-    for reply in replies:
-        reply_dict.setdefault(reply.parent_id, []).append(reply)
-
-    comment_form = CommentForm()
+    comments = Comment.objects.filter(book=book, approved=True, parent=None).order_by('-created_at')
+    replies = Comment.objects.filter(book=book, approved=True).exclude(parent=None)
     user_rating = None
     avg_rating = None
-    rating_count = StarRating.objects.filter(book=book).count()
+    ratings_count = 0
 
     if request.user.is_authenticated:
         user_rating = StarRating.objects.filter(user=request.user, book=book).first()
-        avg_rating = StarRating.objects.filter(book=book).aggregate(avg=Avg('value'))['avg']
 
-        if request.method == 'POST':
-            if 'comment_submit' in request.POST:
-                comment_form = CommentForm(request.POST)
-                if comment_form.is_valid():
-                    parent_id = request.POST.get('parent_id')
-                    parent_comment = Comment.objects.get(id=parent_id) if parent_id else None
-                    new_comment = comment_form.save(commit=False)
-                    new_comment.book = book
-                    new_comment.user = request.user
+    avg_data = StarRating.objects.filter(book=book).aggregate(Avg('value'))
+    avg_rating = avg_data['value__avg'] or 0
+    ratings_count = StarRating.objects.filter(book=book).count()
+
+    comment_form = CommentForm()
+    rating_message = None
+
+    if request.method == 'POST':
+        if 'comment_submit' in request.POST:
+            comment_form = CommentForm(request.POST)
+            if comment_form.is_valid():
+                new_comment = comment_form.save(commit=False)
+                new_comment.book = book
+                new_comment.user = request.user
+                new_comment.approved = False
+                parent_id = request.POST.get('parent_id')
+                if parent_id:
+                    parent_comment = Comment.objects.get(id=parent_id)
                     new_comment.parent = parent_comment
-                    new_comment.save()
-                    messages.info(request, 'Your comment has been submitted and is awaiting approval.')
+                new_comment.save()
+                messages.info(request, 'Your comment is awaiting approval.')
+                return redirect('book_detail', slug=slug)
+
+        elif 'rate_submit' in request.POST:
+            value = request.POST.get('rating')
+            if value:
+                value = int(value)
+                if 1 <= value <= 5:
+                    rating, created = StarRating.objects.update_or_create(
+                        user=request.user, book=book,
+                        defaults={'value': value, 'created_at': timezone.now()}
+                    )
+                    messages.success(request, "Your rating has been submitted.")
                     return redirect('book_detail', slug=slug)
+                else:
+                    messages.error(request, "Invalid rating value.")
+            else:
+                messages.error(request, "Please select a star rating before submitting.")
 
     context = {
         'book': book,
         'comments': comments,
-        'reply_dict': reply_dict,
+        'replies': replies,
         'comment_form': comment_form,
         'user_rating': user_rating,
         'avg_rating': avg_rating,
-        'rating_count': rating_count,
+        'ratings_count': ratings_count,
     }
     return render(request, 'blog/book_detail.html', context)
 
@@ -98,6 +101,7 @@ def about(request):
         if form.is_valid():
             form.save()
             # Ev. skicka mail här
+            messages.success(request, "Your message has been sent and we will get back to you as soon as possible.")
             return redirect('about')
     else:
         form = ContactForm()
