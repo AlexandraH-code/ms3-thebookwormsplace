@@ -1,0 +1,168 @@
+html {
+  overflow-x: hidden; /* prevents scrolling sideways */
+  /*overflow-y: scroll;*/
+  max-width: 100vw;
+}
+
+
+/*
+body::before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 17px; /* vanlig scrollbar-bredd */
+  /*height: 100vh;
+  pointer-events: none;
+  visibility: hidden;
+}*/
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /*overflow: hidden;*/
+  overflow-x: hidden !important;
+  transition: padding-right 0.3s ease;
+  /*scrollbar-gutter: stable;*/
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* height: 100%; /* important if you use 100vh */
+  /*overflow-x: hidden; /* prevents scrolling sideways */
+  /* overflow-y: scroll; */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  /*background-color: lightblue;*/
+  color: #212529;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+main {
+  flex: 1;
+  margin: 0 !important;
+  padding: 0 !important;
+  /*background-color: lightcoral;*/
+}
+
+/*.container {
+   position: relative;
+   left: calc((100vw - 100%) / 2);
+}*/
+
+.hero-image {
+  position: relative;
+  width: 100%;
+  background-image: url('/static/blog/images/books-1614215_1280.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* margin: 0 !important; */
+  /* padding: 0 !important; */
+  /*background-color: rgb(170, 170, 170);*/
+}
+
+.card-img-top {
+  max-width: 100%;
+  height: auto;
+}
+
+.hero-image h1,
+.hero-image a {
+  z-index: 2; /* position above overlay */
+}
+
+.hero-image h1 {
+    /* text-shadow: 2px 2px 4px #000000; */
+    /* text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; */
+    /* text-shadow: 1px 1px 2px black, 0 0 1em blue, 0 0 0.2em blue;*/ 
+    text-shadow: 2px 2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000, -2px -2px 0 #000000, 2px 0px 0 #000000, 0px 2px 0 #000000, -2px 0px 0 #000000, 0px -2px 0 #000000;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-content {
+  z-index: 2;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-rounded {
+  border-radius: 30px;
+  padding: 0.75rem 2rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+/*.overlay {
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+  /*z-index: 1;
+}*/
+
+.blur-overlay {
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/*footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}*/
+
+footer a {
+    color: #ddd;
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.card img {
+    height: 300px;
+    object-fit: cover;
+}
+
+ * {
+  outline: 1px solid rgb(255, 255, 255);
+}
+
+/*.hero-image {
+  border: 1px solid red; /* tillfälligt – se exakt hur stor hero-sektionen är */
+/*}*/
+
+
