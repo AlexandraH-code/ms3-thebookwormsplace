@@ -39,12 +39,6 @@ def book_detail(request, slug):
     avg_rating = None
     ratings_count = 0
 
-    # Try to get image URL, or use placeholder
-    try:
-        cover_url = book.cover_image.url
-    except Exception:
-        cover_url = '/static/blog/images/placeholder.jpg'  # adjust path as needed
-
     if request.user.is_authenticated:
         user_rating = StarRating.objects.filter(user=request.user, book=book).first()
 
@@ -92,7 +86,6 @@ def book_detail(request, slug):
 
     context = {
         'book': book,
-        'cover_url': cover_url,  # ← här är det viktiga
         'comments': comments,
         'replies': replies,
         'comment_form': comment_form,
@@ -101,9 +94,9 @@ def book_detail(request, slug):
         'ratings_count': ratings_count,
     }
 
-    # print("COVER IMAGE FIELD:", book.cover_image)
-    # print("COVER IMAGE URL:", book.cover_image.url)
-    # print("COVER IMAGE FILE:", book.cover_image.file if hasattr(book.cover_image, "file") else "No file attr")
+    print("COVER IMAGE FIELD:", book.cover_image)
+    print("COVER IMAGE URL:", book.cover_image.url)
+    print("COVER IMAGE FILE:", book.cover_image.file)
     return render(request, 'blog/book_detail.html', context)
 
 

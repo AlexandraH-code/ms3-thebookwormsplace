@@ -1,6 +1,8 @@
 from django.urls import path  # import path, similar to project's urls.py
 from . import views  # import views.py from the current directory
 from django.contrib.auth.views import LogoutView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     # path('', views.index, name='index'),
