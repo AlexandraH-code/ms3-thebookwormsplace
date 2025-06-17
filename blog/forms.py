@@ -8,6 +8,9 @@ from django.utils.text import slugify
 
 # Form for creating a new user
 class CustomUserCreationForm(UserCreationForm):
+    """
+    Form class for users to create a new user
+    """
     email = forms.EmailField(required=True)
 
     class Meta:
@@ -17,12 +20,18 @@ class CustomUserCreationForm(UserCreationForm):
 
 # User login form
 class CustomAuthenticationForm(AuthenticationForm):
+    """
+    Form class for users to log in to the website
+    """
     username = forms.CharField(widget=forms.TextInput(attrs={'autofocus': True}))
     password = forms.CharField(label="Password", widget=forms.PasswordInput)
 
 
-# Form for star rating on the Book details page
+# Form for star rating on the Book detail page
 class StarRatingForm(forms.ModelForm):
+    """
+    Form class for logged in users to star rate books on the Book detail page
+    """
     class Meta:
         model = StarRating
         fields = ['value']
@@ -31,8 +40,11 @@ class StarRatingForm(forms.ModelForm):
         }
 
 
-# Form for writing a comment on the Book details page
+# Form for writing a comment on the Book detail page
 class CommentForm(forms.ModelForm):
+    """
+    Form class for logged in users to write a comment on the Book detial page
+    """
     class Meta:
         model = Comment
         fields = ['text']
@@ -43,6 +55,9 @@ class CommentForm(forms.ModelForm):
 
 # Form for the contact form on the About page
 class ContactForm(forms.ModelForm):
+    """
+    Form class for users to send a message to the site owner
+    """
     class Meta:
         model = ContactRequest
         fields = ['name', 'email', 'message']
@@ -62,6 +77,9 @@ class ContactForm(forms.ModelForm):
 
 # Form for updating username
 class UsernameUpdateForm(forms.ModelForm):
+    """
+    Form class for registered users to update their username
+    """
     class Meta:
         model = User
         fields = ['username']
@@ -69,6 +87,9 @@ class UsernameUpdateForm(forms.ModelForm):
 
 # Form for updating email
 class EmailUpdateForm(forms.ModelForm):
+    """
+    Form class for registered users to update their email
+    """
     class Meta:
         model = User
         fields = ['email']
@@ -76,6 +97,9 @@ class EmailUpdateForm(forms.ModelForm):
 
 # Form for adding and editing books on the Admin page
 class BlogPostForm(forms.ModelForm):
+    """
+    Form class for Admin to add and edit books on the Admin page
+    """
     class Meta:
         model = BlogPost
         fields = [
@@ -124,6 +148,9 @@ class BlogPostForm(forms.ModelForm):
 
 # Form for editing text on the About page
 class AboutForm(forms.ModelForm):
+    """
+    Form class for Admin to edit the text on the About page
+    """
     class Meta:
         model = About
         fields = ['content']

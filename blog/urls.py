@@ -15,8 +15,8 @@ urlpatterns = [
     path('login', views.login_view, name='login'),
     path('logout/', views.logout_confirm, name='logout'),
     path('logout/confirmed/', views.logout_view, name='logout_confirmed'),
-    path('comment/<int:pk>/edit/', views.edit_comment, name='edit_comment'),
-    path('comment/<int:pk>/delete/', views.delete_comment, name='delete_comment'),
+    # path('comment/<int:pk>/edit/', views.edit_comment, name='edit_comment'),
+    # path('comment/<int:pk>/delete/', views.delete_comment, name='delete_comment'),
     # path('profile/edit/', views.profile_edit, name='profile_edit'), 
     path('profile/', views.profile_overview, name='profile'),
     path('profile/username/', views.update_username, name='update_username'),
@@ -27,6 +27,6 @@ urlpatterns = [
     path('admin-dashboard/edit/<int:pk>/', views.admin_edit_book, name='admin_edit_book'),
     path('admin-dashboard/delete/<int:pk>/', views.admin_delete_book, name='admin_delete_book'),
     path('admin-dashboard/about/', views.admin_edit_about, name='admin_edit_about'),
+    path('comment/<int:comment_id>/edit/', views.edit_comment, name='edit_comment'),
+    path('comment/<int:comment_id>/delete/', views.delete_comment, name='delete_comment'),
 ]
-
-

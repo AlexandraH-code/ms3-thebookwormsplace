@@ -2,6 +2,7 @@
 {% load static %}
 {% load form_filters %}
 {% load custom_filters %}
+
 {% block title %}{{ book.title }}{% endblock %}
 
 {% block content %}
@@ -10,21 +11,9 @@
 
   <div class="row">
     <div class="col-md-4">
-      <!--<img src="{{ book.cover_image.url }}" class="img-fluid rounded" alt="{{ book.cover_image_alt }}">-->
-      
-      <!--<img src="{{ book.cover_image.url }}" alt="{{ book.title }}" class="img-fluid">-->
-      <!--{% if book.cover_image and book.cover_image.url %}
-        <img src="{{ book.cover_image.url }}" alt="{{ book.title }}" class="img-fluid">
-      {% else %}
-        <img src="{% static 'blog/images/placeholder.jpg' %}" alt="No cover available" class="img-fluid">
-      {% endif %}-->
-      <img src="{{ cover_url }}" alt="{{ book.title }}" class="img-fluid">
-      <!--<img src="{% static 'blog/images/placeholder.jpg' %}" alt="{{ book.title }}">-->
-      <!--<img src="{{ book.cover_image.url }}" alt="{{ book.title }}">-->
-      <!--<img src="https://res.cloudinary.com/djhw26mjb/image/upload/v1750082292/x6hhfx6ap14ohjxpe2cl.jpg" alt="Test">-->
-      <p>Raw field: {{ book.cover_image }}</p>
-      <p>URL: {{ book.cover_image.url }}</p>
+      <img src="{{ cover_url }}" alt="{{ book.title }}" class="img-fluid rounded">
     </div>
+
     <div class="col-md-8">
       <h2>{{ book.title }}</h2>
       <p class="text-muted">By {{ book.author }}</p>
@@ -64,45 +53,52 @@
   <div class="comments-section mt-5">
     <h4>Comments:</h4>
     {% for comment in comments %}
-    <div class="card mb-3 comment-box">
-      <div class="card-body">
-        <p class="mb-1"><strong>{{ comment.user.username }}</strong> <small class="text-muted">on {{ comment.created_at|date:"Y-m-d H:i" }}</small></p>
-        <p>{{ comment.text }}</p>
-        {% if comment.replies.all %}
-          <div class="ms-4 border-start ps-3">
-            {% for reply in comment.replies.all %}
-              {% if reply.approved %}
-                <div class="reply-box">
-                  <p class="mb-1">
-                    <i class="bi bi-arrow-return-right"></i>
-                    <strong>{{ reply.user.username }}</strong> <small class="text-muted">on {{ reply.created_at|date:"Y-m-d H:i" }}</small>
-                  </p>
-                <p>{{ reply.text }}</p>
-              </div>
-              {% endif %}
-            {% endfor %}
-          </div>
-        {% endif %}
-        {% if user.is_authenticated and comment.replies.count == 0 %}
-          <a href="#" class="reply-link btn btn-sm btn-outline-primary" data-comment-id="{{ comment.id }}">Reply</a>
-          <!--<a href="#" class="reply-link small text-decoration-underline" data-comment-id="{{ comment.id }}">Reply</a>-->
-        {% endif %}
+      <div class="card mb-3 comment-box">
+        <div class="card-body">
+          <p class="mb-1"><strong>{{ comment.user.username }}</strong> <small class="text-muted">on {{ comment.created_at|date:"Y-m-d H:i" }}</small></p>
+          <p>{{ comment.text }}</p>
+
+          {% if comment.replies.all %}
+            <div class="ms-4 border-start ps-3">
+              {% for reply in comment.replies.all %}
+                {% if reply.approved %}
+                  <div class="reply-box">
+                    <p class="mb-1">
+                      <i class="bi bi-arrow-return-right"></i>
+                      <strong>{{ reply.user.username }}</strong> <small class="text-muted">on {{ reply.created_at|date:"Y-m-d H:i" }}</small>
+                    </p>
+                    <p>{{ reply.text }}</p>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+       
+          {% if user.is_authenticated and comment.replies.count == 0 %}
+            <a href="#" class="reply-link btn btn-sm btn-outline-primary" data-comment-id="{{ comment.id }}">Reply</a>
+          {% endif %}
+
+          <!-- Buttons for Edit and Delete Comment -->
+          {% if user == comment.user %}
+          <a href="{% url 'edit_comment' comment.id %}" class="btn btn-sm btn-outline-secondary me-2">Edit</a>
+          <a href="{% url 'delete_comment' comment.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
+          {% endif %}
+        </div>
       </div>
-    </div>
     {% endfor %}
 
     {% if user.is_authenticated %}
-    <div class="comment-form mt-4">
-      <h5>Leave a Comment:</h5>
-      <form method="post">
-        {% csrf_token %}
-        {{ comment_form.text|add_class:"form-control mb-2" }}
-        <input type="hidden" name="parent_id" id="parent_id">
-        <button type="submit" name="comment_submit" class="btn btn-outline-primary">Submit Comment</button>
-        <a href="{% url 'book_detail' book.slug %}" class="btn btn-secondary-custom">Cancel</a>
-      </form>
-      <br>
-    </div>
+      <div class="comment-form mt-4">
+        <h5>Leave a Comment:</h5>
+        <form method="post">
+          {% csrf_token %}
+          {{ comment_form.text|add_class:"form-control mb-2" }}
+          <input type="hidden" name="parent_id" id="parent_id">
+          <button type="submit" name="comment_submit" class="btn btn-outline-primary">Submit Comment</button>
+          <a href="{% url 'book_detail' book.slug %}" class="btn btn-secondary-custom">Cancel</a>
+        </form>
+        <br>
+      </div>
     {% else %}
       <p class="text-muted">You must <a href="{% url 'login' %}">log in</a> or <a href="{% url 'register' %}">register</a> to comment on this book.</p>
     {% endif %}
@@ -147,5 +143,3 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 {% endblock %}
-
-

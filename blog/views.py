@@ -5,7 +5,7 @@ from django.core.mail import send_mail
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.views.decorators.http import require_http_methods
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.db.models import Avg
 from .models import BlogPost, Comment, About, StarRating
 from .forms import ContactForm, CommentForm, CustomUserCreationForm, CustomAuthenticationForm, UsernameUpdateForm, EmailUpdateForm, PasswordChangeForm, BlogPostForm, AboutForm, StarRatingForm
@@ -107,6 +107,39 @@ def book_detail(request, slug):
     return render(request, 'blog/book_detail.html', context)
 
 
+# Book detail - edit comment
+@login_required
+def edit_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id, user=request.user)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            edited_comment = form.save(commit=False)
+            edited_comment.approved = False  # Kräver ny admin-godkännande
+            edited_comment.save()
+            messages.info(request, 'Your edited comment is awaiting approval.')
+            return redirect('book_detail', slug=comment.book.slug)
+    else:
+        form = CommentForm(instance=comment)
+
+    return render(request, 'blog/edit_comment.html', {'form': form, 'comment': comment})
+
+
+# Book detail - delete comment
+@login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id, user=request.user)
+
+    if request.method == 'POST':
+        book_slug = comment.book.slug
+        comment.delete()
+        messages.success(request, 'Comment deleted successfully.')
+        return redirect('book_detail', slug=book_slug)
+
+    return render(request, 'blog/delete_comment.html', {'comment': comment})
+
+
 # About + contactform
 def about(request):
     about = About.objects.first()
@@ -161,32 +194,6 @@ def logout_view(request):
         messages.success(request, "You have been logged out.")
         return redirect('home')
     return redirect('logout')
-
-
-# Edit Comments - Book Details
-def edit_comment(request, pk):
-    comment = get_object_or_404(Comment, pk=pk, user=request.user)
-    if request.method == 'POST':
-        form = CommentForm(request.POST, instance=comment)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.approved = False  # Eequires new approval from admin
-            comment.save()
-            messages.info(request, "Your updated comment is awaiting approval.")
-            return redirect('book_detail', pk=comment.book.pk)
-    else:
-        form = CommentForm(instance=comment)
-    return render(request, 'blog/edit_comment.html', {'form': form, 'comment': comment})
-
-
-# Delete Comments - Book Details
-def delete_comment(request, pk):
-    comment = get_object_or_404(Comment, pk=pk, user=request.user)
-    if request.method == 'POST':
-        comment.delete()
-        messages.success(request, "Your comment was deleted.")
-        return redirect('book_detail', pk=comment.book.pk)
-    return render(request, 'blog/delete_comment.html', {'comment': comment})
 
 """
 User details

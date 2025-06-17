@@ -5,7 +5,7 @@ from django.core.mail import send_mail
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.views.decorators.http import require_http_methods
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.db.models import Avg
 from .models import BlogPost, Comment, About, StarRating
 from .forms import ContactForm, CommentForm, CustomUserCreationForm, CustomAuthenticationForm, UsernameUpdateForm, EmailUpdateForm, PasswordChangeForm, BlogPostForm, AboutForm, StarRatingForm
@@ -38,6 +38,12 @@ def book_detail(request, slug):
     user_rating = None
     avg_rating = None
     ratings_count = 0
+
+    # Try to get image URL, or use placeholder
+    try:
+        cover_url = book.cover_image.url
+    except Exception:
+        cover_url = '/static/blog/images/placeholder.jpg'  # adjust path as needed
 
     if request.user.is_authenticated:
         user_rating = StarRating.objects.filter(user=request.user, book=book).first()
@@ -86,6 +92,7 @@ def book_detail(request, slug):
 
     context = {
         'book': book,
+        'cover_url': cover_url,  # ← här är det viktiga
         'comments': comments,
         'replies': replies,
         'comment_form': comment_form,
@@ -94,10 +101,43 @@ def book_detail(request, slug):
         'ratings_count': ratings_count,
     }
 
-    print("COVER IMAGE FIELD:", book.cover_image)
-    print("COVER IMAGE URL:", book.cover_image.url)
-    print("COVER IMAGE FILE:", book.cover_image.file)
+    # print("COVER IMAGE FIELD:", book.cover_image)
+    # print("COVER IMAGE URL:", book.cover_image.url)
+    # print("COVER IMAGE FILE:", book.cover_image.file if hasattr(book.cover_image, "file") else "No file attr")
     return render(request, 'blog/book_detail.html', context)
+
+
+# Book detail - edit comment
+@login_required
+def edit_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id, user=request.user)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            edited_comment = form.save(commit=False)
+            edited_comment.approved = False  # Kräver ny admin-godkännande
+            edited_comment.save()
+            messages.info(request, 'Your edited comment is awaiting approval.')
+            return redirect('book_detail', slug=comment.book.slug)
+    else:
+        form = CommentForm(instance=comment)
+
+    return render(request, 'blog/edit_comment.html', {'form': form, 'comment': comment})
+
+
+# Book detail - delete comment
+@login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id, user=request.user)
+
+    if request.method == 'POST':
+        book_slug = comment.book.slug
+        comment.delete()
+        messages.success(request, 'Comment deleted successfully.')
+        return redirect('book_detail', slug=book_slug)
+
+    return render(request, 'blog/delete_comment.html', {'comment': comment})
 
 
 # About + contactform
