@@ -153,10 +153,9 @@ main {
 
 /* Hero image on the start page */
 .hero-image {
-  min-height: calc(100vh - 56px); /* eller justera 56px om navbaren har annan höjd */
+  min-height: calc(100vh - 56px); /* full height minus navbar */
   position: relative;
   width: 100%;
-  min-height: calc(100vh - 56px); /* full height minus navbar */
   /* background-image: url('/static/blog/images/books-1614215_1280.jpg'); */
   background-image: url('../images/books-1614215_1280.jpg');
   background-size: cover;
@@ -256,6 +255,13 @@ a:hover {
   /* text-decoration: underline; */
 }
 
+.navbar-toggler {
+  border-color: #ffffff;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255,255,255,1%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
 
 .card-img-top {
   max-width: 100%;
@@ -413,6 +419,11 @@ footer .social-icons {
   align-items: center;
   gap: 20px;
   margin-top: 10px;
+}
+
+.social-icons a {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
 
 /* Media query: screens with max-width: 768px ) */
