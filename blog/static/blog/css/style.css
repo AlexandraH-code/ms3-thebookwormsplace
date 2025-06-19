@@ -60,6 +60,7 @@ a:hover {
 .btn-outline-primary {
   color: #6b4f4f;
   border-color: #6b4f4f;
+  background-color: #f5f2eb;
 }
 
 .btn-outline-primary:hover {

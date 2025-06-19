@@ -114,8 +114,37 @@ The BookWorm's Place is a community-focused book blog where users can browse boo
 ### Structure
 
 The website is structured with a header (navigation bar), main content area, and footer with social media links.
+
+I have chosen to structure my website with the following pages:
+- Home page
+  - page with a large hero image (representing books) and a button with the text Browse Books (which, if clicked, takes the user to the Books page).
+- Books
+  - page where the user can see added books. The books are displayed with book cover, title and author. Below the information about the book there is a button that says View Details (if the user clicks the button, they are taken to a page that shows more information about the book).
+- About
+  - page with information about the page. This page also has a contact form where the user can send a message to the site owner.
+- Book details
+  - page with page with book details. Here you can also read comments that other visitors have made and see the rating of the book (this in the form of five stars marked according to how the book has been rated). If the user is logged in, it is possible to rate the book and also write their own comment. It is also possible to reply to comments made by other users.
+- Create Account 
+  - page where the visitor can register an account on the website. With a user account on the website, the user can rate and comment on added books.
+- Login
+  - page where the user can log in.
+- Logout
+  - page where the user can log out.
+- My profile
+  - page where the user can change username, email address and password.
+- Admin
+  - page where the site administrator(s) can
+    - add books
+    - update the details of an added book
+    - delete an added book
+    - change the text on the About page
+
+The pages above can be accessed by clicking on one of the links in the menu bar at the top of the page. On small screens (smaller than 992 pixels) the menu is collapsed in the upper right corner. 
+
+At the bottom of the page there is a footer. In the footer there are links to social media (Facebook, Instagram, X and Youtube).
+
 ### Wireframes
-I have used Balsamiq to make the tireframes. The wireframes show how I have thought that the site should look.
+I have used Balsamiq to make the wireframes. The wireframes show how I envisioned the website to look and be constructed. The finished result may differ somewhat from the wireframes.
 
 #### Mobile Wireframes
 
