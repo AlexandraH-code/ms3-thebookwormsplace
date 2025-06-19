@@ -12,7 +12,14 @@ Developer - Alexandra Holstensson
     - [**External User Goals**](#external-user-goals)
     - [**Site Owner Goals**](#site-owner-goals)
 3. [**User Stories**](#3-user-stories)
-4. [**Design Of The Website**](#4-design-of-the-website)
+    - [**User Stories - Site Visitors**](#user-stories---site-visitors)
+    - [**User Stories - Administrators**](#user-stories---administrators)
+4. [**Information Architecture**](#4-information-architecture)
+    - [**Database Schema Diagram**](#database-schema-diagram)
+    - [**Entity Relationship Diagram (ERD)**](#entity-relationship-diagram-erd)
+5. [**Agile Methodology**](#5-agile-methodology)
+    - [**Kanban Workflow**](#kanban-workflow)
+6. [**Design Of The Website**](#6-design-of-the-website)
     - [**Structure**](#structure)
     - [**Wireframes**](#wireframes)
         - [**Mobile Wireframes**](#mobile-wireframes)
@@ -21,8 +28,8 @@ Developer - Alexandra Holstensson
     - [**Colors**](#colors)
     - [**Fonts**](#fonts)
     - [**Icons And Images**](#icons-and-images)
-5. [**Existing Features**](#5-existing-features)
-    - [**Existing Features - Users**](#existing-features---users)
+7. [**Existing Features**](#7-existing-features)
+    - [**Existing Features - Site Visitors**](#existing-features---site-visitors)
         - [**Register Account**](#register-account)
         - [**Login**](#login)
         - [**Logout**](#logout)
@@ -31,7 +38,7 @@ Developer - Alexandra Holstensson
         - [**Edit Comment**](#edit-comment)
         - [**Delete Comment**](#delete-comment)
         - [**Edit User Details**](#edit-user-details)
-    - [**Existing Features - Admin**](#existing-features---admin)
+    - [**Existing Features - Administrator(s)**](#existing-features---administrators)
         - [**Add Book**](#add-book)
         - [**Edit Book**](#edit-book)
         - [**Delete Book**](#delete-book)
@@ -40,13 +47,13 @@ Developer - Alexandra Holstensson
         - [**Update Text On The About Page**](#update-text-on-the-about-page)
         - [**See Contact Requests**](#see-contact-requests)
         - [**See Ratings**](#see-ratings)
-6. [**Features Left To Implement**](#6-features-left-to-implement)
-    - [**Features Left To Implement - Users**](#features-left-to-implement---users)
-    - [**Features Left To Implement - Admin**](#features-left-to-implement---admin)
-7. [**Technologies Used**](#7-technologies-used)
+8. [**Features Left To Implement**](#8-features-left-to-implement)
+    - [**Features Left To Implement - Site Visitors**](#features-left-to-implement---site-visitors)
+    - [**Features Left To Implement - Administrator(s)**](#features-left-to-implement---administrators)
+9. [**Technologies Used**](#9-technologies-used)
   - [**Languages**](#languages)
   - [**Programs And Other Resources**](#programs-and-other-resoures)
-8. [**Testing**](#8-testing)
+10. [**Testing**](#10-testing)
   - [**User Story Testing**](#user-story-testing)
   - [**Manual Testing - Users**](#manual-testing---users)
     - [**Test - Register Account - User**](#test---register-account)
@@ -66,21 +73,21 @@ Developer - Alexandra Holstensson
     - [**Test - Update Text On The About Page**](#test---update-text-on-the-about-page)
     - [**Test - See Contact Request**](#test---see-contact-requests)
     - [**Test - See Ratings**](#test---see-contact-requests)
-9. [**Bugs**](#9-bugs)
-10. [**Validation**](#10-validation)
+11. [**Bugs**](#11-bugs)
+12. [**Validation**](#12-validation)
   - [**HTML**](#html)
   - [**CSS**](#css)
   - [**JavaScript**](#javascript)
   - [**Python**](#python)
-11. [**Lighthouse Testing**](#11-lighthouse-testing)
+13. [**Lighthouse Testing**](#13-lighthouse-testing)
   - [**Desktop**](#desktop)
   - [**Mobile**](#mobile)
-12. [**Device Testing**](#12-device-testing)
-13. [**Browser Compatibility**](#13-browser-compatibility)
-14. [**Deployment**](#14-deployment)
+14. [**Device Testing**](#14-device-testing)
+15. [**Browser Compatibility**](#15-browser-compatibility)
+16. [**Deployment**](#16-deployment)
   - [**Local Deployment**](#local-deployment)
   - [**Remote Deployment**](#remote-deployment)
-15. [**Credits**](#15-credits)
+17. [**Credits**](#17-credits)
 
 ## 1. About
 [Back To The Top](#table-of-contents)
@@ -109,30 +116,70 @@ The BookWorm's Place is a community-focused book blog where users can browse boo
 ## 3. User Stories
 [Back To The Top](#table-of-contents)
 
-## 4. Design Of The Website
+### User Stories - Site Visitors
+- **List added books:**
+  - As a Site Visitor, I can see added books compiled in a list (with a picture of the book and author name) so that I can easily see which books have been added.
+- **View information about a book:**
+  - As a Site Visitor, I can click on a book so that I can get more information about it.
+- **View comments:**
+  - As a Site Visitor, when I view a specific book, I can see any comments that other visitors have made so that I can read any conversation.
+- **User account registration:**
+  - As a Site Visitor, I can register an account (on the website) so that I can have my own profile on it.
+- **Comment on a book:**
+  - As a Site Visitor, I can leave a comment on a specific book so that I can give my opinion about it.
+- **Rate a book:**
+  - As a Site Visitor, I can leave a rating for a book so that I can easily express my opinion about it.
+- **Edit or delete a comment that has been made on a specific book:**
+  - As a Site Visitor, I can edit or delete a comment that I have made on a specific book so that I have the opportunity to change a comment if I want to or delete it if I don't want it to remain (on the book).
+- **Contact site owner:**
+  - As a Site Visitor, I can contact the site owner so that I can get answers to any questions or provide feedback.
+- **Read about the site:** 
+  - As a Site Visitor, I can click on an About link so that I can read more about the site.
+- **Update user details:** 
+  - As a logged in Site Visitor, I can access a profile page so that I have the possibility to change my user details.
+
+### User Stories - Administrators
+- **Manage content:**
+  - As Site Administrator, I can add, read, update, and delete books so that I can manage the site's content.
+- **Approve comments:**
+  - As a Site Administrator, I can approve or disapprove comments so that I can filter comments that, for example, contain offensive language.
+- **Create draft:**
+  - As a Site Administrator, I can create drafts for a book so that I can finish it at a later time.
+- **Add and update the about text:** 
+  - As a Site Administrator, I can create or update the about page content so that it is available on the site.
+
+## 4. Information Architecture
+[Back To The Top](#table-of-contents)
+### Database Schema Diagram
+### Entity Relationship Diagram (ERD)
+
+## 5. Agile Methodology
+### Kanban Workflow
+
+## 6. Design Of The Website
 [Back To The Top](#table-of-contents)
 ### Structure
 
 The website is structured with a header (navigation bar), main content area, and footer with social media links.
 
 I have chosen to structure my website with the following pages:
-- Home page
+- **Home page**
   - page with a large hero image (representing books) and a button with the text Browse Books (which, if clicked, takes the user to the Books page).
-- Books
+- **Books**
   - page where the user can see added books. The books are displayed with book cover, title and author. Below the information about the book there is a button that says View Details (if the user clicks the button, they are taken to a page that shows more information about the book).
-- About
+- **About**
   - page with information about the page. This page also has a contact form where the user can send a message to the site owner.
-- Book details
+- **Book details**
   - page with page with book details. Here you can also read comments that other visitors have made and see the rating of the book (this in the form of five stars marked according to how the book has been rated). If the user is logged in, it is possible to rate the book and also write their own comment. It is also possible to reply to comments made by other users.
-- Create Account 
+- **Create Account** 
   - page where the visitor can register an account on the website. With a user account on the website, the user can rate and comment on added books.
-- Login
+- **Login**
   - page where the user can log in.
-- Logout
+- **Logout**
   - page where the user can log out.
-- My profile
+- **My profile**
   - page where the user can change username, email address and password.
-- Admin
+- **Admin**
   - page where the site administrator(s) can
     - add books
     - update the details of an added book
@@ -144,7 +191,7 @@ The pages above can be accessed by clicking on one of the links in the menu bar 
 At the bottom of the page there is a footer. In the footer there are links to social media (Facebook, Instagram, X and Youtube).
 
 ### Wireframes
-I have used Balsamiq to make the wireframes. The wireframes show how I envisioned the website to look and be constructed. The finished result may differ somewhat from the wireframes.
+I have used [Balsamiq](https://balsamiq.com/) to make the wireframes. The wireframes show how I envisioned the website to look and be constructed. The finished result may differ somewhat from the wireframes.
 
 #### Mobile Wireframes
 
@@ -191,9 +238,9 @@ I have used Balsamiq to make the wireframes. The wireframes show how I envisione
   </details>
 
   <details>
-  <summary>Register Account</summary>
+  <summary>Create Account</summary>
 
-  ![Register Account](docs\wireframes\mobile\register_account.png)
+  ![Create Account](docs\wireframes\mobile\register_account.png)
   
   </details>
 
@@ -257,9 +304,9 @@ I have used Balsamiq to make the wireframes. The wireframes show how I envisione
   </details>
 
   <details>
-  <summary>Register Account</summary>
+  <summary>Create Account</summary>
 
-  ![Register Account](docs\wireframes\tablet\register_account.png)
+  ![Create Account](docs\wireframes\tablet\register_account.png)
   
   </details>
 
@@ -322,9 +369,9 @@ I have used Balsamiq to make the wireframes. The wireframes show how I envisione
   </details>
 
   <details>
-  <summary>Register Account</summary>
+  <summary>Create Account</summary>
 
-  ![Register Account](docs\wireframes\laptop_desktop\register_account.png)
+  ![Create Account](docs\wireframes\laptop_desktop\register_account.png)
   
   </details>
 
@@ -346,15 +393,109 @@ I have used Balsamiq to make the wireframes. The wireframes show how I envisione
 
 A clean, warm palette is used for readability and comfort, suitable for a reading-focused audience.
 
+I have chosen to use a color palette with shades of white, grey, black and brown. I think the color theme is appropriate for a website about books.
+
+To ensure that text is easy to read in relation to the background color, I have used [ColorMagic's ContastChecker](https://colormagic.app/contrast-checker). Below are results from ColorMagic's ContastChecker on the most frequently used elements.
+
+**ContrastCheck:**
+- **Navbar and Footer:** (dark color on the background, light color on the text)
+  - background-color: #3e2f2f - dark brown
+  - color: #ffffff - white
+    - Contrast Ratio: 21.00
+    - Normal Text: AAA
+    - Large Text: AAA
+    - UI Components: AA
+
+![Image of constrast check for the navbar and footer element.](docs\images\color_contrast_check\navbar_small.png)
+
+
+- **Navbar and Footer hover:** (dark color on the background, light brown text color when hovering over the text)
+  - background-color: #3e2f2f - dark brown
+  - color: #a1866f - light, reddish-brown
+    - Contrast Ratio: 6.07
+    - Normal Text: AA
+    - Large Text: AAA
+    - UI Components: AA
+
+![Image of constrast check for the navbar and footer element with hover effect on links and icons.](docs\images\color_contrast_check\navbar_hover_small.png)
+
+
+- **Body:** (light color on the background, dark color on the text)
+  - background-color: #f5f2eb - pale, off-white or light beige color
+  - text: #333333 - dark gray or dark charcoal
+    - Contrast Ratio: 11.30
+    - Normal Text: AAA
+    - Large Text: AAA
+    - UI Components: AA
+
+![Image of constrast check for the body element.](docs\images\color_contrast_check\body_small.png)
+
+
+- **Button - btn-outline-primary:** (button used for sending, submitting, confirming, etc.)
+  - color: #6b4f4f - dark brown or deep reddish-brown
+  - border-color: #6b4f4f - dark brown or deep reddish-brown
+  - background-color: #f5f2eb - pale, off-white or light beige color
+    - Contrast Ratio: 6.88
+    - Normal Text: AA
+    - Large Text: AAA
+    - UI Components: AA
+
+![Image of constrast check for the button btn-outline-primary.](docs\images\color_contrast_check\btn_outline_primary_small.png)
+
+
+- **Button with hover effect - btn-outline-primary:hover:** (button used for sending, submitting, confirming, etc.)
+  - background-color: #6b4f4f - dark brown or deep reddish-brown
+  - color: #ffffff - white
+    - Contrast Ratio: 7.47
+    - Normal Text: AAA
+    - Large Text: AAA
+    - UI Components: AA
+
+![Image of constrast check for the button btn-outline-primary with hover effect.](docs\images\color_contrast_check\btn_outline_primary_hover_small.png)
+
+
+- **Button - btn-secondary-custom:** (button used to cancel, clear, etc.)
+  - background-color: #e4dad2 - light beige or off-white
+  - color: #6b4f4f - dark brown or deep reddish-brown
+  - border: #6b4f4f - dark brown or deep reddish-brown
+    - Contrast Ratio: 5.42
+    - Normal Text: AA
+    - Large Text: AAA
+    - UI Components: AA
+
+![Image of constrast check for the button btn-secondary-custom.](docs\images\color_contrast_check\btn_secondary_custom_small.png)
+
+
+- **Button with hover effect - btn-secondary-custom:hover:** (button used to cancel, clear, etc.)
+  - background-color: #d6c7bc - light beige or off-white
+  - color: #000000 - black
+    - Contrast Ratio: 12.76
+    - Normal Text: AAA
+    - Large Text: AAA
+    - UI Components: AA
+
+![Image of constrast check for the button btn-secondary-custom:hover.](docs\images\color_contrast_check\btn_secondary_custom_hover_small.png)
+
+
 ### Fonts
 
-I have chosen to use fonts from Google Fonts. The two fonts I have chosen are EB Garamond and Open Sans. EB Garamond is used on headings (for example H1, H2, H3, etc.) and Open Sans on other text.
+To find fonts for my website, I looked at the [W3Schools page CSS Great Font Pairings](https://www.w3schools.com/css/css_font_pairings.asp). There, I chose the font pair Merriweather and Open Sans. I downloaded both [Merriweather](https://fonts.google.com/specimen/Merriweather) and [Open Sans](https://fonts.google.com/specimen/Open+Sans) from [Google Fonts](https://fonts.google.com/).
+
+The fonts are used in this way on the website:
+- Merriweather: H1, H2, H3
+- Open Sans: Body
 
 ### Icons and Images
 
-## 5. Existing Features
+To create the favicon (the icon that appears in the tab in the browser) and the icon that is on the far left in the navbar, I started from the same image. I found the image on [Pixabay](https://pixabay.com/) (see Credit for more information about the image and image owner). To create the favicon, I used [Favicon's](https://favicon.io/) favicon generator. And to create the icon in the navbar, I used [Microsoft Photos](https://apps.microsoft.com/detail/9wzdncrfjbh4?hl=en-US&gl=US) to reduce the size of the image and remove the background color.
+The social media icons (Facebook, Instagram, X and Youtube), which are in the footer, come from [FontAwsome](https://fontawesome.com/).
+I found the hero image (depicting a bunch of books) on [Pixabay](https://pixabay.com/) (see Credit for more information about the image and image owner)
+Book cover images come from [Adlibris](https://www.adlibris.com/sv) and [Bokus](https://www.bokus.com/). More specific information about the book covers can be found in Credits.
+
+
+## 7. Existing Features
 [Back To The Top](#table-of-contents)
-### Existing Features - Users
+### Existing Features - Site Visitors
 #### Register Account
 #### Login
 #### Logout
@@ -363,7 +504,7 @@ I have chosen to use fonts from Google Fonts. The two fonts I have chosen are EB
 #### Edit Comment
 #### Delete Comment
 #### Edit User Details
-### Existing Features - Admin
+### Existing Features - Administrator(s)
 #### Add Book
 #### Edit Book
 #### Delete Book
@@ -373,28 +514,31 @@ I have chosen to use fonts from Google Fonts. The two fonts I have chosen are EB
 #### See Contact Requests
 #### See Ratings
 
-## 6. Features Left To Implement
+## 8. Features Left To Implement
 [Back To The Top](#table-of-contents)
-### Features Left To Implement - Users
+
+In addition to the features that are currently added to the website, I have come up with some other features that could be added in the future. I have divided the features into Site Visitors and Administrator(s).
+
+### Features Left To Implement - Site Visitors
 * Develop user profiles with more information, for example a profile picture.
 * Add filter/sorting function to the books page so users/visitors can filter/sort by genre or rating.
 * Add search function where the users can search for, for example, author, book title or genre. 
 * Add password reset functionality in case a user/visitor has forgotten their password.
-### Features Left To Implement - Admin
+### Features Left To Implement - Administrator(s)
 * Add approve comment possibility to the Admin section on the website.
 * Add the possibility to administer contact requests in the Admin section on the website.
 
-## 7. Technologies Used
+## 9. Technologies Used
 [Back To The Top](#table-of-contents)
 ### Languages
-- [HTML5](https://en.wikipedia.org/wiki/HTML)
-- [CSS](https://en.wikipedia.org/wiki/CSS)
-- [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
-- [Python3](https://en.wikipedia.org/wiki/Python_(programming_language))
+- [HTML5](https://en.wikipedia.org/wiki/HTML) - Used to create the foundation of all subpages on the website.
+- [CSS](https://en.wikipedia.org/wiki/CSS) - Used to style the website and to get content to end up in the right place.
+- [JavaScript](https://en.wikipedia.org/wiki/JavaScript) - Scripting language used to achieve the star rating and "reply to comment" form on the Book Detail page.
+- [Python3](https://en.wikipedia.org/wiki/Python_(programming_language)) - Programming language that (together with Django) was used to create the website.
 ### Programs And Other Resoures
-- [Django](https://www.djangoproject.com/)
-- [PostgreSQL](https://www.postgresql.org/)
-- [Cloudinary](https://cloudinary.com/)
+- [Django](https://www.djangoproject.com/) - a high-level Python web framework that was used to create the website/web application.
+- [PostgreSQL](https://www.postgresql.org/) - The database used on the website is a PostgreSQL database.
+- [Cloudinary](https://cloudinary.com/) - Used to save book covers
 - [Bootstrap, v5.3](https://getbootstrap.com/) - Used Boostrap to structure the pages and used some Bootstrap elements to style the site.
     - [Navbar](https://getbootstrap.com/docs/5.3/components/navbar/#nav) - Used a Bootstrap navbar as a template, but adapted it to my website.
     - [Buttons](https://getbootstrap.com/docs/5.3/components/buttons/) - I started with Bootstrap buttons but customized colors and so on to fit my site.
@@ -404,6 +548,7 @@ I have chosen to use fonts from Google Fonts. The two fonts I have chosen are EB
 - [GitHub](https://github.com/) - GitHub is the place where my website (repository) is stored.
 - [Responsinator](http://www.responsinator.com/) - Used to check how the site looks on different devices and how responsive it is.
 - [Am I Responsive](https://ui.dev/amiresponsive) - Used to check how the site looks on different devices and how responsive it is.
+-[Responsive Web Design Checker](https://responsivedesignchecker.com/) - Used to see how my website looks on different types of devices and screen sizes.
 - [tinypng](https://tinypng.com/) - Used to compress images.
 - [HTML Validator](https://validator.w3.org/nu/) - Used to validate the HTML files.
 - [CSS Validator](https://jigsaw.w3.org/css-validator/) - Used to validate the JavaScript code.
@@ -415,7 +560,7 @@ I have chosen to use fonts from Google Fonts. The two fonts I have chosen are EB
 - [Google Fonts](https://fonts.google.com/) - was used to download the fonts that I have chosen to use (EB Garamond and Open Sans)
 - [Google Transate](https://translate.google.com/) - was used to translate text for accuracy.
 
-## 8. Testing
+## 10. Testing
 [Back To The Top](#table-of-contents)
 ### User Story Testing
 ### Manual Testing - Users
@@ -437,7 +582,7 @@ I have chosen to use fonts from Google Fonts. The two fonts I have chosen are EB
 #### Test - See Contact Requests
 #### Test - See Ratings
 
-## 9. Bugs
+## 11. Bugs
 [Back To The Top](#table-of-contents)
 
 - Having trouble getting images and css to work after deploying to Heroku.
@@ -446,26 +591,26 @@ I have chosen to use fonts from Google Fonts. The two fonts I have chosen are EB
     - In order not to spend too much time on a problem that is actually rather small, I made it so that there are scrollbars on all pages. This will probably be something I will have to come back to, something that can be improved.
 
 
-## 10. Validation
+## 12. Validation
 [Back To The Top](#table-of-contents)
 ### HTML
 ### CSS
 ### JavaScript
 ### Python
 
-## 11. Lighthouse Testing
+## 13. Lighthouse Testing
 [Back To The Top](#table-of-contents)
 ### Desktop
 ### Mobile
 
-## 12. Device Testing
+## 14. Device Testing
 [Back To The Top](#table-of-contents)
 
-In addition to my laptop (a Dell Vostro 3520), I have tested the site on my mobile phone, a Samsung Galaxy S24 Ultra, and on my tablet, a Samsung Galaxy Tab S8. The site works, and looks, as it should on all devices.
+I used the Dell Vostro 3520 laptop to create the website. In addition to my laptop, I have also tested the website on my tablet, a Samsung Galaxy Tab S8, and my mobile phone, a Samsung Galaxy S24 Ultra.
 
-Then I have also tested my site on Am I Responsive and Responsinator to see how it looks on other devices and if it is responsive.
+I have also tested my website on Responsinator and Am I responsive to see how it looks (and works) on other devices and screen sizes.
 
-## 13. Browser Compatibility
+## 15. Browser Compatibility
 [Back To The Top](#table-of-contents)
 
 I have tested the website on the browsers below. The website works properly in all browsers, the site is responsive and the features work as they should.
@@ -475,12 +620,12 @@ I have tested the website on the browsers below. The website works properly in a
 * Opera
 * Firefox
 
-## 14. Deployment
+## 16. Deployment
 [Back To The Top](#table-of-contents)
 ### Local Deployment
 ### Remote Deployment
 
-## 15. Credits 
+## 17. Credits 
 [Back To The Top](#table-of-contents)
 
 

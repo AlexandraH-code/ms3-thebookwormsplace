@@ -28,7 +28,7 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Merriweather', serif;
 }
 
 a {
@@ -412,7 +412,7 @@ footer a {
   display: inline-block;
 }
 footer a:hover {
-  color: #a1866f;
+  color: #a1866f !important;
 }
 footer .social-icons {
   display: flex;
@@ -426,6 +426,10 @@ footer .social-icons {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
 }
+/*
+.social-icons a:hover {
+  color: #a1866f !important;
+}*/
 
 /* Media query: screens with max-width: 768px ) */
 @media screen and (max-width: 768px) {
