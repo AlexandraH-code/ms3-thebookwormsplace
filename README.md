@@ -13,9 +13,9 @@ Developer - Alexandra Holstensson
     - [**Site Owner Goals**](#site-owner-goals)
 3. [**User Stories**](#3-user-stories)
     - [**User Stories - Site Visitors**](#user-stories---site-visitors)
-    - [**User Stories - Administrators**](#user-stories---administrators)
-4. [**Information Architecture**](#4-information-architecture)
-    - [**Database Schema Diagram**](#database-schema-diagram)
+    - [**User Stories - Administrator(s)**](#user-stories---administrators)
+4. [**Database Models Overview And Entity Relationship Diagram (ERD)**](#4-database-models-overview-and-entity-relationship-diagram-erd)
+    - [**Database Models Overview**](#database-models-overview)
     - [**Entity Relationship Diagram (ERD)**](#entity-relationship-diagram-erd)
 5. [**Agile Methodology**](#5-agile-methodology)
     - [**Kanban Workflow**](#kanban-workflow)
@@ -30,7 +30,9 @@ Developer - Alexandra Holstensson
     - [**Icons And Images**](#icons-and-images)
 7. [**Existing Features**](#7-existing-features)
     - [**Existing Features - Site Visitors**](#existing-features---site-visitors)
-        - [**Register Account**](#register-account)
+        - [**Navigation And Footer**](#navigation-and-footer)
+        - [**Home Page**](#home-page)
+        - [**Create Account**](#create-account)
         - [**Login**](#login)
         - [**Logout**](#logout)
         - [**Rate Book**](#rate-book)
@@ -55,8 +57,10 @@ Developer - Alexandra Holstensson
   - [**Programs And Other Resources**](#programs-and-other-resoures)
 10. [**Testing**](#10-testing)
   - [**User Story Testing**](#user-story-testing)
-  - [**Manual Testing - Users**](#manual-testing---users)
-    - [**Test - Register Account - User**](#test---register-account)
+  - [**Manual Testing - Site Visitors**](#manual-testing---site-visitors)
+    - [**Test - Navigation And Footer**](#test---navigation-and-footer)
+    - [**Test - Home Page**](#test---home-page)
+    - [**Test - Create Account**](#test---create-account)
     - [**Test - Login**](#test---login)
     - [**Test - Logout**](#test---logout)
     - [**Test - Rate Book**](#test---rate-book)
@@ -64,7 +68,7 @@ Developer - Alexandra Holstensson
     - [**Test - Edit Comment**](#test---edit-comment)
     - [**Test - Delete Comment**](#test---delete-comment)
     - [**Test - Edit User Details**](#test---edit-user-details)
-  - [**Manual Testing - Admin**](#manual-testing---admin)
+  - [**Manual Testing - Administrator(s)**](#manual-testing---administrators)
     - [**Test - Add Book**](#test---add-book)
     - [**Test - Edit Book**](#test---edit-book)
     - [**Test - Delete Book**](#test---delete-book)
@@ -138,7 +142,7 @@ The BookWorm's Place is a community-focused book blog where users can browse boo
 - **Update user details:** 
   - As a logged in Site Visitor, I can access a profile page so that I have the possibility to change my user details.
 
-### User Stories - Administrators
+### User Stories - Administrator(s)
 - **Manage content:**
   - As Site Administrator, I can add, read, update, and delete books so that I can manage the site's content.
 - **Approve comments:**
@@ -148,13 +152,96 @@ The BookWorm's Place is a community-focused book blog where users can browse boo
 - **Add and update the about text:** 
   - As a Site Administrator, I can create or update the about page content so that it is available on the site.
 
-## 4. Information Architecture
+## 4. Database Models Overview And Entity Relationship Diagram (ERD)
 [Back To The Top](#table-of-contents)
-### Database Schema Diagram
+### Database Models Overview
+
+- **User Model (Django built-in)** - (Right now I only use the username, email and password fields.)
+  - Handles authentication and user information.
+  - Fields (standard):
+    - username (CharField): Unique username for login
+    - email (EmailField): User’s email address
+    - password (CharField): Hashed password
+    - first_name, last_name (CharField): Optional names
+    - is_staff, is_superuser, is_active (BooleanField): Admin and access control flags
+    - date_joined (DateTimeField): When the user registered
+  - Relationships:
+    - One-to-many with BlogPost (a user can create many books if extended)
+    - One-to-many with Comment (user can write multiple comments)
+    - One-to-many with StarRating (user can submit multiple ratings)
+
+- **BlogPost Model**
+  - Represents a book entry posted on the site.
+  - Fields:
+    - title (CharField): Book title (max 200 characters)
+    - slug (SlugField): Auto-generated unique URL slug
+    - author (CharField): Book author (not linked to User)
+    - cover_image (CloudinaryField): Book cover image hosted on Cloudinary
+    - cover_image_alt (CharField): Alt text for accessibility
+    - description (TextField): Full description of the book
+    - excerpt (TextField): Optional short excerpt
+    - is_draft (BooleanField): Whether the book is published
+    - created_at (DateTimeField): Timestamp when created
+    - updated_on (DateTimeField): Last updated
+  - Relationships:
+    - One-to-many with Comment
+    - One-to-many with StarRating
+
+- **Comment Model**
+  - Stores comments and replies related to a specific book.
+  - Fields:
+    - user (ForeignKey → User): The user who wrote the comment
+    - book (ForeignKey → BlogPost): The book the comment belongs to
+    - text (TextField): The comment content
+    - parent (ForeignKey → Comment): Optional, links to another comment (for replies)
+    - approved (BooleanField): Whether the comment is admin-approved
+    - created_at (DateTimeField): Timestamp when created
+  - Relationships:
+    - ManyToOne with User
+    - ManyToOne with BlogPost
+    - Self-referencing: A comment can have many replies (child comments)
+
+- **StarRating Model**
+  - Represents a 1–5 star rating given by a user to a book.
+  - Fields:
+    - user (ForeignKey → User): The user giving the rating
+    - book (ForeignKey → BlogPost): The book being rated
+    - value (IntegerField): Rating value from 1 to 5
+    - created_at (DateTimeField): Timestamp when created
+  - Relationships:
+    - Unique combination of user and book (a user can rate each book only once)
+
+- **About Model**
+  - Stores the content of the “About” page.
+  - Fields:
+    - content (TextField): Rich text content describing the purpose of the site
+
+- **ContactRequest Model**
+  - Stores user-submitted messages via the contact form.
+  - Fields:
+    - name (CharField): Name of the person contacting
+    - email (EmailField): Email address
+    - message (TextField): The submitted message
+    - created_at (DateTimeField): Timestamp when message was received
+
 ### Entity Relationship Diagram (ERD)
+
+I used [drawDB](https://www.drawdb.app/) to create an Entity Relationship Diagram (ERD). The relationships between the tables are drawn. The About and ContactRequest tables are completely independent (they have no connection to any other table). A picture of the ERD is below.
+
+![Image of Entity Relationship Diagram (ERD)](docs\images\ERD\TheBookWorm'sPlace_ERD_2025-06-20_small.png)
+
+The image of the ERD can be found here: docs\images\ERD\TheBookWorm'sPlace_ERD_2025-06-20_small.png
 
 ## 5. Agile Methodology
 ### Kanban Workflow
+
+I have used a Kanban board to structure the work on the website. In the Kanban board, I have chosen to divide all tasks (issues) into three different stages:
+
+- To Do: Tasks that I have planned to do.
+- In Progress: Tasks that are in progress, that I am working on.
+- Done: Tasks that are complete and working as they should.
+
+Link to the project [Kanban Board](https://github.com/users/AlexandraH-code/projects/12/views/1) 
 
 ## 6. Design Of The Website
 [Back To The Top](#table-of-contents)
@@ -496,7 +583,9 @@ Book cover images come from [Adlibris](https://www.adlibris.com/sv) and [Bokus](
 ## 7. Existing Features
 [Back To The Top](#table-of-contents)
 ### Existing Features - Site Visitors
-#### Register Account
+#### Navigation And Footer
+#### Home Page
+#### Create Account
 #### Login
 #### Logout
 #### Rate Book
@@ -556,15 +645,18 @@ In addition to the features that are currently added to the website, I have come
 - [JShint](https://jshint.com/) - Used to validate the JavaScript Code.
 - [Favicon](https://favicon.io/favicon-converter/) - Used to generate the favicon
 - [Fontawsome](https://fontawesome.com/) - For the social media icons (Facebook, Instagram, X and Youtube)
-- [ColorMagic Contrast Checker](https://colormagic.app/contrast-checker) - to check the constrast of the colors that I have chosen
-- [Google Fonts](https://fonts.google.com/) - was used to download the fonts that I have chosen to use (EB Garamond and Open Sans)
-- [Google Transate](https://translate.google.com/) - was used to translate text for accuracy.
+- [ColorMagic Contrast Checker](https://colormagic.app/contrast-checker) - Was used to check the constrast of the colors that I have chosen
+- [Google Fonts](https://fonts.google.com/) - Was used to download the fonts that I have chosen to use (EB Garamond and Open Sans)
+- [Google Transate](https://translate.google.com/) - Was used to translate text for accuracy.
+- [drawDB](https://www.drawdb.app/) - Was used to create the Entity Relationship Diagram
 
 ## 10. Testing
 [Back To The Top](#table-of-contents)
 ### User Story Testing
-### Manual Testing - Users
-#### Test - Register Account
+### Manual Testing - Site Visitors
+#### Test - Navigation And Footer
+#### Test - Home Page
+#### Test - Create Account
 #### Test - Login
 #### Test - Logout 
 #### Test - Rate Book
@@ -572,7 +664,7 @@ In addition to the features that are currently added to the website, I have come
 #### Test - Edit Comment
 #### Test - Delete Comment
 #### Test - Edit User Details
-### Manual Testing - Admin
+### Manual Testing - Administrator(s)
 #### Test - Add Book
 #### Test - Edit Book
 #### Test - Delete Book
