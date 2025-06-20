@@ -13,18 +13,30 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.utils import timezone
 
-# Create your views here.
-# def index(request):
-    # return HttpResponse("Hello, World!")
-
 
 # Home
 def home(request):
+    """
+    Render the home page.
+
+    **Template:**
+    :template:`blog/home.html`
+    """
     return render(request, 'blog/home.html')
 
 
 # Books – show books
 def books(request):
+    """
+    Display all published books.
+
+    **Context:**
+    ``books``: List of published :model:`blog.BlogPost`
+
+    **Template:**
+    :template:`blog/books.html`
+    """
+
     books = BlogPost.objects.filter(is_draft=False)
     return render(request, 'blog/books.html', {'books': books})
 
@@ -32,6 +44,22 @@ def books(request):
 # Book Detail – show details about book, handle comments and rating
 # @require_http_methods(["GET", "POST"])
 def book_detail(request, slug):
+    """
+    Display a book's detail page with ratings and comments.
+
+    **Context:**
+    ``book``: The :model:`blog.BlogPost` instance
+    ``cover_url``: URL of book cover image
+    ``comments``: Top-level approved :model:`blog.Comment`
+    ``replies``: Approved comment replies
+    ``comment_form``: An instance of :form:`blog.CommentForm`
+    ``user_rating``: Current user's rating if available
+    ``avg_rating``: Average rating value
+    ``ratings_count``: Total number of ratings
+
+    **Template:**
+    :template:`blog/book_detail.html`
+    """
     book = get_object_or_404(BlogPost, slug=slug)
     comments = Comment.objects.filter(book=book, approved=True, parent=None).order_by('-created_at')
     replies = Comment.objects.filter(book=book, approved=True).exclude(parent=None)
@@ -110,6 +138,16 @@ def book_detail(request, slug):
 # Book detail - edit comment
 @login_required
 def edit_comment(request, comment_id):
+    """
+    Edit a user's own comment. Edited comments must be reapproved.
+
+    **Context:**
+    ``form``: A prefilled instance of :form:`blog.CommentForm`
+    ``comment``: The :model:`blog.Comment` being edited
+
+    **Template:**
+    :template:`blog/edit_comment.html`
+    """
     comment = get_object_or_404(Comment, id=comment_id, user=request.user)
 
     if request.method == 'POST':
@@ -129,6 +167,15 @@ def edit_comment(request, comment_id):
 # Book detail - delete comment
 @login_required
 def delete_comment(request, comment_id):
+    """
+    Delete a user's own comment after confirmation.
+
+    **Context:**
+    ``comment``: The :model:`blog.Comment` to confirm deletion
+
+    **Template:**
+    :template:`blog/delete_comment.html`
+    """
     comment = get_object_or_404(Comment, id=comment_id, user=request.user)
 
     if request.method == 'POST':
@@ -142,6 +189,16 @@ def delete_comment(request, comment_id):
 
 # About + contactform
 def about(request):
+    """
+    Display the About page content and handle the contact form submission.
+
+    **Context:**
+    ``about``: The :model:`blog.About` instance containing the page text.  
+    ``form``: An instance of :form:`blog.ContactForm`.
+
+    **Template:**
+    :template:`blog/about.html`
+    """
     about = About.objects.first()
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -157,6 +214,15 @@ def about(request):
 
 # Register - registration form
 def register(request):
+    """
+    Display the registration form and create a new user account upon submission.
+
+    **Context:**
+    ``form``: An instance of :form:`blog.CustomUserCreationForm`.
+
+    **Template:**
+    :template:`blog/register.html`
+    """
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -171,6 +237,15 @@ def register(request):
 
 # Login - login form
 def login_view(request):
+    """
+    Display the login form and authenticate the user upon submission.
+
+    **Context:**
+    ``form``: An instance of :form:`blog.CustomAuthenticationForm`.
+
+    **Template:**
+    :template:`blog/login.html`
+    """
     if request.method == 'POST':
         form = CustomAuthenticationForm(data=request.POST)
         if form.is_valid():
@@ -185,15 +260,28 @@ def login_view(request):
 
 # Logout
 def logout_confirm(request):
+    """
+    Display a confirmation page for user logout.
+
+    **Template:**
+    :template:`blog/logout.html`
+    """
     return render(request, 'blog/logout.html')
 
 
 def logout_view(request):
+    """
+    Handle the user logout process.
+
+    **Template (redirect):**
+    Redirects to :template:`blog/home.html`
+    """
     if request.method == 'POST':
         logout(request)
         messages.success(request, "You have been logged out.")
         return redirect('home')
     return redirect('logout')
+
 
 """
 User details
@@ -202,11 +290,26 @@ User details
 # Profile overview
 @login_required
 def profile_overview(request):
+    """
+    Display the user's profile overview.
+
+    **Template:**
+    :template:`blog/profile_overview.html`
+    """
     return render(request, 'blog/profile_overview.html')
 
 # Update username
 @login_required
 def update_username(request):
+    """
+    Allow a user to update their username.
+
+    **Context:**
+    ``form`` - A form instance of :form:`blog.UsernameUpdateForm`
+
+    **Template:**
+    :template:`blog/update_username.html`
+    """
     if request.method == 'POST':
         form = UsernameUpdateForm(request.POST, instance=request.user)
         if form.is_valid():
@@ -220,6 +323,15 @@ def update_username(request):
 # Update email
 @login_required
 def update_email(request):
+    """
+    Allow a user to update their email address.
+
+    **Context:**
+    ``form`` - A form instance of :form:`blog.EmailUpdateForm`
+
+    **Template:**
+    :template:`blog/update_email.html`
+    """
     if request.method == 'POST':
         form = EmailUpdateForm(request.POST, instance=request.user)
         if form.is_valid():
@@ -230,9 +342,19 @@ def update_email(request):
         form = EmailUpdateForm(instance=request.user)
     return render(request, 'blog/update_email.html', {'form': form})
 
+
 # Change password
 @login_required
 def change_password(request):
+    """
+    Allow a user to change their password.
+
+    **Context:**
+    ``form`` - A form instance of :form:`blog.PasswordChangeForm`
+
+    **Template:**
+    :template:`blog/change_password.html`
+    """
     if request.method == 'POST':
         form = PasswordChangeForm(user=request.user, data=request.POST)
         if form.is_valid():
@@ -247,13 +369,25 @@ def change_password(request):
         form = PasswordChangeForm(user=request.user)
     return render(request, 'blog/change_password.html', {'form': form})
 
+
 """ 
 Admin view for book management and editing the About page
 
 """
+
+
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def admin_dashboard(request):
+    """
+    Display the admin dashboard with a list of all books.
+
+    **Context:**
+    ``books`` - A queryset of all :model:`blog.BlogPost` instances
+
+    **Template:**
+    :template:`blog/admin_dashboard.html`
+    """
     books = BlogPost.objects.all()
     return render(request, 'blog/admin_dashboard.html', {'books': books})
 
@@ -261,6 +395,15 @@ def admin_dashboard(request):
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def admin_add_book(request):
+    """
+    Admin view to add a new book to the site.
+
+    **Context:**
+    ``form`` - A form instance of :form:`blog.BlogPostForm`
+
+    **Template:**
+    :template:`blog/admin_add_book.html`
+    """
     if request.method == 'POST':
         form = BlogPostForm(request.POST, request.FILES)
         if form.is_valid():
@@ -271,9 +414,19 @@ def admin_add_book(request):
         form = BlogPostForm()
     return render(request, 'blog/admin_add_book.html', {'form': form})
 
+
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def admin_edit_book(request, pk):
+    """
+    Admin view to edit an existing book.
+
+    **Context:**
+    ``form`` - A form instance of :form:`blog.BlogPostForm`
+
+    **Template:**
+    :template:`blog/admin_edit_book.html`
+    """
     book = get_object_or_404(BlogPost, pk=pk)
     if request.method == 'POST':
         form = BlogPostForm(request.POST, request.FILES, instance=book)
@@ -284,10 +437,20 @@ def admin_edit_book(request, pk):
     else:
         form = BlogPostForm(instance=book)
     return render(request, 'blog/admin_edit_book.html', {'form': form})
-                            
+        
+
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def admin_delete_book(request, pk):
+    """
+    Admin view to delete a book.
+
+    **Context:**
+    ``book`` - The :model:`blog.BlogPost` instance to be deleted
+
+    **Template:**
+    :template:`blog/admin_delete_book.html`
+    """
     book = get_object_or_404(BlogPost, pk=pk)
     if request.method == 'POST':
         book.delete()
@@ -295,9 +458,19 @@ def admin_delete_book(request, pk):
         return redirect('admin_dashboard')
     return render(request, 'blog/admin_delete_book.html', {'book': book})
 
+
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def admin_edit_about(request):
+    """
+    Admin view to edit the About page content.
+
+    **Context:**
+    ``form`` - A form instance of :form:`blog.AboutForm`
+
+    **Template:**
+    :template:`blog/admin_edit_about.html`
+    """
     about, created = About.objects.get_or_create(id=1)
     if request.method == 'POST':
         form = AboutForm(request.POST, instance=about)
