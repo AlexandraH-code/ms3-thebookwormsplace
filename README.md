@@ -35,6 +35,7 @@ Developer - Alexandra Holstensson
         - [**Create Account**](#create-account)
         - [**Login**](#login)
         - [**Logout**](#logout)
+        - [**View/Show Books**](#viewshow-books)
         - [**Rate Book**](#rate-book)
         - [**Comment Book**](#comment-book)
         - [**Edit Comment**](#edit-comment)
@@ -44,9 +45,9 @@ Developer - Alexandra Holstensson
         - [**Add Book**](#add-book)
         - [**Edit Book**](#edit-book)
         - [**Delete Book**](#delete-book)
+        - [**Update Text On The About Page**](#update-text-on-the-about-page)
         - [**Approve Comment**](#approve-comment)
         - [**Delete Comment**](#delete-comment-1)
-        - [**Update Text On The About Page**](#update-text-on-the-about-page)
         - [**See Contact Requests**](#see-contact-requests)
         - [**See Ratings**](#see-ratings)
 8. [**Features Left To Implement**](#8-features-left-to-implement)
@@ -63,6 +64,7 @@ Developer - Alexandra Holstensson
     - [**Test - Create Account**](#test---create-account)
     - [**Test - Login**](#test---login)
     - [**Test - Logout**](#test---logout)
+    - [**Test - View/Show Books**](#test---viewshow-books)
     - [**Test - Rate Book**](#test---rate-book)
     - [**Test - Comment Book**](#test---comment-book)
     - [**Test - Edit Comment**](#test---edit-comment)
@@ -584,24 +586,340 @@ Book cover images come from [Adlibris](https://www.adlibris.com/sv) and [Bokus](
 [Back To The Top](#table-of-contents)
 ### Existing Features - Site Visitors
 #### Navigation And Footer
+
+**Navbar**
+
+In the header there is a navbar consisting of a logo (depicting a pile of books), The BookWorm’s Place link and links to the website's various pages. Which links are available in the navbar depends on whether the site visitor is logged in or not. And whether the site visitor is a regular visitor or an administrator.
+
+If the site visitor is not logged in, the following links are available in the navbar: **Home**, **Books**, **About**, **Create Account** and **Login**.
+
+A logged-in regular site visitor can see the following links in the navbar: **Home**, **Books**, **About**, **My Profile** and **Logout**.
+
+A logged in administrator can see the following links in the navbar: **Home**, **Books**, **About**, **My Profile**, **Admin**, and **Logout**.
+
+The nav bar is from [Bootstrap](https://getbootstrap.com/).
+
+The navbar that I have based mine on is [this one](https://getbootstrap.com/docs/5.3/components/navbar/#nav). I have then modified it the way I want it and with the colors I have chosen to use.
+
+**The navbar on screens that are 992px or larger.**
+
+Navbar - Not logged in:
+![Image of Navbar - Not logged in.](docs\images\features\navigation_and_footer\navbar_992px_or_larger_small.png)
+
+Navbar - Logged in regular site visitor:
+![Image of Navbar - Logged in regular site visitor.](docs\images\features\navigation_and_footer\navbar_992px_or_larger_logged_in_site_visitor_small.png)
+
+Navbar - Logged in administrator:
+![Image of Navbar - Logged in administrator.](docs\images\features\navigation_and_footer\navbar_992px_or_larger_logged_in_admin_small.png)
+
+The navbar has a hover effect on screens that are 992px or larger. When you move the mouse pointer over each page in the navbar, the color of the text changes.
+
+Navbar with hover effect:
+![Image of Navbar - Navbar with hover effect.](docs\images\features\navigation_and_footer\navbar_992px_or_larger_logged_in_site_visitor_hover_small.png)
+
+**On screens that are 991px or smaller, the links in the navbar become a toggle menu on the right of the navbar.**
+
+Navbar - Not logged in:
+![Image of Navbar - Not logged in.](docs\images\features\navigation_and_footer\navbar_991px_or_smaller_not_logged_in_small.png)
+
+Navbar - Logged in regular site visitor:
+![Image of Navbar - Logged in regular site visitor.](docs\images\features\navigation_and_footer\navbar_991px_or_smaller_logged_in_site_visitor_small.png)
+
+Navbar - Logged in administrator:
+![Image of Navbar - Logged in administrator.](docs\images\features\navigation_and_footer\navbar_991px_or_smaller_logged_in_admin_small.png)
+
+**Footer**
+
+The footer consists of a row with a copyright symbol and the text The BookWorm’s Place and a row of clickable social media icons (Facebook, Instagram, X and Youtube). Currently, the icons are linked to the Facebook, Instagram, X and Youtube websites. The footer looks the same regardless of screen size.
+
+![Image of the Footer](docs\images\features\navigation_and_footer\footer_small.png)
+
 #### Home Page
+
+The Home Page consists of a large hero image that depicts books. The hero image has the text “Welcome To The BookWorm’s Place” and a button with the text “Browse Books”. If you click the “Browse Books” button, you will be redirected to the Books page. I have chosen not to have any more text on the front page than the welcome text as I think the page is very self-explanatory. It is clear from the name of the page, the choice of icons and the image on the home page what the website is about.
+
+![Image of the Footer](docs\images\features\home_page\home_page_small.png)
+
 #### Create Account
+
+The “Create Account” page is accessed by clicking on “Create Account” in the navbar. The “Create Account” link is visible if the site visitor is NOT logged in before.
+
+The “Create Account” page currently consists of a simple form where you enter your username, email address, password and password confirmation. To save the account, click on the "Register" button. When you have clicked on the "Register" button, you will be sent to the "Login" page. There appears a message that says "Your account has been created. Please log in.". If you do not want to save the account, you can click on the "Cancel" button (you will then be taken to the Home Page).
+
+![Image of the Create Account page](docs\images\features\create_account\create_account.png)
+
+![Image of the Create Account confirmation](docs\images\features\create_account\create_account_confirmation.png)
+
 #### Login
+
+The “Login” page is accessed by clicking on “Login” in the navbar. The “Login” link is visible if the site visitor is NOT logged in before.
+
+The “Login” page currently consists of a simple form where you enter your username and password. Then click the "Login" button to log in. Once you have logged in, you will be taken to the Home Page. To show that you are logged in, a message will appear under the navbar stating “You are now logged in as” followed by your username. If you do not want to login, you can click on the "Cancel" button (you will then be taken to the Home Page).
+
+![Image of the Login page](docs\images\features\login\login.png)
+
+![Image of the Login message](docs\images\features\login\login_message.png)
+
 #### Logout
+
+The “Logout” page is accessed by clicking on “Logout” in the navbar. The “Logout” link is displayed if the site visitor is logged in to the website.
+
+The “Logout” page consists of a simple form that contains the text “Are you sure you want to log out?” and the buttons “Log Out” and “Cancel”. If you click on the “Log Out” button, you will be logged out and taken to the Home Page. A message will appear on the Home Page stating “You have been logged out.”. If you do not want to logout, you can click on the "Cancel" button (you will then be taken to the Home Page).
+
+![Image of the Logout page](docs\images\features\logout\logout.png)
+
+![Image of the Logout message](docs\images\features\logout\logout_message.png)
+
+#### View/Show Books
+
+To view added books, click either the “Browse Books” button on the Home Page or the “Books” link in the navbar. You will then be sent to the “Books” page where added books are displayed. The books are displayed with book cover, title and author. The number of books displayed in each row depends on the size of the screen, the smaller the screen, the fewer books displayed in each row (on the smallest screen sizes, two books are displayed per row).
+
+**Image of Books page 992px or larger**
+
+![Image of Books page 992px or larger](docs\images\features\books\books_992px_or_larger_small.png)
+
+**Image of Books page 991px or smaller**
+
+![Image of Books page 991px or smaller](docs\images\features\books\books_991px_or_smaller.png)
+
+**Image of Books page 767px or smaller**
+
+![Image of Books page 767px or smaller](docs\images\features\books\books_767px_or_smaller.png)
+
+**Image of Books page 575px or smaller**
+
+![Image of Books page 575px or smaller](docs\images\features\books\books_575px_or_smaller.png)
+
+To view more information about the book, click the “View Details” button. Doing so will take you to the “Book detail” page. There, in addition to the book cover, book title and author, you can also view the book description. You can also see the rating (in the form of stars) that other page visitors have given to the book and see comments that other page visitors have written. In order to rate a book and leave a comment, you need to be logged in to the website.
+
+**Image of Book details page 768px or larger**
+
+![Image of Book details page 768px or larger](docs\images\features\book_details\book_details_768px_or_larger_small.png)
+
+**Image of Book details page 767px or smaller**
+
+![Image of Books page 767px or smaller](docs\images\features\book_details\book_details_767px_or_smaller.png)
+
 #### Rate Book
+
+If you are logged in to the website, you can rate uploaded books. You rate the book by clicking on the number of stars you want to give the book (1-5) and then clicking on the “Rate” button. After you have clicked on the “Rate” button, your rating is saved (to the database) and a “Your rating has been submitted.” message is displayed on the page. When the rating is saved, the Average Rating is also updated. The Average Rating is calculated by adding all the ratings the book has received and dividing them by the number of ratings that have been made. The rating you have made is saved and you can change it if you wish.
+
+**Image of Book details star rating**
+
+![Image of Book details star rating](docs\images\features\book_details\rate_book\book_details_rating.png)
+
+**Image of Book details star rating - filled stars**
+
+![Image of Book details star rating - filled stars](docs\images\features\book_details\rate_book\book_details_rating_filled_stars.png)
+
+**Image of Book details star rating - message**
+
+![Image of Book details star rating - message](docs\images\features\book_details\rate_book\book_details_rating_message.png)
+
+**Image of Book details star rating - result**
+
+![Image of Book details star rating - result](docs\images\features\book_details\rate_book\book_details_rating_show_result.png)
+
 #### Comment Book
+
+If you are logged in to the website, you can comment on saved books. If there are comments saved from before, you can also choose to reply to them. To reply to a comment, click the “Reply” button below the comment. Type your response and then click the “Submit Reply” button. When a comment is saved, a “Your comment is awaiting approval.” message will appear. The comment needs to be approved by the website administrator before it appears on the page. This applies regardless of whether you add a new comment or reply to a comment.
+
+It is currently only possible to leave one reply to a comment. This is because the current idea is not for the website to be a discussion forum.
+
+**Image of Book details - comment form**
+
+![Image of Book details comment form](docs\images\features\book_details\comment\book_details_comment_small.png)
+
+**Image of Book details - comment form - written comment**
+
+![Image of Book details comment form - written comment](docs\images\features\book_details\comment\book_details_comment_written_comment_small.png)
+
+**Image of Book details - comment submitted - message**
+
+![Image of Book details comment submitted - message](docs\images\features\book_details\comment\book_details_comment_submitted_comment_message_small.png)
+
+**Image of Book details - comment**
+
+![Image of Book details comment](docs\images\features\book_details\comment\book_details_comment_shown_small.png)
+
+**Image of Book details - reply to comment**
+
+![Image of Book details - reply to comment](docs\images\features\book_details\comment\reply\book_details_comment_reply_small.png)
+
+**Image of Book details - reply to comment form**
+
+![Image of Book details - reply to comment form](docs\images\features\book_details\comment\reply\book_details_comment_reply_form_small.png)
+
+**Image of Book details - reply to comment message**
+
+![Image of Book details - reply to comment message](docs\images\features\book_details\comment\reply\book_details_comment_reply_comment_message_small.png)
+
+**Image of Book details - reply to comment shown on the website**
+
+![Image of Book details - reply to comment shown on the website](docs\images\features\book_details\comment\reply\book_details_comment_reply_shown_small.png)
+
+
 #### Edit Comment
+
+If you are logged in to the site, you can edit comments that you have made yourself. To do so, click the “Edit” button below the comment, make the changes you want to make, and then click the “Submit Changes” button. Once the comment has been saved, a “Your comment is awaiting approval.” message will appear. The comment needs to be approved by the site administrator before it appears on the page.
+
+**Image of Book details - edit comment**
+
+![Image of Book details - edit comment](docs\images\features\book_details\comment\edit\book_details_edit_small.png)
+
+**Image of Book details - edit comment form**
+
+![Image of Book details - edit comment form](docs\images\features\book_details\comment\edit\book_details_edit_comment_small.png)
+
+**Image of Book details - edited comment form**
+
+![Image of Book details - edited comment form](docs\images\features\book_details\comment\edit\book_details_edited_comment_small.png)
+
+**Image of Book details - edited comment message**
+
+![Image of Book details - edited comment message](docs\images\features\book_details\comment\edit\book_details_edited_comment_message_small.png)
+
 #### Delete Comment
+
+If you are logged in to the website, you can delete comments that you have made yourself. Click the “Delete” button below the comment, make the changes you want to make, and then click the “Yes, delete” button. After clicking the “Yes delete” button, you will be sent back to the page for the book you were on. A message will also appear saying “Comment successfully deleted.”.
+
+**Image of Book details - delete comment**
+
+![Image of Book details - delete comment](docs\images\features\book_details\comment\delete\book_details_delete_small.png)
+
+**Image of Book details - delete comment page**
+
+![Image of Book details - delete comment page](docs\images\features\book_details\comment\delete\book_details_delete_comment_small.png)
+
+**Image of Book details - delete comment message**
+
+![Image of Book details - delete comment message](docs\images\features\book_details\comment\delete\book_details_delete_comment_message_small.png)
+
+**Image of Book details - deleted comment gone**
+
+![Image of Book details - deleted comment gone](docs\images\features\book_details\comment\delete\book_details_deleted_comment_comment_gone_small.png)
+
 #### Edit User Details
+
+**Image of My Profile Overview** 
+
+![Image of My Profile Overview](docs\images\features\my_profile\my_profile_overview_small.png)
+
+If you are logged in to the site, you can change your user details. To do this, click on “My Profile” in the navbar. When you click on “My Profile” you will be taken to a page where you can choose to change your username, email address or password. Currently, this function is very simple and there are some improvements that can be made to it, for example when it comes to security.
+
+To change your username, click the “Change Username” button. Change your username and then click the “Save” button. After you click the “Save” button, your username will be changed and a “Username updated successfully” message will also appear.
+
+**Image of My Profile - Change Username** 
+
+![Image of My Profile - Change Username](docs\images\features\my_profile\change_username\my_profile_change_username.png)
+
+**Image of My Profile - Changed Username - message** 
+
+![Image of My Profile - Changed Username - message](docs\images\features\my_profile\change_username\my_profile_change_username_message_small.png)
+
+To change your email address, click the “Change Email” button. Change your email address and then click the “Save” button. After you click the “Save” button, your username will be changed and you will also see an “Email address updated successfully” message.
+
+**Image of My Profile - Change Email** 
+
+![Image of My Profile - Change Email](docs\images\features\my_profile\change_email\my_profile_change_email_small.png)
+
+**Image of My Profile - Changed Email - message** 
+
+![Image of My Profile - Change Email - message](docs\images\features\my_profile\change_email\my_profile_change_email_message_small.png)
+
+To change your password, click the “Change Password” button. To change your password, you need to remember your old password (it will not be filled in automatically). Then fill in the “New Password” and “Confirm Password” fields. Then click the “Save” button. After clicking the “Save” button, your username will be changed and a “Your password was successfully changed” message will also appear.
+
+**Image of My Profile - Change Password** 
+
+![Image of My Profile - Change Password](docs\images\features\my_profile\change_password\my_profile_change_password_small.png)
+
+**Image of My Profile - Changed Password - message** 
+
+![Image of My Profile - Change Password - message](docs\images\features\my_profile\change_password\my_profile_change_password_message_small.png)
+
 ### Existing Features - Administrator(s)
+
+A logged in administrator can use the website's administrator section. To access it, click Admin in the navbar. In the administrator section, an administrator can create a draft/add a book, edit a book, delete a book, and change the text on the About page.
+
+**Image of Admin Dashboard** 
+
+![Image of Admin Dashboard](docs\images\features\admin\admin_dashboard_small.png)
+
 #### Add Book
+
+To add a book (or to create a draft), click Add book. Then fill in all the information (in the case of slug, you can skip filling in that field as the slug is automatically created after the title field). If the book should be a draft, check the box next to “Save as draft”. To save the book, click the “Save Book” button. The book will then be saved to the database (and added to the Books page if “Save as draft” is not checked). A “Book added successfully” message will also be displayed. If you have chosen to save the added book as a draft, you can go in at a later time and uncheck “Save as draft” to make the book available on the page.
+
+**Image of Admin - Add a book, part 1 of form** 
+
+![Image of Admin - Add a book, part 1 of form](docs\images\features\admin\add_book\admin_add_book_part1_small.png)
+
+**Image of Admin - Add a book, part 2 of form** 
+
+![Image of Admin - Add a book, part 2 of form](docs\images\features\admin\add_book\admin_add_book_part2_small.png)
+
+**Image of Admin - Add a book - added book message** 
+
+![Image of Admin - Add a book - added book message](docs\images\features\admin\add_book\admin_add_book_message_small.png)
+
 #### Edit Book
+
+To change the information for a book, click the “Edit” button next to the book you want to change the information for. Then change what you want to change and click the “Save Book” button to save the book. If you want to save the book as a draft, check the box next to “Save as draft”. If you want to save the book directly to the database and to the Books page, leave the box next to “Save as draft” empty. After clicking the “Save Book” button, a “Book updated successfully” message will appear.
+
+**Image of Admin - Edit a book, part 1 of form** 
+
+![Image of Admin - Edit a book, part 1 of form](docs\images\features\admin\edit_book\admin_edit_book_part_1_small.png)
+
+**Image of Admin - Edit a book, part 2 of form** 
+
+![Image of Admin - Edit a book, part 2 of form](docs\images\features\admin\edit_book\admin_edit_book_part_2_small.png)
+
+**Image of Admin - Edit a book - added book message** 
+
+![Image of Admin - Edit a book - added book message](docs\images\features\admin\edit_book\admin_edit_book_part_message_small.png)
+
 #### Delete Book
-#### Approve Comment
-#### Delete Comment
+
+To delete a book, click the “Delete” button next to the book you want to delete. To delete the book, click the “Yes, delete” button on the page you are taken to. Once you have clicked the “Yes, delete” button, you will be sent back to the Admin Dashboard, a “Book deleted successfully” message will appear, and the book will have disappeared from the book list.
+
+**Image of Admin - Delete a book - added test book** 
+
+![Image of Admin - Delete a book, added test book](docs\images\features\admin\delete_book\admin_delete_book_added_test_book_small.png)
+
+**Image of Admin - Delete a book - delete book page** 
+
+![Image of Admin - Delete a book - delete book page](docs\images\features\admin\delete_book\admin_delete_book_small.png)
+
+**Image of Admin - Delete a book - book deleted message** 
+
+![Image of Admin - Delete a book - book deleted message](docs\images\features\admin\delete_book\admin_delete_book_message_small.png)
+
 #### Update Text On The About Page
+
+To change the text on the About page, click the “Edit About” button on the Admin Dashboard. Then change the text and click the “Save Changes” button to save the changes. After clicking the “Save Changes” button, an “About page successfully updated” message will appear. The text on the About page has also been changed.
+
+**Image of Admin - Update About page text** 
+
+![Image of Admin - Update About page text](docs\images\features\admin\update_About_page_text\admin_edit_about_page_text_small.png)
+
+**Image of Admin - Update About page text - message** 
+
+![Image of Admin - Update About page text - message](docs\images\features\admin\update_About_page_text\admin_edit_about_page_text_message_small.png)
+
+#### Approve Comment
+  
+  * Currently, an administrator needs to log in to Django administration in order to approve comments made.
+
+#### Delete Comment
+
+  * Currently, an administrator needs to log in to Django administration to be able to delete comments that for some reason should not be displayed on the website, for example due to language usage.
+
 #### See Contact Requests
-#### See Ratings
+
+  * Currently, an administrator needs to log in to Django administration in order to see contact requests.
+
+#### See Ratings - Django administration
+
+  * Currently, an administrator needs to log in to Django administration in order to be able to see ratings made.
 
 ## 8. Features Left To Implement
 [Back To The Top](#table-of-contents)
@@ -609,13 +927,20 @@ Book cover images come from [Adlibris](https://www.adlibris.com/sv) and [Bokus](
 In addition to the features that are currently added to the website, I have come up with some other features that could be added in the future. I have divided the features into Site Visitors and Administrator(s).
 
 ### Features Left To Implement - Site Visitors
+
 * Develop user profiles with more information, for example a profile picture.
 * Add filter/sorting function to the books page so users/visitors can filter/sort by genre or rating.
 * Add search function where the users can search for, for example, author, book title or genre. 
 * Add password reset functionality in case a user/visitor has forgotten their password.
+
 ### Features Left To Implement - Administrator(s)
-* Add approve comment possibility to the Admin section on the website.
-* Add the possibility to administer contact requests in the Admin section on the website.
+
+* Add these features to the Admin section of the website.
+  * Approve comments
+  * Delete comments
+  * See contact requests
+  * See ratings
+
 
 ## 9. Technologies Used
 [Back To The Top](#table-of-contents)
@@ -659,6 +984,7 @@ In addition to the features that are currently added to the website, I have come
 #### Test - Create Account
 #### Test - Login
 #### Test - Logout 
+#### Test - View/Show Books
 #### Test - Rate Book
 #### Test - Comment Book
 #### Test - Edit Comment
