@@ -1201,5 +1201,30 @@ I have tested the website on the browsers below. The website works properly in a
 ## 17. Credits 
 [Back To The Top](#table-of-contents)
 
+**Book covers and book descriptions:**
+
+| Book title and author | Book cover from | Book facts from |
+|------------|-----------------|-----------------|
+| Middle of the Night by Riley Sager | [Adlibris](https://www.adlibris.com/se/bok/middle-of-the-night-9781399712422 ) | [Goodreads](https://www.goodreads.com/book/show/199026522-middle-of-the-night?from_search=true&from_srp=true&qid=i1qxyDIOf5&rank=7 ) |
+| Book Lovers by Emily Henry | [Adlibris](https://www.adlibris.com/se/bok/book-lovers-9780593334836) | [Goodreads](https://www.goodreads.com/book/show/58690308-book-lovers?from_search=true&from_srp=true&qid=bhg2kcmSuP&rank=4) |
+| Hidden Nature by Nora Roberts | [Bokus](https://www.bokus.com/bok/9781250370853/hidden-nature/) | [Goodreads](https://www.goodreads.com/book/show/217388081-hidden-nature) |
+| Fourth Wing by Rebecca Yarros | [Adlibris](https://www.adlibris.com/se/bok/fourth-wing-9780349436999) | [Goodreads](https://www.goodreads.com/book/show/61431922-fourth-wing?from_search=true&from_srp=true&qid=uauykkg21N&rank=1) |
+| You Like It Darker by Stephen King | [Adlibris](https://www.adlibris.com/se/bok/you-like-it-darker-9781668037713) | [Goodreads](https://www.goodreads.com/book/show/201242757-you-like-it-darker) |
 
 
+**Images:**
+
+| Page | File title on the site | Downloaded From | Photographer/Owner |
+|------|------------------------|-----------------|--------------------|
+| Home page | books-1614215_1280.jpg | [Pixabay](https://pixabay.com/illustrations/books-shelf-library-book-shelf-1614215/) | myrfa |
+| Navbar logo | books-441866_640_no_background_small.png | [Pixabay](https://pixabay.com/photos/books-training-school-literature-441866/) | Hermann | 
+| Favicon | favicon.ico | [Pixabay](https://pixabay.com/photos/books-training-school-literature-441866/) | Hermann |
+
+
+**Icons - Footer:**
+| Icon | From |
+|------|------|
+| Facebook | [FontAwesome](https://fontawesome.com/icons/square-facebook?f=classic&s=brands ) |
+| Instagram | [FontAwesome](https://fontawesome.com/icons/square-instagram?f=classic&s=brands) |
+| X | [FontAwesome](https://fontawesome.com/icons/square-x-twitter?f=classic&s=brands) |
+| Youtube | [FontAwsome](https://fontawesome.com/icons/square-youtube?f=classic&s=brands) |
