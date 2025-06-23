@@ -118,7 +118,7 @@ main {
   position: relative;
   min-height: calc(100vh - 56px); /* full height minus navbar */
   width: 100%;
-  background-image: url('../images/books-1614215_1280.jpg');
+  background-image: url("../images/books-1614215_1280.3b89c39d7211.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

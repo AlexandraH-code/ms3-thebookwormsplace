@@ -135,13 +135,14 @@ main {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* mörkare overlay */
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 1;
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
+  will-change: transform;
 }
 
 .hero-content h1 {
@@ -157,8 +158,8 @@ main {
 }
 
 .hero-content a.btn {
-  background-color: rgba(0, 0, 0, 0.4); 
-  border: 2px solid #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
 }
 
 .btn-rounded {
