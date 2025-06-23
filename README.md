@@ -98,6 +98,7 @@ Developer - Alexandra Holstensson
 
 ## 1. About
 [Back To The Top](#table-of-contents)
+
 The BookWorm's Place is made as part (Milestone Project 3) of the Level 5 Diploma in Web Application Development course at Code Institute.
 
 The BookWorm's Place is a community-focused book blog where users can browse books, read details, register and log in to share comments, and rate their favorite reads. Users can also login to change their user details. Admins can manage content and moderate user-generated input to ensure a clean and respectful environment. There is a section on the website where admin(s) can add, edit, and delete books as well as change the text on the About page.
@@ -231,7 +232,7 @@ The BookWorm's Place is a community-focused book blog where users can browse boo
 
 I used [drawDB](https://www.drawdb.app/) to create an Entity Relationship Diagram (ERD). The relationships between the tables are drawn. The About and ContactRequest tables are completely independent (they have no connection to any other table). A picture of the ERD is below.
 
-![Image of Entity Relationship Diagram (ERD)](docs\images\ERD\TheBookWorm'sPlace_ERD_2025-06-20_small.png)
+![Image of Entity Relationship Diagram (ERD)](docs/images/ERD/TheBookWorm'sPlace_ERD_2025-06-20_small.png)
 
 The image of the ERD can be found here: docs\images\ERD\TheBookWorm'sPlace_ERD_2025-06-20_small.png
 
@@ -1238,164 +1239,164 @@ In addition, automated tests were implemented and passed for key views and forms
   <details>
   <summary>Home Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\desktop\home.png)
 
   <details>
   <summary>Books Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\desktop\books.png)
 
   <details>
   <summary>Book details Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\desktop\book_details.png)
 
   <details>
   <summary>About Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\desktop\about.png)
 
   <details>
   <summary>Create Account Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\desktop\create_account.png)
 
   <details>
   <summary>Login Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\desktop\login.png)
 
   <details>
   <summary>Logout Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\desktop\logout.png)
 
   <details>
   <summary>My Profile Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\desktop\my_profile.png)
 
   <details>
   <summary>My Profile - Change Username Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\desktop\change_username.png)
 
   <details>
   <summary>My Profile - Change Email Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\desktop\change_email.png)
 
   <details>
   <summary>My Profile - Change Password Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\desktop\change_password.png)
 
   <details>
   <summary>Admin Dashboard Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\desktop\admin_dashboard.png)
 
   <details>
   <summary>Admin Dashboard - Add Book Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\desktop\add_book.png)
 
   <details>
   <summary>Admin Dashboard - Edit Book Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\desktop\edit_book.png)
 
   <details>
   <summary>Admin Dashboard - Delete Book Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\desktop\delete_book.png)
 
   <details>
   <summary>Admin Dashboard - Edit About Page text</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\desktop\edit_about_page_text.png)
 
 ### Mobile
 
   <details>
   <summary>Home Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\mobile\home.png)
 
   <details>
   <summary>Books Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\mobile\books.png)
 
   <details>
   <summary>Book details Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\mobile\book_details.png)
 
   <details>
   <summary>About Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\mobile\about.png)
 
   <details>
   <summary>Create Account Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\mobile\create_account.png)
 
   <details>
   <summary>Login Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\mobile\login.png)
 
   <details>
   <summary>Logout Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\mobile\logout.png)
 
   <details>
   <summary>My Profile Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\mobile\my_profile.png)
 
   <details>
   <summary>My Profile - Change Username Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\mobile\change_username.png)
 
   <details>
   <summary>My Profile - Change Email Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\mobile\change_email.png)
 
   <details>
   <summary>My Profile - Change Password Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\mobile\change_password.png)
 
   <details>
   <summary>Admin Dashboard Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\mobile\admin_dashboard.png)
 
   <details>
   <summary>Admin Dashboard - Add Book Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\mobile\add_book.png)
 
   <details>
   <summary>Admin Dashboard - Edit Book Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\mobile\edit_book.png)
 
   <details>
   <summary>Admin Dashboard - Delete Book Page</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\mobile\delete_book.png)
 
   <details>
   <summary>Admin Dashboard - Edit About Page text</summary>
 
-  ![Home Page]()
+  ![Home Page](docs\images\lighthouse\mobile\edit_about_page_text.png)
 
 ## 14. Device Testing
 [Back To The Top](#table-of-contents)
