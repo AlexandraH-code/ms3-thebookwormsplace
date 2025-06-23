@@ -29,7 +29,6 @@ class BlogPost(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True, blank=True)
     author = models.CharField(max_length=100)
-    # cover_image = models.ImageField(upload_to='book_covers/')
     cover_image = CloudinaryField('image', default='placeholder')
     cover_image_alt = models.CharField(max_length=150)
     description = models.TextField()

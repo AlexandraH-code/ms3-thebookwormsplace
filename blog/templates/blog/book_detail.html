@@ -118,8 +118,11 @@
   </form>
 </div>
 
+<!-- These scripts were written with support from ChatGPT (OpenAI). -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+  // Toggle reply form when "Reply" is clicked
+  // Script used on book detail page
   const stars = document.querySelectorAll('.star-icon');
   const ratingInput = document.getElementById('rating-value');
   stars.forEach((star, index) => {
@@ -133,6 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.querySelectorAll('.reply-link').forEach(link => {
+    // Handle star rating selection and submission
+    // Script used on book detail page
     link.addEventListener('click', function (e) {
       e.preventDefault();
       const commentId = this.getAttribute('data-comment-id');

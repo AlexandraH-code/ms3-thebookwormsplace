@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="The BookWorm’s Place, a webpage where you can find information about books. You can also comment and rate books that have been posted on the page.">
     <meta name="keywords" content="book, books, rate book, comment book">
-    <!--<link rel="icon" type="image/x-icon" href="{% static 'blog/images/favicon.ico' %}" alt="Favicon showing stacked books">-->
-    <link rel="icon" type="image/x-icon" href="{% static 'blog/images/favicon.ico' %}" alt="Favicon showing stacked books">
+    <link rel="icon" type="image/x-icon" href="{% static 'blog/images/favicon.ico' %}">
     <title>
         {% block title %}
         The BookWorm's Place
@@ -25,7 +24,6 @@
     <script src="https://kit.fontawesome.com/a8d1dc1333.js" crossorigin="anonymous"></script>
     
     <!-- Google Fonts -->
-    <!--<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Open+Sans&display=swap" rel="stylesheet">-->
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     
     <!-- Bootstrap CSS -->
@@ -42,7 +40,7 @@
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'home' %}">
-          <img src="{% static 'blog/images/books-441866_640_no_background_small.png' %}" alt="Image of stacked books" height="35px" width="35px" aria-label="link to Home page" class="d-inline-block align-text-top">
+          <img src="{% static 'blog/images/books-441866_640_no_background_small.png' %}" alt="Image of stacked books" height="35" width="35" aria-label="link to Home page" class="d-inline-block align-text-top">
           The BookWorm's Place
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -80,14 +78,6 @@
           {% endfor %}
         </div>
       {% endif %}
-      <!--{% if messages %}
-        {% for message in messages %}
-          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        {% endfor %}
-      {% endif %}-->
       {% block content %}
       {% endblock %}
     </main>
@@ -96,7 +86,6 @@
       <div class="container">
         <p>&copy; {{ now|date:"Y" }} The BookWorm's Place</p>
         <div class="social-icons d-flex justify-content-center gap-3 mt-3">
-          <!--<p>Follow us: </p>-->
           <a href="https://www.facebook.com/" class="text-white fs-4" target="_blank" aria-label="Visit our Facebook page (opens in a new tab)" rel="noopener"><i class="fab fa-facebook-square"></i></a>
           <a href="https://www.instagram.com/" class="text-white fs-4" target="_blank" aria-label="Visit our Instagram page (opens in a new tab)" rel="noopener"><i class="fab fa-instagram-square"></i></a>
           <a href="https://x.com/" class="text-white fs-4" target="_blank" aria-label="Visit our X page (opens in a new tab)" rel="noopener"><i class="fab fa-twitter-square"></i></a>

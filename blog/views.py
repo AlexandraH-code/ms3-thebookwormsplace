@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login, logout, authenticate
-# from django.contrib.forms import UserCreationForm, AuthenticationForm
 from django.core.mail import send_mail
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -42,7 +41,6 @@ def books(request):
 
 
 # Book Detail – show details about book, handle comments and rating
-# @require_http_methods(["GET", "POST"])
 def book_detail(request, slug):
     """
     Display a book's detail page with ratings and comments.
@@ -71,7 +69,7 @@ def book_detail(request, slug):
     try:
         cover_url = book.cover_image.url
     except Exception:
-        cover_url = '/static/blog/images/placeholder.jpg'  # adjust path as needed
+        cover_url = '/static/blog/images/placeholder.jpg'  
 
     if request.user.is_authenticated:
         user_rating = StarRating.objects.filter(user=request.user, book=book).first()
@@ -87,6 +85,10 @@ def book_detail(request, slug):
         if 'comment_submit' in request.POST:
             comment_form = CommentForm(request.POST)
             if comment_form.is_valid():
+                if not request.user.is_authenticated:
+                    messages.error(request, "You must be logged in to comment.")
+                    return redirect('login')
+                
                 new_comment = comment_form.save(commit=False)
                 new_comment.book = book
                 new_comment.user = request.user
@@ -120,7 +122,7 @@ def book_detail(request, slug):
 
     context = {
         'book': book,
-        'cover_url': cover_url,  # ← här är det viktiga
+        'cover_url': cover_url,  
         'comments': comments,
         'replies': replies,
         'comment_form': comment_form,
@@ -129,9 +131,6 @@ def book_detail(request, slug):
         'ratings_count': ratings_count,
     }
 
-    # print("COVER IMAGE FIELD:", book.cover_image)
-    # print("COVER IMAGE URL:", book.cover_image.url)
-    # print("COVER IMAGE FILE:", book.cover_image.file if hasattr(book.cover_image, "file") else "No file attr")
     return render(request, 'blog/book_detail.html', context)
 
 
@@ -154,7 +153,7 @@ def edit_comment(request, comment_id):
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
             edited_comment = form.save(commit=False)
-            edited_comment.approved = False  # Kräver ny admin-godkännande
+            edited_comment.approved = False  
             edited_comment.save()
             messages.info(request, 'Your edited comment is awaiting approval.')
             return redirect('book_detail', slug=comment.book.slug)
@@ -204,7 +203,6 @@ def about(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            # Ev. skicka mail här
             messages.success(request, "Your message has been sent and we will get back to you as soon as possible.")
             return redirect('about')
     else:
@@ -227,7 +225,6 @@ def register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            # login(request, user)
             messages.success(request, "Your account has been created. Please log in.")
             return redirect('login')
     else:
@@ -298,6 +295,7 @@ def profile_overview(request):
     """
     return render(request, 'blog/profile_overview.html')
 
+
 # Update username
 @login_required
 def update_username(request):
@@ -319,6 +317,7 @@ def update_username(request):
     else:
         form = UsernameUpdateForm(instance=request.user)
     return render(request, 'blog/update_username.html', {'form': form})
+
 
 # Update email
 @login_required

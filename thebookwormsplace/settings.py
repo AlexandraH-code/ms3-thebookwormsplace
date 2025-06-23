@@ -14,14 +14,8 @@ from pathlib import Path
 import os
 import dj_database_url
 
-# if os.path.isfile('env.py'):
-   # exec(open('env.py').read())
 if os.path.isfile('env.py'):
     import env
-
-# print("Cloud name:", os.environ.get("CLOUDINARY_CLOUD_NAME"))
-# print("API key:", os.environ.get("CLOUDINARY_API_KEY"))
-# print("Secret:", os.environ.get("CLOUDINARY_API_SECRET"))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -160,12 +154,6 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
 # DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
-
-# CLOUDINARY_STORAGE = {
-#     'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
-#     'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
-#     'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
-# }
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

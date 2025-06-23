@@ -54,46 +54,46 @@ Developer - Alexandra Holstensson
     - [**Features Left To Implement - Site Visitors**](#features-left-to-implement---site-visitors)
     - [**Features Left To Implement - Administrator(s)**](#features-left-to-implement---administrators)
 9. [**Technologies Used**](#9-technologies-used)
-  - [**Languages**](#languages)
-  - [**Programs And Other Resources**](#programs-and-other-resoures)
+    - [**Languages**](#languages)
+    - [**Programs And Other Resources**](#programs-and-other-resoures)
 10. [**Testing**](#10-testing)
-  - [**User Story Testing**](#user-story-testing)
-  - [**Manual Testing - Site Visitors**](#manual-testing---site-visitors)
-    - [**Test - Navigation And Footer**](#test---navigation-and-footer)
-    - [**Test - Home Page**](#test---home-page)
-    - [**Test - Create Account**](#test---create-account)
-    - [**Test - Login**](#test---login)
-    - [**Test - Logout**](#test---logout)
-    - [**Test - View/Show Books**](#test---viewshow-books)
-    - [**Test - Rate Book**](#test---rate-book)
-    - [**Test - Comment Book**](#test---comment-book)
-    - [**Test - Edit Comment**](#test---edit-comment)
-    - [**Test - Delete Comment**](#test---delete-comment)
-    - [**Test - Edit User Details**](#test---edit-user-details)
-  - [**Manual Testing - Administrator(s)**](#manual-testing---administrators)
-    - [**Test - Add Book**](#test---add-book)
-    - [**Test - Edit Book**](#test---edit-book)
-    - [**Test - Delete Book**](#test---delete-book)
-    - [**Test - Update Text On The About Page**](#test---update-text-on-the-about-page)
-    - [**Test - Approve Comment**](#test---approve-comment)
-    - [**Test - Delete Comment**](#test---delete-comment-1)
-
-    - [**Test - See Contact Request**](#test---see-contact-requests)
-    - [**Test - See Ratings**](#test---see-contact-requests)
+    - [**User Story Testing**](#user-story-testing)
+    - [**Manual Testing - Site Visitors**](#manual-testing---site-visitors)
+      - [**Test - Navigation And Footer**](#test---navigation-and-footer)
+      - [**Test - Home Page**](#test---home-page)
+      - [**Test - Create Account**](#test---create-account)
+      - [**Test - Login**](#test---login)
+      - [**Test - Logout**](#test---logout)
+      - [**Test - View/Show Books**](#test---viewshow-books)
+      - [**Test - Rate Book**](#test---rate-book)
+      - [**Test - Comment Book**](#test---comment-book)
+      - [**Test - Edit Comment**](#test---edit-comment)
+      - [**Test - Delete Comment**](#test---delete-comment)
+      - [**Test - Edit User Details**](#test---edit-user-details)
+    - [**Manual Testing - Administrator(s)**](#manual-testing---administrators)
+      - [**Test - Add Book**](#test---add-book)
+      - [**Test - Edit Book**](#test---edit-book)
+      - [**Test - Delete Book**](#test---delete-book)
+      - [**Test - Update Text On The About Page**](#test---update-text-on-the-about-page)
+      - [**Test - Approve Comment**](#test---approve-comment)
+      - [**Test - Delete Comment**](#test---delete-comment-1)
+      - [**Test - See Contact Request**](#test---see-contact-requests)
+      - [**Test - See Ratings**](#test---see-contact-requests)
+    - [**Automated Testing**](#automated-testing)
 11. [**Bugs**](#11-bugs)
 12. [**Validation**](#12-validation)
-  - [**HTML**](#html)
-  - [**CSS**](#css)
-  - [**JavaScript**](#javascript)
-  - [**Python**](#python)
+    - [**HTML**](#html)
+    - [**CSS**](#css)
+    - [**JavaScript**](#javascript)
+    - [**Python**](#python)
 13. [**Lighthouse Testing**](#13-lighthouse-testing)
-  - [**Desktop**](#desktop)
-  - [**Mobile**](#mobile)
+    - [**Desktop**](#desktop)
+    - [**Mobile**](#mobile)
 14. [**Device Testing**](#14-device-testing)
 15. [**Browser Compatibility**](#15-browser-compatibility)
 16. [**Deployment**](#16-deployment)
-  - [**Local Deployment**](#local-deployment)
-  - [**Remote Deployment**](#remote-deployment)
+    - [**Local Deployment**](#local-deployment)
+    - [**Remote Deployment**](#remote-deployment)
 17. [**Credits**](#17-credits)
 
 ## 1. About
@@ -950,7 +950,7 @@ In addition to the features that are currently added to the website, I have come
 - [CSS](https://en.wikipedia.org/wiki/CSS) - Used to style the website and to get content to end up in the right place.
 - [JavaScript](https://en.wikipedia.org/wiki/JavaScript) - Scripting language used to achieve the star rating and "reply to comment" form on the Book Detail page.
 - [Python3](https://en.wikipedia.org/wiki/Python_(programming_language)) - Programming language that (together with Django) was used to create the website.
-### Programs And Other Resoures
+  ### Programs And Other Resoures
 - [Django](https://www.djangoproject.com/) - a high-level Python web framework that was used to create the website/web application.
 - [PostgreSQL](https://www.postgresql.org/) - The database used on the website is a PostgreSQL database.
 - [Cloudinary](https://cloudinary.com/) - Used to save book covers
@@ -970,11 +970,15 @@ In addition to the features that are currently added to the website, I have come
 - [Site24x7's JavaScript validator](https://www.site24x7.com/tools/javascript-validator.html) - Used to validate the JavaScript code.
 - [JShint](https://jshint.com/) - Used to validate the JavaScript Code.
 - [Favicon](https://favicon.io/favicon-converter/) - Used to generate the favicon
-- [Fontawsome](https://fontawesome.com/) - For the social media icons (Facebook, Instagram, X and Youtube)
+- [Fontawesome](https://fontawesome.com/) - For the social media icons (Facebook, Instagram, X and Youtube)
 - [ColorMagic Contrast Checker](https://colormagic.app/contrast-checker) - Was used to check the constrast of the colors that I have chosen
 - [Google Fonts](https://fonts.google.com/) - Was used to download the fonts that I have chosen to use (EB Garamond and Open Sans)
 - [Google Transate](https://translate.google.com/) - Was used to translate text for accuracy.
 - [drawDB](https://www.drawdb.app/) - Was used to create the Entity Relationship Diagram
+- [W3Schools HTML Tutorial](https://www.w3schools.com/html/default.asp) - Used to check things related to HTML.
+- [W3Schools CSS Tutorial](https://www.w3schools.com/css/default.asp) - Used to check things related to CSS.
+- [W3Scools Python Tutorial](https://www.w3schools.com/python/default.asp) - Used to check things related to Python.
+- [Django Documentation](https://docs.djangoproject.com/en/5.2/) - Used to check things related to Python. 
 
 ## 10. Testing
 [Back To The Top](#table-of-contents)
@@ -1155,26 +1159,243 @@ To view contact requests, the administrator needs to log in to Django administra
 
 To see ratings made, the administrator needs to log in to Django administration. There it is easy to see ratings made.
 
+### Automated Testing
+
+A total of 15 unit tests were written using Django’s TestCase class to verify the functionality of views and forms. These tests cover the most essential parts of the application, including:
+
+* Loading the book list and book detail pages
+* Ensuring only authenticated users can post comments
+* Verifying comment and rating form validation
+* Testing user registration and login views
+* Checking password change functionality for logged-in users
+* Ensuring superusers can access and use the book creation admin view
+
+The tests are split into two files:
+* test_forms.py – tests validation logic for CommentForm, StarRatingForm, and CustomUserCreationForm
+* test_views.py – tests responses, redirects, and access control for core views
+
+All tests can be run using: **python manage.py test**
+
+
 ## 11. Bugs
 [Back To The Top](#table-of-contents)
 
-- Having trouble getting images and css to work after deploying to Heroku.
-    - This was because I hadn't run collectstatic and the Cloudinary settings were not correct. After running collectstatic and correcting the Cloudinary settings it worked.
-- Problem with vertical scrollbars being displayed on pages where they weren't needed. Tried to make changes to the scrollbars but resulted in double scrollbars or a scrollbar with an empty space to the left of it.
-    - In order not to spend too much time on a problem that is actually rather small, I made it so that there are scrollbars on all pages. This will probably be something I will have to come back to, something that can be improved.
-
+| Bug/Problem | Cause | Fix |
+|------------|-------|-----|
+| Having trouble getting images and css to work after deploying to Heroku. | This was because I hadn't run collectstatic and the Cloudinary settings were not correct. | After running collectstatic and correcting the Cloudinary settings it worked as it should. |
+| Problem with vertical scrollbars being displayed on pages where they weren't needed. | Didn't have correct CSS for scrollbars. | In order not to spend too much time on a problem that is actually rather small, I made it so that there are scrollbars on all pages. This will probably be something I will have to come back to, something that can be improved. |
+| Cover images not displaying on book detail view | Accessing .url directly without checking existence. | Added fallback logic and placeholder handling in view. |
+| Footer icons not aligned properly | Uneven margin spacing (ms-3 used inconsistently). | Fix: Used gap-* and flexbox centering instead. |
+| Navbar toggler invisible on mobile | Dark toggler on dark background. | Fix: Changed to light toggler and adjusted background. |
+| Comment edit/delete views not working | Duplicate views and URL patterns. | Removed duplicates and ensured book_detail redirect uses slug. |
+| Login/Register/About not centered | Missing Bootstrap layout containers. | Used d-flex justify-content-center, w-100, and max-width containers. |
 
 ## 12. Validation
 [Back To The Top](#table-of-contents)
 ### HTML
+
+All HTML templates were validated using [the W3C Markup Validation Service](https://validator.w3.org/).
+- All files passed validation except for a few minor issues:
+  - height="35px" and width="35px" on <img> tags caused errors. These were corrected by removing the px unit (e.g., height="35").
+  - A self-closing <br/> tag was corrected to <br> to conform with HTML5 syntax.
+- All other errors or warnings were related to Django template tags (e.g., {% url 'books' %}), which are not valid HTML but do not affect actual browser rendering. These were ignored during validation.
+
 ### CSS
+
+The CSS file went through [the W3C CSS Validator](https://jigsaw.w3.org/css-validator/) without showing any errors. 
+
+![Image of CSS validation](docs\images\validation\css\css_validated_small.png)
+
 ### JavaScript
+
+The JavaScript code in this project was validated using JSHint. https://jshint.com/ 
+No critical errors were found. Some warnings were reported due to the use of ES6 syntax, including:
+const and let declarations
+Arrow functions (=>)
+
+These are standard features in modern JavaScript and are fully supported in all modern browsers.
+To suppress these warnings, the following directive can be added at the top of JavaScript files:
+/* jshint esversion: 6 */
+
+The JavaScript functionality in the project includes:
+- A script to toggle the visibility of reply forms for comments on the book detail page.
+- A script to handle interactive star rating submission for books.
+
+These scripts were written with support from ChatGPT (OpenAI).
+
 ### Python
+
+Python code was checked using `flake8` to ensure compliance with PEP 8 standards.  
+Minor style warnings (e.g. line length) were adjusted or ignored when not critical.  
+All functional code passes validation and runs without syntax errors.
+
+In addition, automated tests were implemented and passed for key views and forms.
 
 ## 13. Lighthouse Testing
 [Back To The Top](#table-of-contents)
 ### Desktop
+
+  <details>
+  <summary>Home Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>Books Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>Book details Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>About Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>Create Account Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>Login Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>Logout Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>My Profile Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>My Profile - Change Username Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>My Profile - Change Email Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>My Profile - Change Password Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>Admin Dashboard Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>Admin Dashboard - Add Book Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>Admin Dashboard - Edit Book Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>Admin Dashboard - Delete Book Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>Admin Dashboard - Edit About Page text</summary>
+
+  ![Home Page]()
+
 ### Mobile
+
+  <details>
+  <summary>Home Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>Books Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>Book details Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>About Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>Create Account Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>Login Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>Logout Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>My Profile Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>My Profile - Change Username Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>My Profile - Change Email Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>My Profile - Change Password Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>Admin Dashboard Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>Admin Dashboard - Add Book Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>Admin Dashboard - Edit Book Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>Admin Dashboard - Delete Book Page</summary>
+
+  ![Home Page]()
+
+  <details>
+  <summary>Admin Dashboard - Edit About Page text</summary>
+
+  ![Home Page]()
 
 ## 14. Device Testing
 [Back To The Top](#table-of-contents)
@@ -1196,7 +1417,48 @@ I have tested the website on the browsers below. The website works properly in a
 ## 16. Deployment
 [Back To The Top](#table-of-contents)
 ### Local Deployment
+
+1. Clone the repository:
+    - git clone https://github.com/your-username/your-repo.git
+    - cd your-repo
+2. Create and activate a virtual environment:
+    - python -m venv env
+    - source env/bin/activate  # Windows: env\Scripts\activate
+3. Install dependencies:
+    - pip install -r requirements.txt
+4. Create a .env file with:
+    - SECRET_KEY=your-secret-key
+    - DEBUG=True
+    - DATABASE_URL=your-postgres-url
+    - CLOUDINARY_URL=cloudinary://xxx:yyy@zzz
+5. Run migrations and start server:
+    - python manage.py migrate
+    - python manage.py runserver
+
 ### Remote Deployment
+
+1. Go to [Heroku](https://heroku.com) and create an account if needed.
+2. In the Heroku Dashboard:
+    - Click New > Create new app
+    - Choose a name and region
+3. In the new app:
+    - Go to Deploy tab
+    - Choose GitHub as deployment method
+    - Connect to your GitHub account and select your repo
+4. Enable Automatic Deploys or use Deploy Branch manually.
+5. Go to Settings > Buildpacks
+    - Click Add Buildpack > heroku/python
+    - Add another if needed: heroku/nodejs (if using Tailwind or npm tools)
+6. Go to Settings > Reveal Config Vars and add:
+    - SECRET_KEY: your Django secret key
+    - DATABASE_URL: (added automatically with Heroku Postgres add-on) - add your database URL
+    - CLOUDINARY_URL: your Cloudinary full URL
+7. Go to Resources and check that Eco Dynos is enabled. (Install gunicorn in the project and create a Procfile that contains the following line web: gunicorn <project name>.wsgi)
+8. Push your code:
+    - git push heroku main  # if you use Heroku CLI
+    - django-admin collectstatic OR
+    - Go to Deploy and scroll down to Manual Deploy and click on Deploy Branch (make sure main is active under "Choose a branch to deploy")
+9. To see your new app, click Open app in Heroku.
 
 ## 17. Credits 
 [Back To The Top](#table-of-contents)

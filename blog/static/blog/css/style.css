@@ -8,20 +8,11 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  /*overflow: hidden;*/
   overflow-x: hidden !important;
   transition: padding-right 0.3s ease;
-  /*scrollbar-gutter: stable;*/
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* height: 100%; /* important if you use 100vh */
-  /*overflow-x: hidden; /* prevents scrolling sideways */
-  /* overflow-y: scroll; */
-  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
-  /* background-color: #f8f9fa; */
-  /*background-color: lightblue; */
-  /* color: #212529; */
   font-family: 'Open Sans', sans-serif;
   background-color: #f5f2eb;
   color: #333333;
@@ -39,23 +30,6 @@ a:hover {
 }
 
 /* Buttons */
-
-/*.btn-primary {
-  background-color: #6b4f4f;
-  border-color: #6b4f4f;
-}
-.btn-primary:hover {
-  background-color: #5a3f3f;
-}
-
-/* .btn-primary {
-  background-color: #6b4f4f;
-  border-color: #6b4f4f;
-}
-
-.btn-primary:hover {
-  background-color: #5a3f3f;
-}*/
 
 .btn-outline-primary {
   color: #6b4f4f;
@@ -120,15 +94,8 @@ input[type="checkbox"].form-check-input {
 
 /* My Profile-page */ 
 .profile-edit li {
-  /*list-style-type: none;*/
   list-style-type: disc;
 }
-
-
-/*#navbar .logo {
-    width: 30px;
-    height: 30px;
-}*/
 
 *, *::before, *::after {
   box-sizing: inherit;
@@ -144,20 +111,13 @@ main {
   flex: 1;
   margin: 0 !important;
   padding: 0 !important;
-  /*background-color: lightcoral;*/
 }
-
-/*.container {
-   position: relative;
-   left: calc((100vw - 100%) / 2);
-}*/
 
 /* Hero image on the start page */
 .hero-image {
   min-height: calc(100vh - 56px); /* full height minus navbar */
   position: relative;
   width: 100%;
-  /* background-image: url('/static/blog/images/books-1614215_1280.jpg'); */
   background-image: url('../images/books-1614215_1280.jpg');
   background-size: cover;
   background-position: center;
@@ -168,9 +128,6 @@ main {
   justify-content: center;
   flex-direction: column;
   padding-top: 2rem;
-  /* margin: 0 !important; */
-  /* padding: 0 !important; */
-  /*background-color: rgb(170, 170, 170);*/
 }
 
 .hero-image h1,
@@ -179,9 +136,6 @@ main {
 }
 
 .hero-image h1 {
-    /* text-shadow: 2px 2px 4px #000000; */
-    /* text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; */
-    /* text-shadow: 1px 1px 2px black, 0 0 1em blue, 0 0 0.2em blue;*/ 
     text-shadow: 2px 2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000, -2px -2px 0 #000000, 2px 0px 0 #000000, 0px 2px 0 #000000, -2px 0px 0 #000000, 0px -2px 0 #000000;
 }
 
@@ -207,11 +161,6 @@ main {
   background-color: rgba(255, 255, 255, 0.15);
   transform: scale(1.05);
 }
-
-/*.overlay {
-  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
-  /*z-index: 1;
-}*/
 
 .overlay {
   position: absolute;
@@ -251,9 +200,7 @@ a:hover {
 }
 
 .navbar-brand:hover {
-  /*color: #ccbbaa; /* ljus färg som passar temat */
   color: #a1866f !important;
-  /* text-decoration: underline; */
 }
 
 .navbar-toggler {
@@ -269,11 +216,6 @@ a:hover {
   height: auto;
 }
 
-/*.card img {
-    height: 300px;
-    object-fit: cover;
-}*/
-
 /* Books page */
 .card-body {
   background-color: #f5f2eb; 
@@ -285,7 +227,7 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f5f2eb; /* matchar sidbakgrund */
+  background-color: #f5f2eb; 
   border-radius: 4px;
 }
 .book-image-wrapper img {
@@ -357,13 +299,12 @@ a:hover {
   text-align: center;
 }
 
-/* Optional extra */
 .text-warning {
   color: gold !important;
 }
 
 
-/* Centrera rubriken och stjärnbetyg */
+/* Centers heading and star ratings - Book detail */
 .rating-display,
 .rating-form,
 .comments-section {
@@ -371,32 +312,6 @@ a:hover {
   margin: 0 auto;
   text-align: center;
 }
-
-
-
-/* Button styles */
-/*.btn-custom {
-  background-color: #6b4f4f;
-  color: #fff;
-  border: 1px solid #6b4f4f;
-}
-
-.btn-custom:hover {
-  background-color: #5a3f3f;
-  border-color: #5a3f3f;
-  color: #fff;
-}*/
-
-/*.btn-outline-custom {
-  color: #6b4f4f;
-  border: 1px solid #6b4f4f;
-  background-color: transparent;
-}
-
-.btn-outline-custom:hover {
-  background-color: #6b4f4f;
-  color: #fff;
-}*/
 
 /* Footer */ 
 footer {
@@ -426,10 +341,6 @@ footer .social-icons {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
 }
-/*
-.social-icons a:hover {
-  color: #a1866f !important;
-}*/
 
 /* Media query: screens with max-width: 768px ) */
 @media screen and (max-width: 768px) {
@@ -444,12 +355,3 @@ footer .social-icons {
     height: 180px;
   }
 }
-
-
-/* * {
-  outline: 1px solid rgb(255, 255, 255);
-}
-
-/*.hero-image {
-  border: 1px solid red; /* tillfälligt – se exakt hur stor hero-sektionen är */
-/*}*/

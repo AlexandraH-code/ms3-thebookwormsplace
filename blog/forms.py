@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
 from .models import BlogPost, Comment, ContactRequest, About, StarRating
-# from slugify import slugify
 from django.utils.text import slugify
 
 
@@ -68,13 +67,6 @@ class ContactForm(forms.ModelForm):
         }
 
 
-# Form for updating username and email
-# class UserUpdateForm(forms.ModelForm):
-#    class Meta:
-#        model = User
-#        fields = ['username', 'email']
-
-
 # Form for updating username
 class UsernameUpdateForm(forms.ModelForm):
     """
@@ -122,7 +114,7 @@ class BlogPostForm(forms.ModelForm):
             'is_draft': forms.CheckboxInput(attrs={'class': 'form-check-input'}),       
         }
 
-    # Styling alla fält med Bootstrap
+    # Styling all fields with Bootstrap
     def __init__(self, *args, **kwargs):
         super(BlogPostForm, self).__init__(*args, **kwargs)
         for field in self.fields.values():
