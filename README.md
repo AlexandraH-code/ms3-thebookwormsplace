@@ -4,7 +4,7 @@ Developer - Alexandra Holstensson
 
 [Link to the project - Heroku](https://the-bookworms-place-489ab98365bd.herokuapp.com/)
 
-![Image Of The Site - Am I Responsive]()
+![Image Of The Site - Am I Responsive](docs/images/am_i_responsive/am_I_responsive_small.png)
 
 ## [Table of Contents](#table-of-contents)
 1. [**About**](#1-about)
@@ -289,63 +289,63 @@ I have used [Balsamiq](https://balsamiq.com/) to make the wireframes. The wirefr
   <details>
   <summary>Home Page - Not Logged In</summary>
 
-  ![Home Page - Not Logged In](docs\wireframes\mobile\home_not_logged_in.png)
+  ![Home Page - Not Logged In](docs/wireframes/mobile/home_not_logged_in.png)
   
   </details>
 
   <details>
   <summary>Home Page - Logged In</summary>
 
-  ![Home Page - Logged In](docs\wireframes\mobile\home_logged_in.png)
+  ![Home Page - Logged In](docs/wireframes/mobile/home_logged_in.png)
   
   </details>
 
   <details>
   <summary>Books - Not Logged In</summary>
 
-  ![Books - Not Logged In](docs\wireframes\mobile\books.png)
+  ![Books - Not Logged In](docs/wireframes/mobile/books.png)
   
   </details>
 
   <details>
   <summary>Book Details - Not logged In</summary>
 
-  ![Book Details - Not logged In](docs\wireframes\mobile\book_details_not_logged_in.png)
+  ![Book Details - Not logged In](docs/wireframes/mobile/book_details_not_logged_in.png)
   
   </details>
 
   <details>
   <summary>Book Details - Logged In</summary>
 
-  ![Book Details - Logged In](docs\wireframes\mobile\book_details_logged_in.png)
+  ![Book Details - Logged In](docs/wireframes/mobile/book_details_logged_in.png)
   
   </details>
 
   <details>
   <summary>About - Not Logged In</summary>
 
-  ![About](docs\wireframes\mobile\about_not_logged_in.png)
+  ![About](docs/wireframes/mobile/about_not_logged_in.png)
   
   </details>
 
   <details>
   <summary>Create Account</summary>
 
-  ![Create Account](docs\wireframes\mobile\register_account.png)
+  ![Create Account](docs/wireframes/mobile/register_account.png)
   
   </details>
 
   <details>
   <summary>Login</summary>
 
-  ![Login](docs\wireframes\mobile\login.png)
+  ![Login](docs/wireframes/mobile/login.png)
   
   </details>
 
   <details>
   <summary>Logout</summary>
 
-  ![Logout](docs\wireframes\mobile\logout.png )
+  ![Logout](docs/wireframes/mobile/logout.png)
   
   </details>
 
@@ -355,63 +355,63 @@ I have used [Balsamiq](https://balsamiq.com/) to make the wireframes. The wirefr
   <details>
   <summary>Home Page - Not Logged In</summary>
 
-  ![Home Page - Not Logged In](docs\wireframes\tablet\home_not_logged_in.png)
+  ![Home Page - Not Logged In](docs/wireframes/tablet/home_not_logged_in.png)
   
   </details>
 
   <details>
   <summary>Home Page - Logged In</summary>
 
-  ![Home Page - Logged In](docs\wireframes\tablet\home_logged_in.png)
+  ![Home Page - Logged In](docs/wireframes/tablet/home_logged_in.png)
   
   </details>
 
   <details>
   <summary>Books - Not Logged In</summary>
 
-  ![Books - Not Logged In](docs\wireframes\tablet\books.png)
+  ![Books - Not Logged In](docs/wireframes/tablet/books.png)
   
   </details>
 
   <details>
   <summary>Book Details - Not logged In</summary>
 
-  ![Book Details - Not logged In](docs\wireframes\tablet\book_details_not_logged_in.png)
+  ![Book Details - Not logged In](docs/wireframes/tablet/book_details_not_logged_in.png)
   
   </details>
 
   <details>
   <summary>Book Details - Logged In</summary>
 
-  ![Book Details - Logged In](docs\wireframes\tablet\book_details_logged_in.png)
+  ![Book Details - Logged In](docs/wireframes/tablet/book_details_logged_in.png)
   
   </details>
 
   <details>
   <summary>About - Not Logged In</summary>
 
-  ![About](docs\wireframes\tablet\about_not_logged_in.png)
+  ![About](docs/wireframes/tablet/about_not_logged_in.png)
   
   </details>
 
   <details>
   <summary>Create Account</summary>
 
-  ![Create Account](docs\wireframes\tablet\register_account.png)
+  ![Create Account](docs/wireframes/tablet/register_account.png)
   
   </details>
 
   <details>
   <summary>Login</summary>
 
-  ![Login](docs\wireframes\tablet\login.png)
+  ![Login](docs/wireframes/tablet/login.png)
   
   </details>
 
   <details>
   <summary>Logout</summary>
 
-  ![Logout](docs\wireframes\tablet\logout.png)
+  ![Logout](docs/wireframes/tablet/logout.png)
   
   </details>
 
@@ -420,63 +420,63 @@ I have used [Balsamiq](https://balsamiq.com/) to make the wireframes. The wirefr
   <details>
   <summary>Home Page - Not Logged In</summary>
 
-  ![Home Page - Not Logged In](docs\wireframes\laptop_desktop\home_not_logged_in.png)
+  ![Home Page - Not Logged In](docs/wireframes/laptop_desktop/home_not_logged_in.png)
   
   </details>
 
   <details>
   <summary>Home Page - Logged In</summary>
 
-  ![Home Page - Logged In](docs\wireframes\laptop_desktop\home_logged_in.png)
+  ![Home Page - Logged In](docs/wireframes/laptop_desktop/home_logged_in.png)
   
   </details>
 
   <details>
   <summary>Books - Not Logged In</summary>
 
-  ![Books - Not Logged In](docs\wireframes\laptop_desktop\books.png)
+  ![Books - Not Logged In](docs/wireframes/laptop_desktop/books.png)
   
   </details>
 
   <details>
   <summary>Book Details - Not logged In</summary>
 
-  ![Book Details - Not logged In](docs\wireframes\laptop_desktop\book_details_not_logged_in.png)
+  ![Book Details - Not logged In](docs/wireframes/laptop_desktop/book_details_not_logged_in.png)
   
   </details>
 
   <details>
   <summary>Book Details - Logged In</summary>
 
-  ![Book Details - Logged In](docs\wireframes\laptop_desktop\book_details_logged_in.png)
+  ![Book Details - Logged In](docs/wireframes/laptop_desktop/book_details_logged_in.png)
   
   </details>
 
   <details>
   <summary>About</summary>
 
-  ![About](docs\wireframes\laptop_desktop\about_not_logged_in.png)
+  ![About](docs/wireframes/laptop_desktop/about_not_logged_in.png)
   
   </details>
 
   <details>
   <summary>Create Account</summary>
 
-  ![Create Account](docs\wireframes\laptop_desktop\register_account.png)
+  ![Create Account](docs/wireframes/laptop_desktop/register_account.png)
   
   </details>
 
   <details>
   <summary>Login</summary>
 
-  ![Login](docs\wireframes\laptop_desktop\login.png)
+  ![Login](docs/wireframes/laptop_desktop/login.png)
   
   </details>
 
   <details>
   <summary>Logout</summary>
 
-  ![Logout](docs\wireframes\laptop_desktop\logout.png)
+  ![Logout](docs/wireframes/laptop_desktop/logout.png)
   
   </details>
 
@@ -497,7 +497,7 @@ To ensure that text is easy to read in relation to the background color, I have 
     - Large Text: AAA
     - UI Components: AA
 
-![Image of constrast check for the navbar and footer element.](docs\images\color_contrast_check\navbar_small.png)
+![Image of constrast check for the navbar and footer element.](docs/images/color_contrast_check/navbar_small.png)
 
 
 - **Navbar and Footer hover:** (dark color on the background, light brown text color when hovering over the text)
@@ -508,7 +508,7 @@ To ensure that text is easy to read in relation to the background color, I have 
     - Large Text: AAA
     - UI Components: AA
 
-![Image of constrast check for the navbar and footer element with hover effect on links and icons.](docs\images\color_contrast_check\navbar_hover_small.png)
+![Image of constrast check for the navbar and footer element with hover effect on links and icons.](docs/images/color_contrast_check/navbar_hover_small.png)
 
 
 - **Body:** (light color on the background, dark color on the text)
@@ -519,7 +519,7 @@ To ensure that text is easy to read in relation to the background color, I have 
     - Large Text: AAA
     - UI Components: AA
 
-![Image of constrast check for the body element.](docs\images\color_contrast_check\body_small.png)
+![Image of constrast check for the body element.](docs/images/color_contrast_check/body_small.png)
 
 
 - **Button - btn-outline-primary:** (button used for sending, submitting, confirming, etc.)
@@ -531,7 +531,7 @@ To ensure that text is easy to read in relation to the background color, I have 
     - Large Text: AAA
     - UI Components: AA
 
-![Image of constrast check for the button btn-outline-primary.](docs\images\color_contrast_check\btn_outline_primary_small.png)
+![Image of constrast check for the button btn-outline-primary.](docs/images/color_contrast_check/btn_outline_primary_small.png)
 
 
 - **Button with hover effect - btn-outline-primary:hover:** (button used for sending, submitting, confirming, etc.)
@@ -542,7 +542,7 @@ To ensure that text is easy to read in relation to the background color, I have 
     - Large Text: AAA
     - UI Components: AA
 
-![Image of constrast check for the button btn-outline-primary with hover effect.](docs\images\color_contrast_check\btn_outline_primary_hover_small.png)
+![Image of constrast check for the button btn-outline-primary with hover effect.](docs/images/color_contrast_check/btn_outline_primary_hover_small.png)
 
 
 - **Button - btn-secondary-custom:** (button used to cancel, clear, etc.)
@@ -554,7 +554,7 @@ To ensure that text is easy to read in relation to the background color, I have 
     - Large Text: AAA
     - UI Components: AA
 
-![Image of constrast check for the button btn-secondary-custom.](docs\images\color_contrast_check\btn_secondary_custom_small.png)
+![Image of constrast check for the button btn-secondary-custom.](docs/images/color_contrast_check/btn_secondary_custom_small.png)
 
 
 - **Button with hover effect - btn-secondary-custom:hover:** (button used to cancel, clear, etc.)
@@ -565,7 +565,7 @@ To ensure that text is easy to read in relation to the background color, I have 
     - Large Text: AAA
     - UI Components: AA
 
-![Image of constrast check for the button btn-secondary-custom:hover.](docs\images\color_contrast_check\btn_secondary_custom_hover_small.png)
+![Image of constrast check for the button btn-secondary-custom:hover.](docs/images/color_contrast_check/btn_secondary_custom_hover_small.png)
 
 
 ### Fonts
@@ -606,41 +606,41 @@ The navbar that I have based mine on is [this one](https://getbootstrap.com/docs
 **The navbar on screens that are 992px or larger.**
 
 Navbar - Not logged in:
-![Image of Navbar - Not logged in.](docs\images\features\navigation_and_footer\navbar_992px_or_larger_small.png)
+![Image of Navbar - Not logged in.](docs/images/features/navigation_and_footer/navbar_992px_or_larger_small.png)
 
 Navbar - Logged in regular site visitor:
-![Image of Navbar - Logged in regular site visitor.](docs\images\features\navigation_and_footer\navbar_992px_or_larger_logged_in_site_visitor_small.png)
+![Image of Navbar - Logged in regular site visitor.](docs/images/features/navigation_and_footer/navbar_992px_or_larger_logged_in_site_visitor_small.png)
 
 Navbar - Logged in administrator:
-![Image of Navbar - Logged in administrator.](docs\images\features\navigation_and_footer\navbar_992px_or_larger_logged_in_admin_small.png)
+![Image of Navbar - Logged in administrator.](docs/images/features/navigation_and_footer/navbar_992px_or_larger_logged_in_admin_small.png)
 
 The navbar has a hover effect on screens that are 992px or larger. When you move the mouse pointer over each page in the navbar, the color of the text changes.
 
 Navbar with hover effect:
-![Image of Navbar - Navbar with hover effect.](docs\images\features\navigation_and_footer\navbar_992px_or_larger_logged_in_site_visitor_hover_small.png)
+![Image of Navbar - Navbar with hover effect.](docs/images/features/navigation_and_footer/navbar_992px_or_larger_logged_in_site_visitor_hover_small.png)
 
 **On screens that are 991px or smaller, the links in the navbar become a toggle menu on the right of the navbar.**
 
 Navbar - Not logged in:
-![Image of Navbar - Not logged in.](docs\images\features\navigation_and_footer\navbar_991px_or_smaller_not_logged_in_small.png)
+![Image of Navbar - Not logged in.](docs/images/features/navigation_and_footer/navbar_991px_or_smaller_not_logged_in_small.png)
 
 Navbar - Logged in regular site visitor:
-![Image of Navbar - Logged in regular site visitor.](docs\images\features\navigation_and_footer\navbar_991px_or_smaller_logged_in_site_visitor_small.png)
+![Image of Navbar - Logged in regular site visitor.](docs/images/features/navigation_and_footer/navbar_991px_or_smaller_logged_in_site_visitor_small.png)
 
 Navbar - Logged in administrator:
-![Image of Navbar - Logged in administrator.](docs\images\features\navigation_and_footer\navbar_991px_or_smaller_logged_in_admin_small.png)
+![Image of Navbar - Logged in administrator.](docs/images/features/navigation_and_footer/navbar_991px_or_smaller_logged_in_admin_small.png)
 
 **Footer**
 
 The footer consists of a row with a copyright symbol and the text The BookWorm’s Place and a row of clickable social media icons (Facebook, Instagram, X and Youtube). Currently, the icons are linked to the Facebook, Instagram, X and Youtube websites. The footer looks the same regardless of screen size.
 
-![Image of the Footer](docs\images\features\navigation_and_footer\footer_small.png)
+![Image of the Footer](docs/images/features/navigation_and_footer/footer_small.png)
 
 #### Home Page
 
 The Home Page consists of a large hero image that depicts books. The hero image has the text “Welcome To The BookWorm’s Place” and a button with the text “Browse Books”. If you click the “Browse Books” button, you will be redirected to the Books page. I have chosen not to have any more text on the front page than the welcome text as I think the page is very self-explanatory. It is clear from the name of the page, the choice of icons and the image on the home page what the website is about.
 
-![Image of the Footer](docs\images\features\home_page\home_page_small.png)
+![Image of the Footer](docs/images/features/home_page/home_page_small.png)
 
 #### Create Account
 
@@ -648,9 +648,9 @@ The “Create Account” page is accessed by clicking on “Create Account” in
 
 The “Create Account” page currently consists of a simple form where you enter your username, email address, password and password confirmation. To save the account, click on the "Register" button. When you have clicked on the "Register" button, you will be sent to the "Login" page. There appears a message that says "Your account has been created. Please log in.". If you do not want to save the account, you can click on the "Cancel" button (you will then be taken to the Home Page).
 
-![Image of the Create Account page](docs\images\features\create_account\create_account.png)
+![Image of the Create Account page](docs/images/features/create_account/create_account.png)
 
-![Image of the Create Account confirmation](docs\images\features\create_account\create_account_confirmation.png)
+![Image of the Create Account confirmation](docs/images/features/create_account/create_account_confirmation.png)
 
 #### Login
 
@@ -658,9 +658,9 @@ The “Login” page is accessed by clicking on “Login” in the navbar. The �
 
 The “Login” page currently consists of a simple form where you enter your username and password. Then click the "Login" button to log in. Once you have logged in, you will be taken to the Home Page. To show that you are logged in, a message will appear under the navbar stating “You are now logged in as” followed by your username. If you do not want to login, you can click on the "Cancel" button (you will then be taken to the Home Page).
 
-![Image of the Login page](docs\images\features\login\login.png)
+![Image of the Login page](docs/images/features/login/login.png)
 
-![Image of the Login message](docs\images\features\login\login_message.png)
+![Image of the Login message](docs/images/features/login/login_message.png)
 
 #### Logout
 
@@ -668,9 +668,9 @@ The “Logout” page is accessed by clicking on “Logout” in the navbar. The
 
 The “Logout” page consists of a simple form that contains the text “Are you sure you want to log out?” and the buttons “Log Out” and “Cancel”. If you click on the “Log Out” button, you will be logged out and taken to the Home Page. A message will appear on the Home Page stating “You have been logged out.”. If you do not want to logout, you can click on the "Cancel" button (you will then be taken to the Home Page).
 
-![Image of the Logout page](docs\images\features\logout\logout.png)
+![Image of the Logout page](docs/images/features/logout/logout.png)
 
-![Image of the Logout message](docs\images\features\logout\logout_message.png)
+![Image of the Logout message](docs/images/features/logout/logout_message.png)
 
 #### View/Show Books
 
@@ -678,29 +678,29 @@ To view added books, click either the “Browse Books” button on the Home Page
 
 **Image of Books page 992px or larger**
 
-![Image of Books page 992px or larger](docs\images\features\books\books_992px_or_larger_small.png)
+![Image of Books page 992px or larger](docs/images/features/books/books_992px_or_larger_small.png)
 
 **Image of Books page 991px or smaller**
 
-![Image of Books page 991px or smaller](docs\images\features\books\books_991px_or_smaller.png)
+![Image of Books page 991px or smaller](docs/images/features/books/books_991px_or_smaller.png)
 
 **Image of Books page 767px or smaller**
 
-![Image of Books page 767px or smaller](docs\images\features\books\books_767px_or_smaller.png)
+![Image of Books page 767px or smaller](docs/images/features/books/books_767px_or_smaller.png)
 
 **Image of Books page 575px or smaller**
 
-![Image of Books page 575px or smaller](docs\images\features\books\books_575px_or_smaller.png)
+![Image of Books page 575px or smaller](docs/images/features/books/books_575px_or_smaller.png)
 
 To view more information about the book, click the “View Details” button. Doing so will take you to the “Book detail” page. There, in addition to the book cover, book title and author, you can also view the book description. You can also see the rating (in the form of stars) that other page visitors have given to the book and see comments that other page visitors have written. In order to rate a book and leave a comment, you need to be logged in to the website.
 
 **Image of Book details page 768px or larger**
 
-![Image of Book details page 768px or larger](docs\images\features\book_details\book_details_768px_or_larger_small.png)
+![Image of Book details page 768px or larger](docs/images/features/book_details/book_details_768px_or_larger_small.png)
 
 **Image of Book details page 767px or smaller**
 
-![Image of Books page 767px or smaller](docs\images\features\book_details\book_details_767px_or_smaller.png)
+![Image of Books page 767px or smaller](docs/images/features/book_details/book_details_767px_or_smaller.png)
 
 #### Rate Book
 
@@ -708,19 +708,19 @@ If you are logged in to the website, you can rate uploaded books. You rate the b
 
 **Image of Book details star rating**
 
-![Image of Book details star rating](docs\images\features\book_details\rate_book\book_details_rating.png)
+![Image of Book details star rating](docs/images/features/book_details/rate_book/book_details_rating.png)
 
 **Image of Book details star rating - filled stars**
 
-![Image of Book details star rating - filled stars](docs\images\features\book_details\rate_book\book_details_rating_filled_stars.png)
+![Image of Book details star rating - filled stars](docs/images/features/book_details/rate_book/book_details_rating_filled_stars.png)
 
 **Image of Book details star rating - message**
 
-![Image of Book details star rating - message](docs\images\features\book_details\rate_book\book_details_rating_message.png)
+![Image of Book details star rating - message](docs/images/features/book_details/rate_book/book_details_rating_message.png)
 
 **Image of Book details star rating - result**
 
-![Image of Book details star rating - result](docs\images\features\book_details\rate_book\book_details_rating_show_result.png)
+![Image of Book details star rating - result](docs/images/features/book_details/rate_book/book_details_rating_show_result.png)
 
 #### Comment Book
 
@@ -730,35 +730,35 @@ It is currently only possible to leave one reply to a comment. This is because t
 
 **Image of Book details - comment form**
 
-![Image of Book details comment form](docs\images\features\book_details\comment\book_details_comment_small.png)
+![Image of Book details comment form](docs/images/features/book_details/comment/book_details_comment_small.png)
 
 **Image of Book details - comment form - written comment**
 
-![Image of Book details comment form - written comment](docs\images\features\book_details\comment\book_details_comment_written_comment_small.png)
+![Image of Book details comment form - written comment](docs/images/features/book_details/comment/book_details_comment_written_comment_small.png)
 
 **Image of Book details - comment submitted - message**
 
-![Image of Book details comment submitted - message](docs\images\features\book_details\comment\book_details_comment_submitted_comment_message_small.png)
+![Image of Book details comment submitted - message](docs/images/features/book_details/comment/book_details_comment_submitted_comment_message_small.png)
 
 **Image of Book details - comment**
 
-![Image of Book details comment](docs\images\features\book_details\comment\book_details_comment_shown_small.png)
+![Image of Book details comment](docs/images/features/book_details/comment/book_details_comment_shown_small.png)
 
 **Image of Book details - reply to comment**
 
-![Image of Book details - reply to comment](docs\images\features\book_details\comment\reply\book_details_comment_reply_small.png)
+![Image of Book details - reply to comment](docs/images/features/book_details/comment/reply/book_details_comment_reply_small.png)
 
 **Image of Book details - reply to comment form**
 
-![Image of Book details - reply to comment form](docs\images\features\book_details\comment\reply\book_details_comment_reply_form_small.png)
+![Image of Book details - reply to comment form](docs/images/features/book_details/comment/reply/book_details_comment_reply_form_small.png)
 
 **Image of Book details - reply to comment message**
 
-![Image of Book details - reply to comment message](docs\images\features\book_details\comment\reply\book_details_comment_reply_comment_message_small.png)
+![Image of Book details - reply to comment message](docs/images/features/book_details/comment/reply/book_details_comment_reply_comment_message_small.png)
 
 **Image of Book details - reply to comment shown on the website**
 
-![Image of Book details - reply to comment shown on the website](docs\images\features\book_details\comment\reply\book_details_comment_reply_shown_small.png)
+![Image of Book details - reply to comment shown on the website](docs/images/features/book_details/comment/reply/book_details_comment_reply_shown_small.png)
 
 
 #### Edit Comment
@@ -767,19 +767,19 @@ If you are logged in to the site, you can edit comments that you have made yours
 
 **Image of Book details - edit comment**
 
-![Image of Book details - edit comment](docs\images\features\book_details\comment\edit\book_details_edit_small.png)
+![Image of Book details - edit comment](docs/images/features/book_details/comment/edit/book_details_edit_small.png)
 
 **Image of Book details - edit comment form**
 
-![Image of Book details - edit comment form](docs\images\features\book_details\comment\edit\book_details_edit_comment_small.png)
+![Image of Book details - edit comment form](docs/images/features/book_details/comment/edit/book_details_edit_comment_small.png)
 
 **Image of Book details - edited comment form**
 
-![Image of Book details - edited comment form](docs\images\features\book_details\comment\edit\book_details_edited_comment_small.png)
+![Image of Book details - edited comment form](docs/images/features/book_details/comment/edit/book_details_edited_comment_small.png)
 
 **Image of Book details - edited comment message**
 
-![Image of Book details - edited comment message](docs\images\features\book_details\comment\edit\book_details_edited_comment_message_small.png)
+![Image of Book details - edited comment message](docs/images/features/book_details/comment/edit/book_details_edited_comment_message_small.png)
 
 #### Delete Comment
 
@@ -787,25 +787,25 @@ If you are logged in to the website, you can delete comments that you have made 
 
 **Image of Book details - delete comment**
 
-![Image of Book details - delete comment](docs\images\features\book_details\comment\delete\book_details_delete_small.png)
+![Image of Book details - delete comment](docs/images/features/book_details/comment/delete/book_details_delete_small.png)
 
 **Image of Book details - delete comment page**
 
-![Image of Book details - delete comment page](docs\images\features\book_details\comment\delete\book_details_delete_comment_small.png)
+![Image of Book details - delete comment page](docs/images/features/book_details/comment/delete/book_details_delete_comment_small.png)
 
 **Image of Book details - delete comment message**
 
-![Image of Book details - delete comment message](docs\images\features\book_details\comment\delete\book_details_delete_comment_message_small.png)
+![Image of Book details - delete comment message](docs/images/features/book_details/comment/delete/book_details_delete_comment_message_small.png)
 
 **Image of Book details - deleted comment gone**
 
-![Image of Book details - deleted comment gone](docs\images\features\book_details\comment\delete\book_details_deleted_comment_comment_gone_small.png)
+![Image of Book details - deleted comment gone](docs/images/features/book_details/comment/delete/book_details_deleted_comment_comment_gone_small.png)
 
 #### Edit User Details
 
 **Image of My Profile Overview** 
 
-![Image of My Profile Overview](docs\images\features\my_profile\my_profile_overview_small.png)
+![Image of My Profile Overview](docs/images/features/my_profile/my_profile_overview_small.png)
 
 If you are logged in to the site, you can change your user details. To do this, click on “My Profile” in the navbar. When you click on “My Profile” you will be taken to a page where you can choose to change your username, email address or password. Currently, this function is very simple and there are some improvements that can be made to it, for example when it comes to security.
 
@@ -813,31 +813,31 @@ To change your username, click the “Change Username” button. Change your use
 
 **Image of My Profile - Change Username** 
 
-![Image of My Profile - Change Username](docs\images\features\my_profile\change_username\my_profile_change_username.png)
+![Image of My Profile - Change Username](docs/images/features/my_profile/change_username/my_profile_change_username.png)
 
 **Image of My Profile - Changed Username - message** 
 
-![Image of My Profile - Changed Username - message](docs\images\features\my_profile\change_username\my_profile_change_username_message_small.png)
+![Image of My Profile - Changed Username - message](docs/images/features/my_profile/change_username/my_profile_change_username_message_small.png)
 
 To change your email address, click the “Change Email” button. Change your email address and then click the “Save” button. After you click the “Save” button, your username will be changed and you will also see an “Email address updated successfully” message.
 
 **Image of My Profile - Change Email** 
 
-![Image of My Profile - Change Email](docs\images\features\my_profile\change_email\my_profile_change_email_small.png)
+![Image of My Profile - Change Email](docs/images/features/my_profile/change_email/my_profile_change_email_small.png)
 
 **Image of My Profile - Changed Email - message** 
 
-![Image of My Profile - Change Email - message](docs\images\features\my_profile\change_email\my_profile_change_email_message_small.png)
+![Image of My Profile - Change Email - message](docs/images/features/my_profile/change_email/my_profile_change_email_message_small.png)
 
 To change your password, click the “Change Password” button. To change your password, you need to remember your old password (it will not be filled in automatically). Then fill in the “New Password” and “Confirm Password” fields. Then click the “Save” button. After clicking the “Save” button, your username will be changed and a “Your password was successfully changed” message will also appear.
 
 **Image of My Profile - Change Password** 
 
-![Image of My Profile - Change Password](docs\images\features\my_profile\change_password\my_profile_change_password_small.png)
+![Image of My Profile - Change Password](docs/images/features/my_profile/change_password/my_profile_change_password_small.png)
 
 **Image of My Profile - Changed Password - message** 
 
-![Image of My Profile - Change Password - message](docs\images\features\my_profile\change_password\my_profile_change_password_message_small.png)
+![Image of My Profile - Change Password - message](docs/images/features/my_profile/change_password/my_profile_change_password_message_small.png)
 
 ### Existing Features - Administrator(s)
 
@@ -845,7 +845,7 @@ A logged in administrator can use the website's administrator section. To access
 
 **Image of Admin Dashboard** 
 
-![Image of Admin Dashboard](docs\images\features\admin\admin_dashboard_small.png)
+![Image of Admin Dashboard](docs/images/features/admin/admin_dashboard_small.png)
 
 #### Add Book
 
@@ -853,15 +853,15 @@ To add a book (or to create a draft), click Add book. Then fill in all the infor
 
 **Image of Admin - Add a book, part 1 of form** 
 
-![Image of Admin - Add a book, part 1 of form](docs\images\features\admin\add_book\admin_add_book_part1_small.png)
+![Image of Admin - Add a book, part 1 of form](docs/images/features/admin/add_book/admin_add_book_part1_small.png)
 
 **Image of Admin - Add a book, part 2 of form** 
 
-![Image of Admin - Add a book, part 2 of form](docs\images\features\admin\add_book\admin_add_book_part2_small.png)
+![Image of Admin - Add a book, part 2 of form](docs/images/features/admin/add_book/admin_add_book_part2_small.png)
 
 **Image of Admin - Add a book - added book message** 
 
-![Image of Admin - Add a book - added book message](docs\images\features\admin\add_book\admin_add_book_message_small.png)
+![Image of Admin - Add a book - added book message](docs/images/features/admin/add_book/admin_add_book_message_small.png)
 
 #### Edit Book
 
@@ -869,15 +869,15 @@ To change the information for a book, click the “Edit” button next to the bo
 
 **Image of Admin - Edit a book, part 1 of form** 
 
-![Image of Admin - Edit a book, part 1 of form](docs\images\features\admin\edit_book\admin_edit_book_part_1_small.png)
+![Image of Admin - Edit a book, part 1 of form](docs/images/features/admin/edit_book/admin_edit_book_part_1_small.png)
 
 **Image of Admin - Edit a book, part 2 of form** 
 
-![Image of Admin - Edit a book, part 2 of form](docs\images\features\admin\edit_book\admin_edit_book_part_2_small.png)
+![Image of Admin - Edit a book, part 2 of form](docs/images/features/admin/edit_book/admin_edit_book_part_2_small.png)
 
 **Image of Admin - Edit a book - added book message** 
 
-![Image of Admin - Edit a book - added book message](docs\images\features\admin\edit_book\admin_edit_book_part_message_small.png)
+![Image of Admin - Edit a book - added book message](docs/images/features/admin/edit_book/admin_edit_book_part_message_small.png)
 
 #### Delete Book
 
@@ -885,15 +885,15 @@ To delete a book, click the “Delete” button next to the book you want to del
 
 **Image of Admin - Delete a book - added test book** 
 
-![Image of Admin - Delete a book, added test book](docs\images\features\admin\delete_book\admin_delete_book_added_test_book_small.png)
+![Image of Admin - Delete a book, added test book](docs/images/features/admin/delete_book/admin_delete_book_added_test_book_small.png)
 
 **Image of Admin - Delete a book - delete book page** 
 
-![Image of Admin - Delete a book - delete book page](docs\images\features\admin\delete_book\admin_delete_book_small.png)
+![Image of Admin - Delete a book - delete book page](docs/images/features/admin/delete_book/admin_delete_book_small.png)
 
 **Image of Admin - Delete a book - book deleted message** 
 
-![Image of Admin - Delete a book - book deleted message](docs\images\features\admin\delete_book\admin_delete_book_message_small.png)
+![Image of Admin - Delete a book - book deleted message](docs/images/features/admin/delete_book/admin_delete_book_message_small.png)
 
 #### Update Text On The About Page
 
@@ -901,11 +901,11 @@ To change the text on the About page, click the “Edit About” button on the A
 
 **Image of Admin - Update About page text** 
 
-![Image of Admin - Update About page text](docs\images\features\admin\update_About_page_text\admin_edit_about_page_text_small.png)
+![Image of Admin - Update About page text](docs/images/features/admin/update_About_page_text/admin_edit_about_page_text_small.png)
 
 **Image of Admin - Update About page text - message** 
 
-![Image of Admin - Update About page text - message](docs\images\features\admin\update_About_page_text\admin_edit_about_page_text_message_small.png)
+![Image of Admin - Update About page text - message](docs/images/features/admin/update_About_page_text/admin_edit_about_page_text_message_small.png)
 
 #### Approve Comment - Django administration
   
@@ -951,7 +951,7 @@ In addition to the features that are currently added to the website, I have come
 - [CSS](https://en.wikipedia.org/wiki/CSS) - Used to style the website and to get content to end up in the right place.
 - [JavaScript](https://en.wikipedia.org/wiki/JavaScript) - Scripting language used to achieve the star rating and "reply to comment" form on the Book Detail page.
 - [Python3](https://en.wikipedia.org/wiki/Python_(programming_language)) - Programming language that (together with Django) was used to create the website.
-  ### Programs And Other Resoures
+### Programs And Other Resoures
 - [Django](https://www.djangoproject.com/) - a high-level Python web framework that was used to create the website/web application.
 - [PostgreSQL](https://www.postgresql.org/) - The database used on the website is a PostgreSQL database.
 - [Cloudinary](https://cloudinary.com/) - Used to save book covers
@@ -1205,11 +1205,11 @@ All HTML templates were validated using [the W3C Markup Validation Service](http
 
 The CSS file went through [the W3C CSS Validator](https://jigsaw.w3.org/css-validator/) without showing any errors. 
 
-![Image of CSS validation](docs\images\validation\css\css_validated_small.png)
+![Image of CSS validation](docs/images/validation/css/css_validated_small.png)
 
 ### JavaScript
 
-The JavaScript code in this project was validated using JSHint. https://jshint.com/ 
+The JavaScript code in this project was validated using [JSHint](https://jshint.com/). 
 No critical errors were found. Some warnings were reported due to the use of ES6 syntax, including:
 const and let declarations
 Arrow functions (=>)
@@ -1234,169 +1234,182 @@ In addition, automated tests were implemented and passed for key views and forms
 
 ## 13. Lighthouse Testing
 [Back To The Top](#table-of-contents)
+
+Lighthouse was used to evaluate performance, accessibility, and best practices across all pages on both mobile and desktop.
+
+All pages (except Admin Dashboard, Books and Books_details) had between 90 and 100 on Performance, Accessibility and Best Practice. Some changes were made on Admin Dashboard, Books and Book-details, see below
+
+Some of the changes made were:
+- Compressing and optimizing images
+- Adding `aria-labels` to buttons and icons
+- Preloading the hero image for faster loading
+- Improving text contrast and focus order
+
+Some issues related to third-party services (such as Cloudinary cookies) and certain design choices (like visual contrast vs. aesthetics) could not be fully resolved without compromising the user experience or layout.
+
 ### Desktop
 
   <details>
   <summary>Home Page</summary>
 
-  ![Home Page](docs\images\lighthouse\desktop\home.png)
+  ![Home Page](docs/images/lighthouse/desktop/home.png)
 
   <details>
   <summary>Books Page</summary>
 
-  ![Home Page](docs\images\lighthouse\desktop\books.png)
+  ![Home Page](docs/images/lighthouse/desktop/books.png)
 
   <details>
   <summary>Book details Page</summary>
 
-  ![Home Page](docs\images\lighthouse\desktop\book_details.png)
+  ![Home Page](docs/images/lighthouse/desktop/book_details.png)
 
   <details>
   <summary>About Page</summary>
 
-  ![Home Page](docs\images\lighthouse\desktop\about.png)
+  ![Home Page](docs/images/lighthouse/desktop/about.png)
 
   <details>
   <summary>Create Account Page</summary>
 
-  ![Home Page](docs\images\lighthouse\desktop\create_account.png)
+  ![Home Page](docs/images/lighthouse/desktop/create_account.png)
 
   <details>
   <summary>Login Page</summary>
 
-  ![Home Page](docs\images\lighthouse\desktop\login.png)
+  ![Home Page](docs/images/lighthouse/desktop/login.png)
 
   <details>
   <summary>Logout Page</summary>
 
-  ![Home Page](docs\images\lighthouse\desktop\logout.png)
+  ![Home Page](docs/images/lighthouse/desktop/logout.png)
 
   <details>
   <summary>My Profile Page</summary>
 
-  ![Home Page](docs\images\lighthouse\desktop\my_profile.png)
+  ![Home Page](docs/images/lighthouse/desktop/my_profile.png)
 
   <details>
   <summary>My Profile - Change Username Page</summary>
 
-  ![Home Page](docs\images\lighthouse\desktop\change_username.png)
+  ![Home Page](docs/images/lighthouse/desktop/change_username.png)
 
   <details>
   <summary>My Profile - Change Email Page</summary>
 
-  ![Home Page](docs\images\lighthouse\desktop\change_email.png)
+  ![Home Page](docs/images/lighthouse/desktop/change_email.png)
 
   <details>
   <summary>My Profile - Change Password Page</summary>
 
-  ![Home Page](docs\images\lighthouse\desktop\change_password.png)
+  ![Home Page](docs/images/lighthouse/desktop/change_password.png)
 
   <details>
   <summary>Admin Dashboard Page</summary>
 
-  ![Home Page](docs\images\lighthouse\desktop\admin_dashboard.png)
+  ![Home Page](docs/images/lighthouse/desktop/admin_dashboard.png)
 
   <details>
   <summary>Admin Dashboard - Add Book Page</summary>
 
-  ![Home Page](docs\images\lighthouse\desktop\add_book.png)
+  ![Home Page](docs/images/lighthouse/desktop/add_book.png)
 
   <details>
   <summary>Admin Dashboard - Edit Book Page</summary>
 
-  ![Home Page](docs\images\lighthouse\desktop\edit_book.png)
+  ![Home Page](docs/images/lighthouse/desktop/edit_book.png)
 
   <details>
   <summary>Admin Dashboard - Delete Book Page</summary>
 
-  ![Home Page](docs\images\lighthouse\desktop\delete_book.png)
+  ![Home Page](docs/images/lighthouse/desktop/delete_book.png)
 
   <details>
   <summary>Admin Dashboard - Edit About Page text</summary>
 
-  ![Home Page](docs\images\lighthouse\desktop\edit_about_page_text.png)
+  ![Home Page](docs/images/lighthouse/desktop/edit_about_page_text.png)
 
 ### Mobile
 
   <details>
   <summary>Home Page</summary>
 
-  ![Home Page](docs\images\lighthouse\mobile\home.png)
+  ![Home Page](docs/images/lighthouse/mobile/home.png)
 
   <details>
   <summary>Books Page</summary>
 
-  ![Home Page](docs\images\lighthouse\mobile\books.png)
+  ![Home Page](docs/images/lighthouse/mobile/books.png)
 
   <details>
   <summary>Book details Page</summary>
 
-  ![Home Page](docs\images\lighthouse\mobile\book_details.png)
+  ![Home Page](docs/images/lighthouse/mobile/book_details.png)
 
   <details>
   <summary>About Page</summary>
 
-  ![Home Page](docs\images\lighthouse\mobile\about.png)
+  ![Home Page](docs/images/lighthouse/mobile/about.png)
 
   <details>
   <summary>Create Account Page</summary>
 
-  ![Home Page](docs\images\lighthouse\mobile\create_account.png)
+  ![Home Page](docs/images/lighthouse/mobile/create_account.png)
 
   <details>
   <summary>Login Page</summary>
 
-  ![Home Page](docs\images\lighthouse\mobile\login.png)
+  ![Home Page](docs/images/lighthouse/mobile/login.png)
 
   <details>
   <summary>Logout Page</summary>
 
-  ![Home Page](docs\images\lighthouse\mobile\logout.png)
+  ![Home Page](docs/images/lighthouse/mobile/logout.png)
 
   <details>
   <summary>My Profile Page</summary>
 
-  ![Home Page](docs\images\lighthouse\mobile\my_profile.png)
+  ![Home Page](docs/images/lighthouse/mobile/my_profile.png)
 
   <details>
   <summary>My Profile - Change Username Page</summary>
 
-  ![Home Page](docs\images\lighthouse\mobile\change_username.png)
+  ![Home Page](docs/images/lighthouse/mobile/change_username.png)
 
   <details>
   <summary>My Profile - Change Email Page</summary>
 
-  ![Home Page](docs\images\lighthouse\mobile\change_email.png)
+  ![Home Page](docs/images/lighthouse/mobile/change_email.png)
 
   <details>
   <summary>My Profile - Change Password Page</summary>
 
-  ![Home Page](docs\images\lighthouse\mobile\change_password.png)
+  ![Home Page](docs/images/lighthouse/mobile/change_password.png)
 
   <details>
   <summary>Admin Dashboard Page</summary>
 
-  ![Home Page](docs\images\lighthouse\mobile\admin_dashboard.png)
+  ![Home Page](docs/images/lighthouse/mobile/admin_dashboard.png)
 
   <details>
   <summary>Admin Dashboard - Add Book Page</summary>
 
-  ![Home Page](docs\images\lighthouse\mobile\add_book.png)
+  ![Home Page](docs/images/lighthouse/mobile/add_book.png)
 
   <details>
   <summary>Admin Dashboard - Edit Book Page</summary>
 
-  ![Home Page](docs\images\lighthouse\mobile\edit_book.png)
+  ![Home Page](docs/images/lighthouse/mobile/edit_book.png)
 
   <details>
   <summary>Admin Dashboard - Delete Book Page</summary>
 
-  ![Home Page](docs\images\lighthouse\mobile\delete_book.png)
+  ![Home Page](docs/images/lighthouse/mobile/delete_book.png)
 
   <details>
   <summary>Admin Dashboard - Edit About Page text</summary>
 
-  ![Home Page](docs\images\lighthouse\mobile\edit_about_page_text.png)
+  ![Home Page](docs/images/lighthouse/mobile/edit_about_page_text.png)
 
 ## 14. Device Testing
 [Back To The Top](#table-of-contents)
