@@ -38,7 +38,10 @@
           {% csrf_token %}
           <div class="mb-2">
             {% for i in 1|to:6 %}
-              <i class="bi bi-star{% if user_rating and user_rating.value >= i %}-fill{% endif %} text-warning star-icon" data-value="{{ i }}" style="cursor:pointer;"></i>
+              <i class="bi bi-star{% if user_rating and user_rating.value >= i %}-fill{% endif %} text-warning star-icon"
+                data-value="{{ i }}" style="cursor:pointer;" role="button"
+                aria-label="Rate this book {{ i }} star{% if i > 1 %}s{% endif %}">
+              </i>
             {% endfor %}
           </div>
           <input type="hidden" name="rating" id="rating-value">
@@ -92,9 +95,10 @@
 
     {% if user.is_authenticated %}
       <div class="comment-form mt-4">
-        <h5>Leave a Comment:</h5>
+        <h5>Leave A Comment:</h5>
         <form method="post">
           {% csrf_token %}
+          <label for="id_text" class="visually-hidden">Your Comment:</label>
           {{ comment_form.text|add_class:"form-control mb-2" }}
           <input type="hidden" name="parent_id" id="parent_id">
           <button type="submit" name="comment_submit" class="btn btn-outline-primary">Submit Comment</button>
@@ -112,6 +116,7 @@
 <div id="reply-form-container" style="display: none;">
   <form method="post" id="reply-form">
     {% csrf_token %}
+    <label for="id_text" class="visually-hidden">Your Reply:</label>
     {{ comment_form.text|add_class:"form-control mb-2" }}
     <input type="hidden" name="parent_id" id="reply-parent-id">
     <button type="submit" name="comment_submit" class="btn btn-sm btn-outline-primary">Submit Reply</button>
